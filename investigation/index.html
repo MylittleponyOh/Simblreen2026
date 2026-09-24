@@ -88,6 +88,10 @@
     display: none;
   }
 
+  .dialogue-line + .dialogue-line {
+    margin-top: 1rem;
+  }
+
   /* Contrôles */
   .controls {
     position: absolute;
@@ -166,8 +170,7 @@
   <!-- Les slides sont générées par JS à partir du tableau SLIDES ci-dessous -->
 
   <div class="dialogue-box" id="dialogue-box">
-    <div class="dialogue-speaker" id="dialogue-speaker"></div>
-    <div class="dialogue-text" id="dialogue-text"></div>
+    <div id="dialogue-lines"></div>
   </div>
 
   <div class="controls">
@@ -179,13 +182,24 @@
 
 <script>
   // ── Contenu du diaporama ──────────────────────────────────────
-  // Remplace "img" par le vrai chemin une fois les images éditées,
+  // Ne pas oublier de remplacer le placeholder "img" par le vrai chemin une fois les images éditées,
   // ex: "../assets/images/scene1-01.jpg"
-  // speaker/text peuvent être vides si l'image parle d'elle-même.
+  //
+  // 3 formats possibles par slide :
+  // 1) Une seule réplique : { img: ..., speaker: "ASHLEY", text: "..." }
+  // 2) Plusieurs répliques sur la même image :
+  //    { img: ..., lines: [ { speaker: "ASHLEY", text: "..." }, { speaker: "MIKE", text: "..." } ] }
+  // 3) Pas de texte sur une image :
+  // Pour une image sans boite de dialogque : speaker/text vides (ou omets lines)
   var SLIDES = [
     { img: null, speaker: "", text: "April 16th 2009, San Myshuno Inspector" },
-    { img: null, speaker: "ASHLEY", text: "Ah, Mike! I’ve got a lead on the Copperdale Police case. They’re the most incompetent bunch I’ve ever seen!" },
-    { img: null, speaker: "MIKE", text: "Hello to you too, Ash…" },
+    {
+      img: null,
+      lines: [
+        { speaker: "ASHLEY", text: "Ah, Mike! I’ve got a lead on the Copperdale Police case. They’re the most incompetent bunch I’ve ever seen!" },
+        { speaker: "MIKE", text: "Hello to you too, Ash…" }
+      ]
+    },
     { img: null, speaker: "ASHLEY", text: "Yeah… Hello. Seriously, look at all these screw-ups." },
     { img: null, speaker: "MIKE", text: "What do you want to do?" },
     { img: null, speaker: "ASHLEY", text: "I think it’s time I went down there myself. Don’t you think?" },
@@ -201,8 +215,7 @@
   var current = 0;
   var slideshowEl = document.getElementById("slideshow");
   var dialogueBoxEl = document.getElementById("dialogue-box");
-  var speakerEl = document.getElementById("dialogue-speaker");
-  var textEl = document.getElementById("dialogue-text");
+  var linesEl = document.getElementById("dialogue-lines");
   var progressEl = document.getElementById("progress");
   var nextBtn = document.getElementById("next-btn");
   var skipBtn = document.getElementById("skip-btn");
@@ -240,10 +253,28 @@
       dot.classList.toggle("done", i <= current);
     });
 
-    var hasContent = SLIDES[current].speaker || SLIDES[current].text;
+    var slide = SLIDES[current];
+    var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text }];
+    var hasContent = lines.some(function (l) { return l.speaker || l.text; });
+
     dialogueBoxEl.style.display = hasContent ? "block" : "none";
-    speakerEl.textContent = SLIDES[current].speaker;
-    textEl.textContent = SLIDES[current].text;
+    linesEl.innerHTML = "";
+    lines.forEach(function (l) {
+      var wrap = document.createElement("div");
+      wrap.className = "dialogue-line";
+
+      var sp = document.createElement("div");
+      sp.className = "dialogue-speaker";
+      sp.textContent = l.speaker || "";
+
+      var tx = document.createElement("div");
+      tx.className = "dialogue-text";
+      tx.textContent = l.text || "";
+
+      wrap.appendChild(sp);
+      wrap.appendChild(tx);
+      linesEl.appendChild(wrap);
+    });
 
     nextBtn.textContent = (current === SLIDES.length - 1) ? "Begin investigation" : "Next";
   }
