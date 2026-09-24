@@ -1,6 +1,18 @@
 document.addEventListener("DOMContentLoaded", function () {
   var countdownEl = document.getElementById("countdown");
-  if (!countdownEl) return; // pas sur cette page, on ne fait rien
+  if (!countdownEl) return;
+
+  var noteEl = document.getElementById("closed-note");
+  var ctaEl = document.getElementById("enter-btn");
+
+  // Admin Shortcut Debug : Preview the button on the landing page to enter the investigation page
+  var params = new URLSearchParams(window.location.search);
+  if (params.get("preview") === "true") {
+    countdownEl.style.display = "none";
+    if (noteEl) noteEl.style.display = "none";
+    if (ctaEl) ctaEl.style.display = "inline-block";
+    return;
+  }
 
   var targetDate = new Date("2026-10-31T00:00:00+01:00").getTime();
 
@@ -8,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var hoursEl = document.getElementById("cd-hours");
   var minutesEl = document.getElementById("cd-minutes");
   var secondsEl = document.getElementById("cd-seconds");
-  var noteEl = document.getElementById("closed-note");
-  var ctaEl = document.getElementById("enter-btn");
 
   function pad(n) { return n < 10 ? "0" + n : n; }
 
