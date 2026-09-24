@@ -205,18 +205,18 @@
       ]
     },
     { img: "../assets/images/scene1-07.jpg", speaker: "ASHLEY", text: "Yeah… Hello. Seriously, look at all these screw-ups." },
-     {
+    {
       img: "../assets/images/scene1-08.jpg",
       lines: [
-        { speaker: "MIKE", text: "What do you want to do?" }
-        { speaker: "ASHLEY", text: "I think it’s time I go down there myself. Don’t you think?" },
+        { speaker: "MIKE", text: "What do you want to do?" },
+        { speaker: "ASHLEY", text: "I think it’s time I go down there myself. Don’t you think?" }
       ]
     },
- {
+    {
       img: "../assets/images/scene1-08.jpg",
       lines: [
-        { speaker: "MIKE", text: "Do you want my opinion as your editor-in-chief, or as your friend?" }
-        { speaker: "ASHLEY", text: "Both?" },
+        { speaker: "MIKE", text: "Do you want my opinion as your editor-in-chief, or as your friend?" },
+        { speaker: "ASHLEY", text: "Both?" }
       ]
     },
     { img: null, speaker: "MIKE", text: "As a friend… I think you’ve got good instincts. As your editor-in-chief, I think you’re wasting your time." },
@@ -296,7 +296,7 @@
 
       var tx = document.createElement("div");
       tx.className = "dialogue-text";
-      tx.textContent = l.text || "";
+      tx.innerHTML = l.text || "";
 
       wrap.appendChild(sp);
       wrap.appendChild(tx);
