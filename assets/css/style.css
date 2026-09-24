@@ -17,9 +17,9 @@ html, body {
   position: relative;
   min-height: 100svh;
   width: 100%;
-  background-image:
-    linear-gradient(to bottom, rgba(2,4,8,0.35) 0%, rgba(2,4,8,0.55) 55%, rgba(2,4,8,0.95) 100%),
-    url("https://64.media.tumblr.com/e8e3dcc27a1e54e119f116995d2d0fac/tumblr_inline_tludfwEP9p1yrz37b_1280.png");
+ background-image:
+  linear-gradient(to bottom, rgba(2,4,8,0.35) 0%, rgba(2,4,8,0.55) 55%, rgba(2,4,8,0.95) 100%),
+  url("../images/hero.jpg");
   background-size: cover;
   background-position: center;
   display: flex;
