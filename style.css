@@ -1,0 +1,96 @@
+:root {
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  background: #05070a;
+  color: #f2efe9;
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  background-image:
+    linear-gradient(to bottom, rgba(2,4,8,0.35) 0%, rgba(2,4,8,0.55) 55%, rgba(2,4,8,0.95) 100%),
+    url("https://64.media.tumblr.com/e8e3dcc27a1e54e119f116995d2d0fac/tumblr_inline_tludfwEP9p1yrz37b_1280.png");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: center;
+  padding: 6vh 5vw calc(6vh + env(safe-area-inset-bottom, 0px));
+}
+
+.subtitle {
+  font-size: clamp(0.95rem, 2.2vw, 1.35rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #d8c9b0;
+  margin: 0 0 3.5vh;
+  max-width: 34rem;
+  font-style: italic;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+.countdown {
+  display: flex;
+  gap: clamp(0.6rem, 2vw, 1.6rem);
+  margin-bottom: 4vh;
+}
+
+.countdown .unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 3.2rem;
+}
+
+.countdown .value {
+  font-size: clamp(1.6rem, 5vw, 2.6rem);
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.7);
+}
+
+.countdown .label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #a99c86;
+  margin-top: 0.4rem;
+}
+
+.cta {
+  display: none;
+  text-decoration: none;
+  color: #05070a;
+  background: #d8c9b0;
+  padding: 0.9rem 2.4rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  background: #f2efe9;
+  transform: translateY(-2px);
+}
+
+.closed-note {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #6f6555;
+  text-transform: uppercase;
+}
