@@ -165,7 +165,7 @@
 
   <!-- Les slides sont générées par JS à partir du tableau SLIDES ci-dessous -->
 
-  <div class="dialogue-box">
+  <div class="dialogue-box" id="dialogue-box">
     <div class="dialogue-speaker" id="dialogue-speaker"></div>
     <div class="dialogue-text" id="dialogue-text"></div>
   </div>
@@ -183,16 +183,16 @@
   // ex: "../assets/images/scene1-01.jpg"
   // speaker/text peuvent être vides si l'image parle d'elle-même.
   var SLIDES = [
-    { img: null, speaker: "", text: "" },
-    { img: null, speaker: "ASHLEY", text: "Ah, Mike j'ai une piste pour l'affaire de la police de Copperdale. Ce sont les pires incapables qu'il m'ait été donné de voir !" },
-    { img: null, speaker: "MIKE", text: "Bonjour à toi aussi, Ash…" },
-    { img: null, speaker: "ASHLEY", text: "Oui… Bonjour. Vraiment, regarde moi toutes ces bavures." },
-    { img: null, speaker: "MIKE", text: "Qu'est-ce que tu veux faire ?" },
-    { img: null, speaker: "ASHLEY", text: "Je pense qu'il est temps de mettre les pieds là-bas, tu ne crois pas ?" },
-    { img: null, speaker: "MIKE", text: "Tu veux mon avis en tant que rédacteur en chef ou en tant qu'ami ?" },
-    { img: null, speaker: "ASHLEY", text: "Les deux ?" },
-    { img: null, speaker: "MIKE", text: "En tant qu'ami… je pense que tu as un bon instinct. En tant que rédacteur en chef, je pense que tu perds ton temps." },
-    { img: null, speaker: "ASHLEY", text: "Je pars demain à la première heure. Donne mes autres dossiers à Tim Gurnersson !" }
+    { img: null, speaker: "", text: "April 16th 2009, San Myshuno Inspector" },
+    { img: null, speaker: "ASHLEY", text: "Ah, Mike! I’ve got a lead on the Copperdale Police case. They’re the most incompetent bunch I’ve ever seen!" },
+    { img: null, speaker: "MIKE", text: "Hello to you too, Ash…" },
+    { img: null, speaker: "ASHLEY", text: "Yeah… Hello. Seriously, look at all these screw-ups." },
+    { img: null, speaker: "MIKE", text: "What do you want to do?" },
+    { img: null, speaker: "ASHLEY", text: "I think it’s time I went down there myself. Don’t you think?" },
+    { img: null, speaker: "MIKE", text: "Do you want my opinion as your editor-in-chief, or as your friend?" },
+    { img: null, speaker: "ASHLEY", text: "Both?" },
+    { img: null, speaker: "MIKE", text: "As a friend… I think you’ve got good instincts. As your editor-in-chief, I think you’re wasting your time." },
+    { img: null, speaker: "ASHLEY", text: "I’m leaving first thing tomorrow. Give my other assignments to Tim Gurnersson. I have no idea how long I’m going to be gone!" }
   ];
 
   var NEXT_SCENE_URL = "../motel/";
@@ -200,6 +200,7 @@
   // ── Moteur du diaporama ────────────────────────────────────────
   var current = 0;
   var slideshowEl = document.getElementById("slideshow");
+  var dialogueBoxEl = document.getElementById("dialogue-box");
   var speakerEl = document.getElementById("dialogue-speaker");
   var textEl = document.getElementById("dialogue-text");
   var progressEl = document.getElementById("progress");
@@ -239,6 +240,8 @@
       dot.classList.toggle("done", i <= current);
     });
 
+    var hasContent = SLIDES[current].speaker || SLIDES[current].text;
+    dialogueBoxEl.style.display = hasContent ? "block" : "none";
     speakerEl.textContent = SLIDES[current].speaker;
     textEl.textContent = SLIDES[current].text;
 
