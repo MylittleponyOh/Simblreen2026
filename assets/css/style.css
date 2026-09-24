@@ -39,7 +39,7 @@ html, body {
   pointer-events: none;
   opacity: 0;
   animation: titleFadeIn 2.5s ease-out forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.10s;
 }
 
 @keyframes titleFadeIn {
