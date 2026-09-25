@@ -104,6 +104,8 @@ function initSlideshow(SLIDES, opts) {
       el.classList.toggle("active", i === current);
     });
 
+    if (opts.onSlideChange) opts.onSlideChange(current);
+
     clearTypeTimeouts();
 
     var slide = SLIDES[current];
