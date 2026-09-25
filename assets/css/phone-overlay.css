@@ -52,33 +52,45 @@
   background: radial-gradient(circle at 30% 20%, #4a3550 0%, #241d33 45%, #14101d 100%);
   border-radius: 3px;
   z-index: 1;
-}
-
-/* Icône notification (cloche + point rouge), centrée dans l'écran de la mini vignette */
-#phone-peek-btn .peek-notif-icon {
-  position: absolute;
-  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  padding: 4px;
+}
+
+/* Badge pill "N New", confiné dans l'écran de la mini vignette */
+#phone-peek-btn .peek-notif-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: linear-gradient(135deg, #4a3550, #241d33);
+  border: 1px solid rgba(216, 201, 176, 0.35);
+  border-radius: 20px;
+  padding: 0.2rem 0.6rem 0.2rem 0.2rem;
+  font-size: 0.55rem;
+  color: #f2efe9;
+  white-space: nowrap;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.4);
   animation: peek-notif-pulse 1.8s ease-in-out infinite;
 }
 
-#phone-peek-btn .peek-notif-dot {
-  position: absolute;
-  top: 22%;
-  right: 30%;
-  width: 8px;
-  height: 8px;
+#phone-peek-btn .peek-notif-count {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   background: #c0473f;
+  color: #fff;
+  font-size: 0.55rem;
+  font-weight: 700;
   border: 1.5px solid #14101d;
 }
 
 @keyframes peek-notif-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.1); opacity: 1; }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
 }
 
 /* ── Overlay / fond assombri ─────────────────────────────── */
