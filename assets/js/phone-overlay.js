@@ -16,7 +16,7 @@ function initPhoneOverlay(items, opts) {
   if (opts.hasNew) peekBtn.classList.add("has-new");
   peekBtn.innerHTML =
     '<div class="peek-screen-fill">' +
-    (opts.hasNew ? '<div class="peek-notif-icon">🔔<span class="peek-notif-dot"></span></div>' : '') +
+    (opts.hasNew ? '<div class="peek-notif-pill"><span class="peek-notif-count">' + (opts.newCount || 1) + '</span>New</div>' : '') +
     '</div>' +
     '<img src="' + imgPath + '" alt="Phone">';
   document.body.appendChild(peekBtn);
