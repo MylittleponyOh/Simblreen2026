@@ -86,8 +86,8 @@ function initSlideshow(SLIDES, opts) {
     progressEl.appendChild(dot);
   });
 
+  dialogueBoxEl.appendChild(controlsEl);
   root.appendChild(dialogueBoxEl);
-  root.appendChild(controlsEl);
   document.body.appendChild(root);
 
   // ── Effet machine à écrire ────────────────────────────────
