@@ -4,37 +4,65 @@
    FEED_ITEMS est un tableau d'objets :
      - Message :  { type: "message", from: "MIKE", text: "...", attachment: { label: "...", url: "..." } }
      - Lieu :     { type: "location", name: "...", blurb: "...", thumb: null, url: "..." }
+
+   Peut être appelé PLUSIEURS FOIS sur la même page (ex: depuis
+   onSlideChange d'un diaporama) : le premier appel crée le téléphone,
+   les suivants mettent juste à jour son contenu sans le dupliquer.
    ═══════════════════════════════════════════════════════════ */
 
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
   var imgPath = opts.imgPath || "../assets/images/phone-frame.png";
 
-  // ── Construction du DOM ──────────────────────────────────
-  var peekBtn = document.createElement("div");
-  peekBtn.id = "phone-peek-btn";
-  if (opts.hasNew) peekBtn.classList.add("has-new");
-  peekBtn.innerHTML =
-    '<div class="peek-screen-fill">' +
-    (opts.hasNew ? '<div class="peek-notif-pill"><span class="peek-notif-count">' + (opts.newCount || 1) + '</span>New</div>' : '') +
-    '</div>' +
-    '<img src="' + imgPath + '" alt="Phone">';
-  document.body.appendChild(peekBtn);
+  var peekBtn = document.getElementById("phone-peek-btn");
+  var alreadyExists = !!peekBtn;
 
-  var backdrop = document.createElement("div");
-  backdrop.id = "phone-overlay-backdrop";
-  backdrop.innerHTML =
-    '<div id="phone-modal">' +
-    '  <button class="phone-close" id="phone-close-btn">✕</button>' +
-    '  <img class="phone-frame" src="' + imgPath + '" alt="">' +
-    '  <div class="phone-screen">' +
-    '    <div class="feed" id="phone-feed"></div>' +
-    '  </div>' +
-    '</div>';
-  document.body.appendChild(backdrop);
+  // ── Construction du DOM (uniquement au premier appel) ────
+  if (!alreadyExists) {
+    peekBtn = document.createElement("div");
+    peekBtn.id = "phone-peek-btn";
+    peekBtn.innerHTML =
+      '<div class="peek-screen-fill"><div class="peek-notif-pill" id="peek-notif-pill" style="display:none;"><span class="peek-notif-count" id="peek-notif-count">1</span>New</div></div>' +
+      '<img src="' + imgPath + '" alt="Phone">';
+    document.body.appendChild(peekBtn);
 
-  // ── Remplissage du feed ──────────────────────────────────
+    var backdrop = document.createElement("div");
+    backdrop.id = "phone-overlay-backdrop";
+    backdrop.innerHTML =
+      '<div id="phone-modal">' +
+      '  <button class="phone-close" id="phone-close-btn">✕</button>' +
+      '  <img class="phone-frame" src="' + imgPath + '" alt="">' +
+      '  <div class="phone-screen">' +
+      '    <div class="feed" id="phone-feed"></div>' +
+      '  </div>' +
+      '</div>';
+    document.body.appendChild(backdrop);
+
+    function openPhone() {
+      backdrop.classList.add("open");
+      peekBtn.classList.remove("has-new");
+    }
+    function closePhone() {
+      backdrop.classList.remove("open");
+    }
+
+    peekBtn.addEventListener("click", openPhone);
+    document.getElementById("phone-close-btn").addEventListener("click", closePhone);
+    backdrop.addEventListener("click", function (e) {
+      if (e.target === backdrop) closePhone();
+    });
+  }
+
+  // ── Mise à jour du badge "nouveau" ────────────────────────
+  peekBtn.classList.toggle("has-new", !!opts.hasNew);
+  var pillEl = document.getElementById("peek-notif-pill");
+  var countEl = document.getElementById("peek-notif-count");
+  if (pillEl) pillEl.style.display = opts.hasNew ? "flex" : "none";
+  if (countEl) countEl.textContent = opts.newCount || 1;
+
+  // ── Remplissage du feed (à chaque appel : on regénère tout) ─
   var feedEl = document.getElementById("phone-feed");
+  feedEl.innerHTML = "";
 
   items.forEach(function (item) {
     if (item.type === "message") {
@@ -98,20 +126,5 @@ function initPhoneOverlay(items, opts) {
 
       feedEl.appendChild(loc);
     }
-  });
-
-  // ── Interactions ──────────────────────────────────────────
-  function openPhone() {
-    backdrop.classList.add("open");
-    peekBtn.classList.remove("has-new");
-  }
-  function closePhone() {
-    backdrop.classList.remove("open");
-  }
-
-  peekBtn.addEventListener("click", openPhone);
-  document.getElementById("phone-close-btn").addEventListener("click", closePhone);
-  backdrop.addEventListener("click", function (e) {
-    if (e.target === backdrop) closePhone();
   });
 }
