@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Departure — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<style>
+  .slideshow {
+    position: relative;
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #05070a;
+  }
+
+  .slide-placeholder {
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #14171d;
+    color: #4a4438;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .slide-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+
+<div class="slideshow" id="slideshow">
+  <!-- Remplace par ta vraie photo :
+       <img src="../../assets/images/scene2-01.jpg" style="width:100%;height:100%;object-fit:cover;">
+  -->
+  <div class="slide-placeholder">Ashley on the porch, texting</div>
+</div>
+
+<!-- Le composant téléphone chargé ici -->
+<script src="../../assets/js/phone-overlay.js"></script>
+<script>
+  var FEED_ITEMS = [
+    {
+      type: "message",
+      from: "MIKE",
+      text: "Good luck. Be careful.",
+      attachment: { label: "A little something for the road", url: "../../assets/downloads/scene1-gift.zip" }
+    }
+  ];
+
+  // imgPath : chemin ajusté car cette page vit dans investigation/motel/ (2 niveaux sous la racine)
+  initPhoneOverlay(FEED_ITEMS, { hasNew: true, imgPath: "../../assets/images/phone-frame.png" });
+</script>
+
+</body>
+</html>
