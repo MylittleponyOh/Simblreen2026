@@ -27,7 +27,6 @@ function initPhoneOverlay(items, opts) {
     '  <button class="phone-close" id="phone-close-btn">✕</button>' +
     '  <img class="phone-frame" src="' + imgPath + '" alt="">' +
     '  <div class="phone-screen">' +
-    '    <div class="feed-header"><h1>Copperdale</h1></div>' +
     '    <div class="feed" id="phone-feed"></div>' +
     '  </div>' +
     '</div>';
