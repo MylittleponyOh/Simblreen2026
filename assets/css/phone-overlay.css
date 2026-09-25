@@ -2,7 +2,7 @@
    PHONE OVERLAY — composant réutilisable sur toutes les pages
    ═══════════════════════════════════════════════════════════ */
 
-/* Bouton flottant qui "peek" en bas à droite */
+/* PEEK PHONE */
 #phone-peek-btn {
   position: fixed;
   bottom: 0;
@@ -38,9 +38,22 @@
   width: 100%;
   height: auto;
   pointer-events: none;
+  position: relative;
+  z-index: 2;
 }
 
-/* Petit badge rouge quand il y a du nouveau */
+#phone-peek-btn .peek-screen-fill {
+  position: absolute;
+  top: 15.33%;
+  left: 17.75%;
+  right: 18.43%;
+  bottom: 22.95%;
+  background: radial-gradient(circle at 30% 20%, #4a3550 0%, #241d33 45%, #14101d 100%);
+  border-radius: 3px;
+  z-index: 1;
+}
+
+/* NOTIFICATION */
 #phone-peek-btn .peek-badge {
   position: absolute;
   top: 8px;
