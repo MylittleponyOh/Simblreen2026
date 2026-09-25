@@ -13,30 +13,45 @@
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
 <script>
-  
+  // Ajoute d'autres slides ici au fur et à mesure que tu as tes images.
+  // Le téléphone peut être déclenché/mis à jour à n'importe quel index
+  // via onSlideChange plus bas — pas besoin d'une nouvelle page à chaque fois.
   var SLIDES = [
-    { img: "../../assets/images/scene2-01.jpg", speaker: "", text: "April 17th 2009, 8:30 AM - San Myshuno" },
-    { img: "../../assets/images/scene2-02.jpg", speaker: "", text: "" },
-    { img: "../../assets/images/scene2-03.jpg", speaker: "", text: "" },
-    { img: "../../assets/images/scene2-04.jpg", speaker: "", text: "" },
-    { img: "../../assets/images/scene2-05.jpg", speaker: "", text: "" }
+    { img: "../../assets/images/scene2-01.jpg", speaker: "", text: "October 15th 2009, 8:30 am - San Myshuno" }
+    // { img: "../../assets/images/scene2-02.jpg", speaker: "", text: "..." },  ← futures slides ici
   ];
 
-  // TODO : remplacer par la vraie page suivante une fois la Scène 2 complète
+  var PHONE_IMG = "../../assets/images/phone-frame.png";
+
+  // TODO : remplace par la vraie page suivante une fois la Scène 2 complète
   initSlideshow(SLIDES, {
-    nextUrl: "#"
-  });
+    nextUrl: "#",
+    onSlideChange: function (index) {
+      // Slide 0 : Ashley reçoit le texto de Mike → le téléphone apparaît ici
+      if (index === 0) {
+        initPhoneOverlay(
+          [
+            {
+              type: "message",
+              from: "MIKE",
+              text: "Good luck. Be careful.",
+              attachment: { label: "A little something for the road", url: "../../assets/downloads/scene1-gift.zip" }
+            }
+          ],
+          { hasNew: true, imgPath: PHONE_IMG }
+        );
+      }
 
-  var FEED_ITEMS = [
-    {
-      type: "message",
-      from: "MIKE",
-      text: "Good luck. Be careful.",
-      attachment: { label: "A little something for the road", url: "../../assets/downloads/scene1-gift.zip" }
+      // Exemple pour plus tard : à la slide 4 par exemple, tu pourras
+      // rappeler initPhoneOverlay avec une liste FEED_ITEMS mise à jour
+      // (le message de Mike + un nouveau lieu débloqué), et ça remplacera
+      // le contenu du même téléphone sans le dupliquer :
+      //
+      // if (index === 4) {
+      //   initPhoneOverlay([...ancien contenu..., { type: "location", ... }], { hasNew: true, imgPath: PHONE_IMG });
+      // }
     }
-  ];
-
-  initPhoneOverlay(FEED_ITEMS, { hasNew: true, imgPath: "../../assets/images/phone-frame.png" });
+  });
 </script>
 
 </body>
