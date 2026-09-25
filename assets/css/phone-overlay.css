@@ -54,21 +54,31 @@
   z-index: 1;
 }
 
-/* Petit badge rouge quand il y a du nouveau */
-#phone-peek-btn .peek-badge {
+/* Icône notification (cloche + point rouge), centrée dans l'écran de la mini vignette */
+#phone-peek-btn .peek-notif-icon {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #c0473f;
-  border: 2px solid #05070a;
-  display: none;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  animation: peek-notif-pulse 1.8s ease-in-out infinite;
 }
 
-#phone-peek-btn.has-new .peek-badge {
-  display: block;
+#phone-peek-btn .peek-notif-dot {
+  position: absolute;
+  top: 22%;
+  right: 30%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c0473f;
+  border: 1.5px solid #14101d;
+}
+
+@keyframes peek-notif-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
 }
 
 /* ── Overlay / fond assombri ─────────────────────────────── */
