@@ -5,28 +5,47 @@
    SLIDES est un tableau d'objets, 3 formats possibles par slide :
      1) Une seule réplique : { img: "...", speaker: "ASHLEY", text: "..." }
      2) Plusieurs répliques : { img: "...", lines: [ {speaker, text}, {speaker, text} ] }
-     3) Pas de dialogue : speaker/text vides (ou omets lines) → boîte cachée
+     3) Pas de dialogue : speaker/text vides (ou omets lines) → boîte cachée,
+        seuls les boutons restent visibles
 
    opts :
-     nextUrl          (obligatoire) — où aller après la dernière slide
-     skipUrl           (optionnel) — si fourni, affiche un bouton "Skip"
-     skipLabel          (optionnel) — texte du bouton skip, défaut "Skip"
-     typeSpeed          (optionnel) — ms par caractère, défaut 25
-     showFullscreenBtn (optionnel) — défaut true
+     nextUrl    (obligatoire) — où aller après la dernière slide
+     skipUrl     (optionnel) — si fourni, affiche un bouton "Skip"
+     skipLabel    (optionnel) — texte du bouton skip, défaut "Skip"
+     typeSpeed    (optionnel) — ms par caractère, défaut 25
    ═══════════════════════════════════════════════════════════ */
 
 function initSlideshow(SLIDES, opts) {
   opts = opts || {};
   var typeSpeed = opts.typeSpeed || 25;
-  var showFullscreen = opts.showFullscreenBtn !== false;
 
   // ── Construction du DOM racine ───────────────────────────
   var root = document.createElement("div");
   root.id = "slideshow-root";
 
-  var progressEl = document.createElement("div");
-  progressEl.className = "slideshow-progress";
-  root.appendChild(progressEl);
+  // Génère les slides (image ou placeholder)
+  SLIDES.forEach(function (slide, i) {
+    var div = document.createElement("div");
+    div.className = "slide";
+
+    if (slide.img) {
+      var img = document.createElement("img");
+      img.src = slide.img;
+      img.alt = "";
+      div.appendChild(img);
+    } else {
+      var ph = document.createElement("div");
+      ph.className = "slide-placeholder";
+      ph.textContent = "Image " + (i + 1) + " / " + SLIDES.length;
+      div.appendChild(ph);
+    }
+
+    root.appendChild(div);
+  });
+
+  // Rangée du bas : boîte de dialogue + boutons à côté
+  var bottomRow = document.createElement("div");
+  bottomRow.className = "slideshow-bottom-row";
 
   var dialogueBoxEl = document.createElement("div");
   dialogueBoxEl.className = "dialogue-box";
@@ -48,46 +67,10 @@ function initSlideshow(SLIDES, opts) {
   controlsEl.appendChild(skipBtn);
   controlsEl.appendChild(nextBtn);
 
-  if (showFullscreen) {
-    var fsBtn = document.createElement("button");
-    fsBtn.className = "fullscreen-btn";
-    fsBtn.textContent = "⛶ Fullscreen";
-    fsBtn.addEventListener("click", function () {
-      if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
-    });
-    root.appendChild(fsBtn);
-  }
+  bottomRow.appendChild(dialogueBoxEl);
+  bottomRow.appendChild(controlsEl);
+  root.appendChild(bottomRow);
 
-  // Génère les slides (image ou placeholder)
-  SLIDES.forEach(function (slide, i) {
-    var div = document.createElement("div");
-    div.className = "slide";
-
-    if (slide.img) {
-      var img = document.createElement("img");
-      img.src = slide.img;
-      img.alt = "";
-      div.appendChild(img);
-    } else {
-      var ph = document.createElement("div");
-      ph.className = "slide-placeholder";
-      ph.textContent = "Image " + (i + 1) + " / " + SLIDES.length;
-      div.appendChild(ph);
-    }
-
-    root.appendChild(div);
-
-    var dot = document.createElement("div");
-    dot.className = "dot";
-    progressEl.appendChild(dot);
-  });
-
-  dialogueBoxEl.appendChild(controlsEl);
-  root.appendChild(dialogueBoxEl);
   document.body.appendChild(root);
 
   // ── Effet machine à écrire ────────────────────────────────
@@ -120,10 +103,6 @@ function initSlideshow(SLIDES, opts) {
     slides.forEach(function (el, i) {
       el.classList.toggle("active", i === current);
     });
-    var dots = progressEl.querySelectorAll(".dot");
-    dots.forEach(function (dot, i) {
-      dot.classList.toggle("done", i <= current);
-    });
 
     clearTypeTimeouts();
 
@@ -131,7 +110,9 @@ function initSlideshow(SLIDES, opts) {
     var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text }];
     var hasContent = lines.some(function (l) { return l.speaker || l.text; });
 
-    linesEl.style.display = hasContent ? "block" : "none";
+    // La boîte entière se cache s'il n'y a rien à dire ;
+    // les boutons restent toujours visibles à côté, indépendamment.
+    dialogueBoxEl.style.display = hasContent ? "block" : "none";
     linesEl.innerHTML = "";
 
     var textEls = [];
