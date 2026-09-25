@@ -131,7 +131,7 @@ function initSlideshow(SLIDES, opts) {
     var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text }];
     var hasContent = lines.some(function (l) { return l.speaker || l.text; });
 
-    dialogueBoxEl.style.display = hasContent ? "block" : "none";
+    linesEl.style.display = hasContent ? "block" : "none";
     linesEl.innerHTML = "";
 
     var textEls = [];
@@ -160,6 +160,7 @@ function initSlideshow(SLIDES, opts) {
 
     isTyping = hasContent;
     var lineIndex = 0;
+    var pauseBetweenLines = 500; // ms de pause avant la réplique suivante
     function typeNextLine() {
       if (lineIndex >= textEls.length) {
         isTyping = false;
@@ -167,7 +168,7 @@ function initSlideshow(SLIDES, opts) {
       }
       typeLine(textEls[lineIndex], fullTexts[lineIndex], function () {
         lineIndex++;
-        typeNextLine();
+        typeTimeouts.push(setTimeout(typeNextLine, pauseBetweenLines));
       });
     }
     typeNextLine();
