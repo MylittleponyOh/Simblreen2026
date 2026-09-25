@@ -2,7 +2,7 @@
    PHONE OVERLAY — composant réutilisable sur toutes les pages
    ═══════════════════════════════════════════════════════════ */
 
-/* PEEK PHONE */
+/* Bouton flottant qui "peek" en bas à droite */
 #phone-peek-btn {
   position: fixed;
   bottom: 0;
@@ -42,6 +42,7 @@
   z-index: 2;
 }
 
+/* Fond du même dégradé que le modal, visible dans le trou transparent de la mini-image */
 #phone-peek-btn .peek-screen-fill {
   position: absolute;
   top: 15.33%;
@@ -53,7 +54,7 @@
   z-index: 1;
 }
 
-/* NOTIFICATION */
+/* Petit badge rouge quand il y a du nouveau */
 #phone-peek-btn .peek-badge {
   position: absolute;
   top: 8px;
@@ -145,19 +146,6 @@
 }
 
 /* ── Feed : messages + lieux mélangés ────────────────────── */
-.feed-header {
-  text-align: center;
-  margin-bottom: 0.8rem;
-}
-
-.feed-header h1 {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #d8c9b0;
-  margin: 0;
-}
-
 .feed {
   display: flex;
   flex-direction: column;
