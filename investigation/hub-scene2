@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case File — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  body {
+    background: #05070a;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4vh 2vw;
+  }
+
+  /* ── Conteneur du téléphone ──────────────────────────────────
+     Les dimensions (WIDTH/HEIGHT) doivent correspondre au ratio
+     réel de ton image PNG du téléphone stylisé.
+     Ajuste PHONE_IMG plus bas une fois l'image prête. */
+  .phone-wrap {
+    position: relative;
+    width: 340px;
+    max-width: 88vw;
+  }
+
+  .phone-wrap img.phone-frame {
+    display: block;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Placeholder tant que l'image n'est pas prête */
+  .phone-frame-placeholder {
+    width: 100%;
+    aspect-ratio: 340 / 700; /* ajuste selon le vrai ratio de ton image */
+    background: #14171d;
+    border: 1px dashed rgba(216, 201, 176, 0.3);
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #4a4438;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  /* ── Écran superposé, positionné en % par-dessus l'image ─────
+     Ces 4 valeurs (top/left/right/bottom) définissent la zone
+     d'écran exacte à l'intérieur de ton image de téléphone.
+     À ajuster précisément une fois l'image prête : ouvre l'image,
+     repère les bords de l'écran en % de la largeur/hauteur totale. */
+  .phone-screen {
+    position: absolute;
+    top: 15.33%;
+    left: 17.75%;
+    right: 18.43%;
+    bottom: 22.95%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem 0.7rem;
+    border-radius: 6px;
+  }
+
+  .phone-header {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .phone-header h1 {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #d8c9b0;
+    margin: 0 0 0.25rem;
+  }
+
+  .phone-header p {
+    font-size: 0.62rem;
+    color: #a99c86;
+    margin: 0;
+  }
+
+  /* ── Liste des lieux ─────────────────────────────────────── */
+  .locations {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .location-card {
+    background: rgba(216, 201, 176, 0.08);
+    border: 1px solid rgba(216, 201, 176, 0.18);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem;
+    text-decoration: none;
+  }
+
+  .location-thumb {
+    width: 46px;
+    height: 46px;
+    border-radius: 5px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #14171d;
+  }
+
+  .location-thumb-placeholder {
+    width: 46px;
+    height: 46px;
+    border-radius: 5px;
+    background: #14171d;
+    color: #4a4438;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.5rem;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .location-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .location-name {
+    font-size: 0.72rem;
+    color: #f2efe9;
+    margin: 0 0 0.1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .location-blurb {
+    font-size: 0.58rem;
+    color: #a99c86;
+    margin: 0;
+  }
+
+  .go-btn {
+    flex-shrink: 0;
+    background: #d8c9b0;
+    color: #05070a;
+    font-size: 0.58rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.6rem;
+    border-radius: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-wrap">
+
+  <!-- Remplace ce placeholder par : <img class="phone-frame" src="../assets/images/phone-frame.png" alt=""> -->
+  <div class="phone-frame-placeholder">
+    Phone frame image goes here<br>(replace with your styled PNG)
+  </div>
+
+  <div class="phone-screen" id="phone-screen">
+    <div class="phone-header">
+      <h1>Copperdale</h1>
+      <p>Tap a location to investigate</p>
+    </div>
+
+    <div class="locations" id="locations"></div>
+  </div>
+
+</div>
+
+<script>
+  // ── Liste des lieux ──────────────────────────────────────────
+  // thumb: chemin vers la vignette une fois prête, laisse null pour un placeholder
+  // url: dossier de destination (relatif à investigation/)
+  var LOCATIONS = [
+    { name: "Gas Station", blurb: "Where Melissa worked", thumb: null, url: "../gas-station/" },
+    { name: "The Forest", blurb: "Her route home", thumb: null, url: "../forest/" },
+    { name: "Police Station", blurb: "Placeholder ville", thumb: null, url: "../police-station/" },
+    { name: "Bar & Diner", blurb: "Local hangout", thumb: null, url: "../bar/" },
+    { name: "Lake View Motel", blurb: "Where Ashley is staying", thumb: null, url: "../motel/" }
+  ];
+
+  var listEl = document.getElementById("locations");
+
+  LOCATIONS.forEach(function (loc) {
+    var card = document.createElement("a");
+    card.className = "location-card";
+    card.href = loc.url;
+
+    if (loc.thumb) {
+      var img = document.createElement("img");
+      img.className = "location-thumb";
+      img.src = loc.thumb;
+      img.alt = loc.name;
+      card.appendChild(img);
+    } else {
+      var ph = document.createElement("div");
+      ph.className = "location-thumb-placeholder";
+      ph.textContent = "Photo";
+      card.appendChild(ph);
+    }
+
+    var info = document.createElement("div");
+    info.className = "location-info";
+
+    var name = document.createElement("p");
+    name.className = "location-name";
+    name.textContent = loc.name;
+
+    var blurb = document.createElement("p");
+    blurb.className = "location-blurb";
+    blurb.textContent = loc.blurb;
+
+    info.appendChild(name);
+    info.appendChild(blurb);
+    card.appendChild(info);
+
+    var go = document.createElement("span");
+    go.className = "go-btn";
+    go.textContent = "Go";
+    card.appendChild(go);
+
+    listEl.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
