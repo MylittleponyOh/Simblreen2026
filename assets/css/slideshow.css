@@ -50,18 +50,27 @@
   text-transform: uppercase;
 }
 
-.dialogue-box {
+/* Rangée du bas : boîte de dialogue (si présente) + boutons à côté */
+.slideshow-bottom-row {
   position: absolute;
   bottom: 6vh;
   left: 5vw;
   right: 5vw;
-  max-width: 46rem;
+  max-width: 56rem;
   margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 1rem;
+  z-index: 5;
+}
+
+.dialogue-box {
+  flex: 1;
   background: rgba(5, 7, 10, 0.85);
   border: 1px solid rgba(216, 201, 176, 0.3);
   border-radius: 4px;
   padding: 1.4rem 1.8rem;
-  z-index: 5;
 }
 
 .dialogue-speaker {
@@ -86,24 +95,24 @@
   margin-top: 1rem;
 }
 
+/* Boutons, à côté de la boîte (pas dedans) */
 .slideshow-controls {
+  flex-shrink: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.2rem;
-  padding-top: 0.9rem;
-  border-top: 1px solid rgba(216, 201, 176, 0.15);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 
 .skip-btn {
   background: none;
   border: none;
   color: #a99c86;
-  font-size: 0.7rem;
-  letter-spacing: 0.1em;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 0.4rem 0;
+  padding: 0.2rem 0;
 }
 
 .skip-btn:hover {
@@ -114,60 +123,16 @@
   background: #d8c9b0;
   color: #05070a;
   border: none;
-  padding: 0.55rem 1.6rem;
-  font-size: 0.78rem;
+  padding: 0.65rem 1.8rem;
+  font-size: 0.8rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   border-radius: 2px;
   cursor: pointer;
   transition: background 0.2s ease;
+  white-space: nowrap;
 }
 
 .next-btn:hover {
   background: #f2efe9;
-}
-
-.slideshow-progress {
-  position: absolute;
-  top: 3vh;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  z-index: 6;
-}
-
-.slideshow-progress .dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(216, 201, 176, 0.25);
-  transition: background 0.3s ease;
-}
-
-.slideshow-progress .dot.done {
-  background: #d8c9b0;
-}
-
-.fullscreen-btn {
-  position: fixed;
-  top: 3vh;
-  right: 5vw;
-  z-index: 10;
-  background: rgba(5, 7, 10, 0.6);
-  border: 1px solid rgba(216, 201, 176, 0.4);
-  color: #d8c9b0;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 2px;
-  transition: background 0.2s ease, color 0.2s ease;
-}
-
-.fullscreen-btn:hover {
-  background: rgba(216, 201, 176, 0.15);
-  color: #f2efe9;
 }
