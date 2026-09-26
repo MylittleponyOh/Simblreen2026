@@ -109,7 +109,7 @@ function initSlideshow(SLIDES, opts) {
     clearTypeTimeouts();
 
     var slide = SLIDES[current];
-    var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text }];
+    var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text, tone: slide.tone }];
     var hasContent = lines.some(function (l) { return l.speaker || l.text; });
 
     // La boîte entière se cache s'il n'y a rien à dire ;
@@ -161,7 +161,7 @@ function initSlideshow(SLIDES, opts) {
   function skipTyping() {
     clearTypeTimeouts();
     var slide = SLIDES[current];
-    var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text }];
+    var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text, tone: slide.tone }];
     var textEls = linesEl.querySelectorAll(".dialogue-text");
     lines.forEach(function (l, i) {
       if (textEls[i]) textEls[i].textContent = l.text || "";
