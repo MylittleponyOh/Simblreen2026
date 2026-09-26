@@ -84,6 +84,8 @@ function initPhoneOverlay(items, opts) {
         var att = document.createElement("a");
         att.className = "msg-attachment";
         att.href = item.attachment.url;
+        att.target = "_blank";
+        att.rel = "noopener";
         att.textContent = "📎 " + item.attachment.label;
         card.appendChild(att);
       }
@@ -125,6 +127,23 @@ function initPhoneOverlay(items, opts) {
       loc.appendChild(go);
 
       feedEl.appendChild(loc);
+
+    } else if (item.type === "report") {
+      var rep = document.createElement("div");
+      rep.className = "feed-card report";
+      rep.innerHTML =
+        '<span class="report-icon">📄</span>' +
+        '<div class="loc-info">' +
+        '  <p class="loc-name">' + item.label + '</p>' +
+        '  <p class="loc-blurb">Tap to read</p>' +
+        '</div>';
+      rep.addEventListener("click", function () {
+        // Ferme le téléphone, ouvre le rapport en plein format
+        var backdrop = document.getElementById("phone-overlay-backdrop");
+        if (backdrop) backdrop.classList.remove("open");
+        openReport(item.data);
+      });
+      feedEl.appendChild(rep);
     }
   });
 }
