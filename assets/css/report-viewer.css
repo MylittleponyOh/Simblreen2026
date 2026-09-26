@@ -52,7 +52,7 @@
 #report-paper {
   position: relative;
   width: 100%;
-  max-height: 88svh;
+  height: 88svh;
   overflow-y: auto;
   background: linear-gradient(170deg, #ece4d3, #ddd2ba);
   color: #2a231c;
@@ -60,6 +60,8 @@
   box-shadow: 0 20px 60px rgba(0,0,0,0.7);
   padding: 2.2rem 2.4rem 2.6rem;
   font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  flex-direction: column;
 }
 
 #report-close-btn {
@@ -95,6 +97,11 @@
 
 .report-section {
   margin-bottom: 1.6rem;
+}
+
+#report-pages {
+  flex: 1;
+  overflow-y: auto;
 }
 
 .report-page {
