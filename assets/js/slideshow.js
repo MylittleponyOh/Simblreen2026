@@ -17,7 +17,7 @@
 
 function initSlideshow(SLIDES, opts) {
   opts = opts || {};
-  var typeSpeed = opts.typeSpeed || 25;
+  var typeSpeed = opts.typeSpeed || 35;
 
   // ── Construction du DOM racine ───────────────────────────
   var root = document.createElement("div");
