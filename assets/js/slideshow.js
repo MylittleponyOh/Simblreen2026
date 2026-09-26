@@ -130,6 +130,7 @@ function initSlideshow(SLIDES, opts) {
 
       var tx = document.createElement("div");
       tx.className = "dialogue-text";
+      if (l.tone) tx.classList.add("tone-" + l.tone);
 
       wrap.appendChild(sp);
       wrap.appendChild(tx);
