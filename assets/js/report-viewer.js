@@ -29,6 +29,7 @@ function buildSectionEl(sec) {
     h.textContent = sec.heading;
 
     if (sec.note) {
+      h.classList.add("has-note");
       var note = document.createElement("div");
       note.className = "report-note";
       note.innerHTML = '<span class="report-note-label">Ashley\'s note</span>';
