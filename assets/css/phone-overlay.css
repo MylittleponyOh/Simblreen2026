@@ -49,7 +49,7 @@
   left: 17.75%;
   right: 18.43%;
   bottom: 22.95%;
-  background: radial-gradient(circle at 30% 20%, #4a3550 0%, #241d33 45%, #14101d 100%);
+  background: linear-gradient(160deg, #ff9a56 0%, #ff6f91 50%, #7c6a9c 100%);
   border-radius: 3px;
   z-index: 1;
   display: flex;
@@ -164,7 +164,7 @@
   flex-direction: column;
   padding: 0.7rem 0.6rem;
   border-radius: 4px;
-  background: radial-gradient(circle at 30% 20%, #4a3550 0%, #241d33 45%, #14101d 100%);
+  background: linear-gradient(160deg, #ff9a56 0%, #ff6f91 50%, #7c6a9c 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -176,8 +176,8 @@
 }
 
 .feed-card {
-  background: rgba(216, 201, 176, 0.08);
-  border: 1px solid rgba(216, 201, 176, 0.18);
+  background: linear-gradient(135deg, #cadeff, #847696);
+  border: 1px solid rgba(36, 29, 51, 0.25);
   border-radius: 8px;
   padding: 0.5rem 0.55rem;
   text-decoration: none;
@@ -189,26 +189,33 @@
   font-size: 0.55rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #a99c86;
+  color: #4a3f5c;
   margin: 0 0 0.2rem;
 }
 
 .feed-card.message .msg-text {
   font-size: 0.68rem;
-  color: #f2efe9;
+  color: #241d33;
   margin: 0 0 0.4rem;
   line-height: 1.4;
+}
+
+.feed-card.message .msg-image {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 0.4rem;
 }
 
 .feed-card.message .msg-attachment {
   display: inline-flex;
   align-items: center;
   gap: 0.3rem;
-  background: rgba(216, 201, 176, 0.15);
+  background: rgba(36, 29, 51, 0.15);
   border-radius: 14px;
   padding: 0.25rem 0.55rem;
   font-size: 0.55rem;
-  color: #d8c9b0;
+  color: #241d33;
   text-decoration: none;
 }
 
@@ -218,7 +225,7 @@
   align-items: center;
   gap: 0.55rem;
   cursor: pointer;
-  border-color: rgba(192, 71, 63, 0.35);
+  border-color: rgba(192, 71, 63, 0.5);
 }
 
 .feed-card.report .report-icon {
@@ -240,12 +247,12 @@
   border-radius: 5px;
   object-fit: cover;
   flex-shrink: 0;
-  background: #14171d;
+  background: rgba(36, 29, 51, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.45rem;
-  color: #4a4438;
+  color: #4a3f5c;
   text-align: center;
 }
 
@@ -256,7 +263,7 @@
 
 .feed-card.location .loc-name {
   font-size: 0.68rem;
-  color: #f2efe9;
+  color: #241d33;
   margin: 0 0 0.1rem;
   white-space: nowrap;
   overflow: hidden;
@@ -265,14 +272,14 @@
 
 .feed-card.location .loc-blurb {
   font-size: 0.55rem;
-  color: #a99c86;
+  color: #4a3f5c;
   margin: 0;
 }
 
 .feed-card.location .go-btn {
   flex-shrink: 0;
-  background: #d8c9b0;
-  color: #05070a;
+  background: #241d33;
+  color: #f2efe9;
   font-size: 0.55rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
