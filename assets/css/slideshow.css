@@ -91,6 +91,24 @@
   display: none;
 }
 
+/* Variantes de ton, à utiliser via { tone: "whisper" } sur une ligne */
+.dialogue-text.tone-whisper {
+  font-style: italic;
+  color: #a99c86;
+  letter-spacing: 0.02em;
+}
+
+.dialogue-text.tone-mumble {
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.dialogue-text.tone-sigh {
+  font-style: italic;
+  color: #6f6555;
+  font-size: 0.85rem;
+}
+
 .dialogue-line + .dialogue-line {
   margin-top: 1rem;
 }
