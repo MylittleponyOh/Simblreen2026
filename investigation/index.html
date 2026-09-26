@@ -3,108 +3,53 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Scene 2 — The Girl Who Went Missing</title>
-<link rel="stylesheet" href="../../assets/css/style.css">
-<link rel="stylesheet" href="../../assets/css/slideshow.css">
-<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
-<link rel="stylesheet" href="../../assets/css/report-viewer.css">
+<title>Scene 1 — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<link rel="stylesheet" href="../assets/css/slideshow.css">
 </head>
 <body>
 
-<script src="../../assets/js/slideshow.js"></script>
-<script src="../../assets/js/phone-overlay.js"></script>
-<script src="../../assets/js/report-viewer.js"></script>
+<script src="../assets/js/slideshow.js"></script>
 <script>
-
-  var REPORT_DATA = {
-    title: "Case File #21071994/M-B",
-    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
-    sections: [
-      {
-        heading: "Incident Report",
-        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
-      },
-      {
-        heading: "Jodie Merrick (46) — Mother",
-        body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
-        note: "The stepfather. Interesting…"
-      },
-      {
-        heading: "Garret Merrick (52) — Stepfather",
-        body: "Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
-        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
-      },
-      {
-        heading: "Seth Fern (23) — Boyfriend",
-        body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
-        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
-      },
-      {
-        heading: "Daphne Holzer (23) — Best Friend",
-        body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her — alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
-        note: "PLACEHOLDER — à écrire"
-      },
-      {
-        heading: "Leandro Larozzi (25) — Coworker",
-        body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
-        note: "Five people interviewed. Three of them point straight at Seth Fern…"
-      }
-    ]
-  };
-
   var SLIDES = [
-    { img: "../../assets/images/scene2-01.jpg", speaker: "", text: "October 16th 2009, 8:30 am - San Myshuno" },
-    { img: "../../assets/images/scene2-02.jpg", speaker: "", text: "" },
-    { img: "../../assets/images/scene2-03.jpg", speaker: "", text: "October 16th 2009, 6:00 pm - Lake View Motel, Copperdale" },
-    { img: "../../assets/images/scene2-03.jpg", speaker: "ASHLEY", text: "There’s something about this place… I can’t quite put my finger on it... Lake View Motel, I guess that's it..." },
-    { img: "../../assets/images/scene2-04.jpg", speaker: "RECEPTIONIST GIRL", text: "There's been no one all damn day in this shithole, and of course, the second I take my smoke break, Miss smarty-pretty-fancy comes along...", tone: "mumble" },
-    { img: "../../assets/images/scene2-05.jpg", speaker: "RECEPTIONIST GIRL", text: "...coming..." },
-    { img: "../../assets/images/scene2-06.jpg", speaker: "ASHLEY", text: "Let's see how Copperdale Police Department shine by it's incompetence... Melissa Bliss… Twenty-three years old. Missing since July 21st, 1994." },
-    { img: "../../assets/images/scene2-06.jpg", speaker: "ASHLEY", text: "She worked until 10 p.m. at a gas station, and usually ran home through the forest." },
-    { img: "../../assets/images/scene2-07.jpg", speaker: "ASHLEY", text: "Her mother reported her missing around midnight. But the police didn't start searching until forty-eight hours later." },
-    { img: "../../assets/images/scene2-08.jpg", speaker: "ASHLEY", text: "Forty-eight hours…?" }
+    { img: "../assets/images/scene1-01.jpg", speaker: "", text: "October 15th 2009 - San Myshuno Inspector" },
+    { img: "../assets/images/scene1-02.jpg", speaker: "", text: "" },
+    { img: "../assets/images/scene1-03.jpg", speaker: "", text: "" },
+    { img: "../assets/images/scene1-04.jpg", speaker: "Mike", text: "What the he...", tone: "sigh" },
+    { img: "../assets/images/scene1-05.jpg", speaker: "ASHLEY", text: "...just a sec!... Yes, listen, I call you back...", tone: "whisper" },
+    {
+      img: "../assets/images/scene1-06.jpg",
+      lines: [
+        { speaker: "ASHLEY", text: "Ah, Mike! I’ve got a lead on the Copperdale Police case. They’re the most incompetent bunch I’ve ever seen!" },
+        { speaker: "MIKE", text: "Hello to you too, Ash…" }
+      ]
+    },
+    { img: "../assets/images/scene1-07.jpg", speaker: "ASHLEY", text: "Yeah… Hello. Seriously, look at all these screw-ups." },
+    {
+      img: "../assets/images/scene1-08.jpg",
+      lines: [
+        { speaker: "MIKE", text: "What do you want to do?" },
+        { speaker: "ASHLEY", text: "I think it’s time I go down there myself. Don’t you think?" }
+      ]
+    },
+    {
+      img: "../assets/images/scene1-09.jpg",
+      lines: [
+        { speaker: "MIKE", text: "Do you want my opinion as your editor-in-chief, or as your friend?" },
+        { speaker: "ASHLEY", text: "Both?" }
+      ]
+    },
+    { img: "../assets/images/scene1-10.jpg", speaker: "MIKE", text: "As a friend… I think you’ve got good instincts. As your editor-in-chief, I think you’re wasting your time." },
+    { img: "../assets/images/scene1-11.jpg", speaker: "ASHLEY", text: "You forget the Gillman Case?" },
+    { img: "../assets/images/scene1-12.jpg", speaker: "MIKE", text: "You're right, you do have a knack for finding information when you’re looking for it…" },
+    { img: "../assets/images/scene1-13.jpg", speaker: "ASHLEY", text: "I’m leaving first thing tomorrow. Give my other assignments to Tim Gunersson. I have no idea how long I’m going to be gone!" },
+    { img: "../assets/images/scene1-14.jpg", speaker: "MIKE", text: "...Sigh...", tone: "sigh" }
   ];
 
-  var PHONE_IMG = "../../assets/images/phone-frame.png";
-
-  // TODO : remplace par la vraie page suivante une fois la Scène 2 complète
   initSlideshow(SLIDES, {
-    nextUrl: "#",
-    onSlideChange: function (index) {
-      // Slide 0 : le texto de Mike + le gift apparaissent
-      if (index === 0) {
-        initPhoneOverlay(
-          [
-            {
-              type: "message",
-              from: "MIKE",
-              text: "Good luck. Be careful.",
-              attachment: { label: "A little something for the road", url: "https://simfileshare.net/download/h69ApM3319V11jgMCjEhPMmL5rjhcJFksYyczKzLcIVmVGvLSdqRecx57J9ndnQu/" }
-            }
-          ],
-          { hasNew: true, imgPath: PHONE_IMG }
-        );
-      }
-
-      // Slide 1 : le message ne traîne pas, le feed se vide
-      if (index === 1) {
-        initPhoneOverlay([], { hasNew: false, imgPath: PHONE_IMG });
-      }
-
-      // Slide 8 : le rapport d'enquête apparaît
-      if (index === 9) {
-        initPhoneOverlay(
-          [
-            {
-              type: "report",
-              label: "Case File #21071994",
-              data: REPORT_DATA
-            }
-          ],
-          { hasNew: true, imgPath: PHONE_IMG }
-        );
-      }
-    }
+    nextUrl: "motel/",
+    skipUrl: "motel/",
+    skipLabel: "Skip intro"
   });
 </script>
 
