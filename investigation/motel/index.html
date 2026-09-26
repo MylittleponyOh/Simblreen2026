@@ -7,12 +7,54 @@
 <link rel="stylesheet" href="../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/slideshow.css">
 <link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<link rel="stylesheet" href="../../assets/css/report-viewer.css">
 </head>
 <body>
 
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
+<script src="../../assets/js/report-viewer.js"></script>
 <script>
+
+  var REPORT_DATA = {
+    title: "Case File #21071994/M-B",
+    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
+    sections: [
+      {
+        heading: "Incident Report",
+        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+      },
+      {
+        heading: "Jodie Merrick (46) — Mother",
+        body: "Nurse. Describes a conflicted relationship between Melissa and her boyfriend Seth Fern. Confirms tension between Melissa and her stepfather Garret, following a recent remarriage.",
+        note: "Forty-eight hours before they even looked. Nobody thought a grown woman skipping her curfew was worth the gas money."
+      },
+      {
+        heading: "Garret Merrick (52) — Stepfather",
+        body: "Describes a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
+        note: "Distant. Sure. That's one word for it."
+      },
+      {
+        heading: "Seth Fern (23) — Boyfriend",
+        body: "Unemployed. Has known Melissa since childhood. Described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. Redirects investigators to Daphne Holzer for more information.",
+        note: "Suspiciously composed for a guy with no alibi."
+      },
+      {
+        heading: "Daphne Holzer (23) — Best Friend",
+        body: "Waitress and student. Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned advances from Leandro Larozzi.",
+        note: "She knew more than she told the police. I'd bet my press badge on it."
+      },
+      {
+        heading: "Leandro Larozzi (25) — Coworker",
+        body: "Gas station employee and student. Admits an interest in Melissa. States she turned him down because of her relationship with Seth.",
+        note: "Convenient timing on that rejection story."
+      },
+      {
+        heading: "Suspect #1 — Seth Fern",
+        body: "First suspect interviewed. Potential motive: jealousy, rejection, loss of control. Unusually composed during questioning. Last known person to attempt reaching Melissa on her route home."
+      }
+    ]
+  };
 
   var SLIDES = [
     { img: "../../assets/images/scene2-01.jpg", speaker: "", text: "October 16th 2009, 8:30 am - San Myshuno" },
@@ -25,34 +67,49 @@
     { img: "../../assets/images/scene2-06.jpg", speaker: "ASHLEY", text: "She worked until 10 p.m. at a gas station, and usually ran home through the forest." },
     { img: "../../assets/images/scene2-07.jpg", speaker: "ASHLEY", text: "Her mother reported her missing around midnight. But the police didn't start searching until forty-eight hours later." },
     { img: "../../assets/images/scene2-08.jpg", speaker: "ASHLEY", text: "Forty-eight hours…?" }
-
   ];
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   // TODO : remplace par la vraie page suivante une fois la Scène 2 complète
-  
   initSlideshow(SLIDES, {
-  nextUrl: "#",
-  onSlideChange: function (index) {
-    if (index === 0) {
-      initPhoneOverlay(
-        [
-          {
-            type: "message",
-            from: "MIKE",
-            text: "Good luck. Be careful.",
-            attachment: { label: "A little something for the road", url: "https://simfileshare.net/download/h69ApM3319V11jgMCjEhPMmL5rjhcJFksYyczKzLcIVmVGvLSdqRecx57J9ndnQu/" }
-          }
-        ],
-        { hasNew: true, imgPath: PHONE_IMG }
-      );
+    nextUrl: "#",
+    onSlideChange: function (index) {
+      // Slide 0 : le texto de Mike + le gift apparaissent
+      if (index === 0) {
+        initPhoneOverlay(
+          [
+            {
+              type: "message",
+              from: "MIKE",
+              text: "Good luck. Be careful.",
+              attachment: { label: "A little something for the road", url: "https://simfileshare.net/download/h69ApM3319V11jgMCjEhPMmL5rjhcJFksYyczKzLcIVmVGvLSdqRecx57J9ndnQu/" }
+            }
+          ],
+          { hasNew: true, imgPath: PHONE_IMG }
+        );
+      }
+
+      // Slide 1 : le message ne traîne pas, le feed se vide
+      if (index === 1) {
+        initPhoneOverlay([], { hasNew: false, imgPath: PHONE_IMG });
+      }
+
+      // Slide 8 : le rapport d'enquête apparaît
+      if (index === 8) {
+        initPhoneOverlay(
+          [
+            {
+              type: "report",
+              label: "Case File #21071994",
+              data: REPORT_DATA
+            }
+          ],
+          { hasNew: true, imgPath: PHONE_IMG }
+        );
+      }
     }
-    if (index === 1) {
-      initPhoneOverlay([], { hasNew: false, imgPath: PHONE_IMG });
-    }
-  }
-});
+  });
 </script>
 
 </body>
