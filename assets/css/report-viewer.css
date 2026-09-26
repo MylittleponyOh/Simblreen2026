@@ -162,7 +162,7 @@
   margin: 0 0 0.5rem;
 }
 
-/* Le nom, déclencheur du survol — reste souligné en pointillé pour signaler l'interactivité */
+/* Le nom — style de base, pour tous les titres */
 .report-name-trigger {
   position: relative;
   display: inline-block;
@@ -171,6 +171,10 @@
   text-transform: uppercase;
   margin: 0 0 0.5rem;
   color: #4a3f2e;
+}
+
+/* Seuls les noms avec une note d'Ashley signalent qu'on peut les survoler */
+.report-name-trigger.has-note {
   border-bottom: 1px dotted #4a3f2e;
   cursor: help;
 }
