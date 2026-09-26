@@ -80,6 +80,14 @@ function initPhoneOverlay(items, opts) {
       card.appendChild(from);
       card.appendChild(text);
 
+      if (item.image) {
+        var img = document.createElement("img");
+        img.className = "msg-image";
+        img.src = item.image;
+        img.alt = "";
+        card.appendChild(img);
+      }
+
       if (item.attachment) {
         var att = document.createElement("a");
         att.className = "msg-attachment";
