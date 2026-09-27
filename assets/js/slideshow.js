@@ -12,7 +12,7 @@
      nextUrl    (obligatoire) — où aller après la dernière slide
      skipUrl     (optionnel) — si fourni, affiche un bouton "Skip"
      skipLabel    (optionnel) — texte du bouton skip, défaut "Skip"
-     typeSpeed    (optionnel) — ms par caractère, défaut 25
+     typeSpeed    (optionnel) — ms par caractère, défaut 35
    ═══════════════════════════════════════════════════════════ */
 
 function initSlideshow(SLIDES, opts) {
@@ -51,6 +51,13 @@ function initSlideshow(SLIDES, opts) {
   dialogueBoxEl.className = "dialogue-box";
   var linesEl = document.createElement("div");
   dialogueBoxEl.appendChild(linesEl);
+
+  var musicLink = document.createElement("a");
+  musicLink.className = "slide-music-link";
+  musicLink.target = "ash-music";
+  musicLink.rel = "noopener";
+  musicLink.style.display = "none";
+  dialogueBoxEl.appendChild(musicLink);
 
   var controlsEl = document.createElement("div");
   controlsEl.className = "slideshow-controls";
@@ -141,6 +148,14 @@ function initSlideshow(SLIDES, opts) {
     });
 
     nextBtn.textContent = (current === SLIDES.length - 1) ? "Continue" : "Next";
+
+    if (slide.musicUrl) {
+      musicLink.href = slide.musicUrl;
+      musicLink.textContent = slide.musicLabel || "🎵 Listen";
+      musicLink.style.display = "inline-block";
+    } else {
+      musicLink.style.display = "none";
+    }
 
     isTyping = hasContent;
     var lineIndex = 0;
