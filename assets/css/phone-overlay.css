@@ -165,7 +165,7 @@
   flex-direction: column;
   padding: 0.7rem 0.6rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-image: url("../images/phone-wallpaper.jpg");
+  background-image: url("../images/phone-wallpaper.png");
   background-size: cover;
   background-position: center;
 }
