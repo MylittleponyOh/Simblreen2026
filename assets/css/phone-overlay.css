@@ -42,14 +42,15 @@
   z-index: 2;
 }
 
-/* Fond du même dégradé que le modal, visible dans le trou transparent de la mini-image */
+/* Fond noir simple et discret — pas de wallpaper, pour ne pas donner l'impression
+   que le téléphone est allumé quand il n'y a rien de nouveau à voir. */
 #phone-peek-btn .peek-screen-fill {
   position: absolute;
   top: 15.33%;
   left: 17.75%;
   right: 18.43%;
   bottom: 22.95%;
-  background: linear-gradient(160deg, #ff9a56 0%, #ff6f91 50%, #7c6a9c 100%);
+  background: #05070a;
   border-radius: 3px;
   z-index: 1;
   display: flex;
@@ -163,9 +164,10 @@
   display: flex;
   flex-direction: column;
   padding: 0.7rem 0.6rem;
-  border-radius: 4px;
-  background: linear-gradient(160deg, #ff9a56 0%, #ff6f91 50%, #7c6a9c 100%);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url("../images/phone-wallpaper.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 /* ── Feed : messages + lieux mélangés ────────────────────── */
