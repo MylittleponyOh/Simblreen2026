@@ -64,7 +64,18 @@ function initPhoneOverlay(items, opts) {
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
+  var SECTION_LABELS = { message: "Messages", report: "Files", location: "Locations" };
+  var lastType = null;
+
   items.forEach(function (item) {
+    if (item.type !== lastType) {
+      var label = document.createElement("p");
+      label.className = "feed-section-label";
+      label.textContent = SECTION_LABELS[item.type] || "";
+      feedEl.appendChild(label);
+      lastType = item.type;
+    }
+
     if (item.type === "message") {
       var card = document.createElement("div");
       card.className = "feed-card message";
