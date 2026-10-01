@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Scene 3 — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<link rel="stylesheet" href="../../assets/css/report-viewer.css">
+</head>
+<body>
+
+<script src="../../assets/js/slideshow.js"></script>
+<script src="../../assets/js/phone-overlay.js"></script>
+<script src="../../assets/js/report-viewer.js"></script>
+<script>
+
+  // Rapport déjà débloqué en Scène 2 — redéclaré ici pour qu'il reste
+  // accessible tout du long (chaque page vit indépendamment).
+  var REPORT_DATA = {
+    title: "Case File #21071994/M-B",
+    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
+    sections: [
+      {
+        heading: "Incident Report",
+        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+      },
+      {
+        heading: "Jodie Merrick (46) — Mother",
+        body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
+        note: "The stepfather. Interesting…"
+      },
+      {
+        heading: "Garret Merrick (52) — Stepfather",
+        body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+      },
+      {
+        heading: "Seth Fern (23) — Boyfriend",
+        body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one."
+      },
+      {
+        heading: "Daphne Holzer (23) — Best Friend",
+        body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her — alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
+        note: "PLACEHOLDER — à écrire"
+      },
+      {
+        heading: "Leandro Larozzi (25) — Coworker",
+        body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
+        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+      }
+    ]
+  };
+
+  // ── Le monologue laptop ─────────────────────────────────────
+  var SLIDES = [
+    {
+      img: "../../assets/images/scene3-01.jpg",
+      speaker: "ASHLEY",
+      text: "Let's take a look around... Things have surely changed in fifteen years, but when you really look... you always find something."
+    },
+    {
+      img: "../../assets/images/scene3-01.jpg",
+      speaker: "ASHLEY",
+      text: "In a town this small, there must to be a place where tongues loosen..."
+    }
+  ];
+
+  var PHONE_IMG = "../../assets/images/phone-frame.png";
+
+  initSlideshow(SLIDES, {
+    nextUrl: "#", // la suite se joue via le téléphone, pas via Next
+    onSlideChange: function (index) {
+      // Dernière slide : la carte (= les 5 lieux) apparaît sur le téléphone
+      if (index === 1) {
+        initPhoneOverlay(
+          [
+            {
+              type: "report",
+              label: "Case File #21071994",
+              data: REPORT_DATA
+            },
+            {
+              type: "location",
+              name: "Bar & Diner",
+              blurb: "Local hangout",
+              thumb: "../../assets/images/bar-photo-night.jpg",
+              url: "../bar-3/"
+            },
+            {
+              type: "location",
+              name: "The Forest",
+              blurb: "Her route home",
+              thumb: null,
+              url: "../forest-3/"
+            },
+            {
+              type: "location",
+              name: "Gas Station",
+              blurb: "Where Melissa worked",
+              thumb: null,
+              url: "../gas-station-3/"
+            },
+            {
+              type: "location",
+              name: "Fern Auto Repair",
+              blurb: "Closed on weekends",
+              thumb: null,
+              url: "../fern-auto-repair-3/"
+            },
+            {
+              type: "location",
+              name: "Police Station",
+              blurb: "Copperdale PD",
+              thumb: null,
+              url: "../police-station-3/"
+            }
+          ],
+          { hasNew: true, newCount: 1, imgPath: PHONE_IMG }
+        );
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
