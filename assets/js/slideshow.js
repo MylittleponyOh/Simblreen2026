@@ -71,8 +71,12 @@ function initSlideshow(SLIDES, opts) {
   nextBtn.className = "next-btn";
   nextBtn.textContent = "Next";
 
+  var choicesEl = document.createElement("div");
+  choicesEl.className = "slideshow-choices";
+
   controlsEl.appendChild(skipBtn);
   controlsEl.appendChild(nextBtn);
+  controlsEl.appendChild(choicesEl);
 
   bottomRow.appendChild(dialogueBoxEl);
   bottomRow.appendChild(controlsEl);
@@ -148,6 +152,30 @@ function initSlideshow(SLIDES, opts) {
     });
 
     nextBtn.textContent = (current === SLIDES.length - 1) ? "Continue" : "Next";
+
+    choicesEl.innerHTML = "";
+    if (slide.choices) {
+      nextBtn.style.display = "none";
+      choicesEl.style.display = "flex";
+      slide.choices.forEach(function (choice) {
+        var btn = document.createElement("button");
+        btn.className = "next-btn choice-btn";
+        btn.textContent = choice.label;
+        btn.addEventListener("click", function () {
+          // Pendant la frappe, un clic finit juste le texte (comme Next) ;
+          // une fois le texte affiché, ce même clic navigue vers le choix.
+          if (isTyping) {
+            skipTyping();
+          } else {
+            window.location.href = choice.url;
+          }
+        });
+        choicesEl.appendChild(btn);
+      });
+    } else {
+      nextBtn.style.display = "inline-block";
+      choicesEl.style.display = "none";
+    }
 
     if (slide.musicUrl) {
       musicLink.href = slide.musicUrl;
