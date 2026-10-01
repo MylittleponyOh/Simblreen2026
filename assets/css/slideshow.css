@@ -127,6 +127,17 @@
   margin-top: 1rem;
 }
 
+.slideshow-choices {
+  display: none;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.choice-btn {
+  white-space: nowrap;
+}
+
 /* Boutons, à côté de la boîte (pas dedans) */
 .slideshow-controls {
   flex-shrink: 0;
