@@ -173,7 +173,8 @@ function initSlideshow(SLIDES, opts) {
         choicesEl.appendChild(btn);
       });
     } else {
-      nextBtn.style.display = "inline-block";
+      var isLastSlideWithNoNext = (current === SLIDES.length - 1) && (opts.nextUrl === "#");
+      nextBtn.style.display = isLastSlideWithNoNext ? "none" : "inline-block";
       choicesEl.style.display = "none";
     }
 
