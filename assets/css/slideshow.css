@@ -136,6 +136,8 @@
 
 .choice-btn {
   white-space: nowrap;
+  min-width: 140px;
+  text-align: center;
 }
 
 /* Boutons, à côté de la boîte (pas dedans) */
