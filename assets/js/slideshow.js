@@ -88,6 +88,7 @@ function initSlideshow(SLIDES, opts) {
   var current = 0;
   var isTyping = false;
   var typeTimeouts = [];
+  var updateActionButtons = function () {}; // réassignée à chaque render()
 
   function clearTypeTimeouts() {
     typeTimeouts.forEach(function (id) { clearTimeout(id); });
@@ -155,27 +156,28 @@ function initSlideshow(SLIDES, opts) {
 
     choicesEl.innerHTML = "";
     if (slide.choices) {
-      nextBtn.style.display = "none";
-      choicesEl.style.display = "flex";
       slide.choices.forEach(function (choice) {
         var btn = document.createElement("button");
         btn.className = "next-btn choice-btn";
         btn.textContent = choice.label;
         btn.addEventListener("click", function () {
-          // Pendant la frappe, un clic finit juste le texte (comme Next) ;
-          // une fois le texte affiché, ce même clic navigue vers le choix.
-          if (isTyping) {
-            skipTyping();
-          } else {
-            window.location.href = choice.url;
-          }
+          window.location.href = choice.url;
         });
         choicesEl.appendChild(btn);
       });
-    } else {
-      var isLastSlideWithNoNext = (current === SLIDES.length - 1) && (opts.nextUrl === "#");
-      nextBtn.style.display = isLastSlideWithNoNext ? "none" : "inline-block";
-      choicesEl.style.display = "none";
+    }
+
+    // Affiche soit Next (pendant la frappe / slides sans choix),
+    // soit les boutons de choix (une fois la frappe terminée, si la slide en a).
+    updateActionButtons = function () {
+      if (slide.choices && !isTyping) {
+        nextBtn.style.display = "none";
+        choicesEl.style.display = "flex";
+      } else {
+        var isLastSlideWithNoNext = (current === SLIDES.length - 1) && (opts.nextUrl === "#") && !slide.choices;
+        nextBtn.style.display = isLastSlideWithNoNext ? "none" : "inline-block";
+        choicesEl.style.display = "none";
+      }
     }
 
     if (slide.musicUrl) {
@@ -187,11 +189,14 @@ function initSlideshow(SLIDES, opts) {
     }
 
     isTyping = hasContent;
+    updateActionButtons();
+
     var lineIndex = 0;
     var pauseBetweenLines = 500; // ms de pause avant la réplique suivante
     function typeNextLine() {
       if (lineIndex >= textEls.length) {
         isTyping = false;
+        updateActionButtons();
         return;
       }
       typeLine(textEls[lineIndex], fullTexts[lineIndex], function () {
@@ -211,6 +216,7 @@ function initSlideshow(SLIDES, opts) {
       if (textEls[i]) textEls[i].textContent = l.text || "";
     });
     isTyping = false;
+    updateActionButtons();
   }
 
   function goNext() {
