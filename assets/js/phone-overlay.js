@@ -67,7 +67,22 @@ function initPhoneOverlay(items, opts) {
   var SECTION_LABELS = { message: "Messages", report: "Files", location: "Locations" };
   var lastType = null;
 
+  // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
+  // les items marqués isNew: true passent en premier, le reste garde son ordre.
+  var typeOrder = [];
+  var groups = {};
   items.forEach(function (item) {
+    if (!groups[item.type]) { groups[item.type] = []; typeOrder.push(item.type); }
+    groups[item.type].push(item);
+  });
+  var ordered = [];
+  typeOrder.forEach(function (t) {
+    var fresh = groups[t].filter(function (i) { return i.isNew; });
+    var older = groups[t].filter(function (i) { return !i.isNew; });
+    ordered = ordered.concat(fresh, older);
+  });
+
+  ordered.forEach(function (item) {
     if (item.type !== lastType) {
       var label = document.createElement("p");
       label.className = "feed-section-label";
@@ -79,6 +94,7 @@ function initPhoneOverlay(items, opts) {
     if (item.type === "message") {
       var card = document.createElement("div");
       card.className = "feed-card message";
+      if (item.isNew) card.classList.add("is-new");
 
       var from = document.createElement("p");
       from.className = "msg-from";
@@ -114,6 +130,7 @@ function initPhoneOverlay(items, opts) {
     } else if (item.type === "location") {
       var loc = document.createElement("a");
       loc.className = "feed-card location";
+      if (item.isNew) loc.classList.add("is-new");
       loc.href = item.url;
 
       if (item.thumb) {
@@ -150,6 +167,7 @@ function initPhoneOverlay(items, opts) {
     } else if (item.type === "report") {
       var rep = document.createElement("div");
       rep.className = "feed-card report";
+      if (item.isNew) rep.classList.add("is-new");
       rep.innerHTML =
         '<span class="report-icon">📄</span>' +
         '<div class="loc-info">' +
