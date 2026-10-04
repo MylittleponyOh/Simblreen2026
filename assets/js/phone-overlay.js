@@ -4,6 +4,10 @@
    FEED_ITEMS est un tableau d'objets :
      - Message :  { type: "message", from: "MIKE", text: "...", attachment: { label: "...", url: "..." } }
      - Lieu :     { type: "location", name: "...", blurb: "...", thumb: null, url: "..." }
+                  (optionnel : isNew: true → en tête + tag NEW ;
+                   current: true → le lieu où se trouve Ashley : non cliquable, pastille "Here" ;
+                   locked: true → affiché mais non visitable, non cliquable, pastille "Closed" ;
+                   lockedLabel: "..." pour changer le texte de la pastille)
 
    Peut être appelé PLUSIEURS FOIS sur la même page (ex: depuis
    onSlideChange d'un diaporama) : le premier appel crée le téléphone,
@@ -128,10 +132,16 @@ function initPhoneOverlay(items, opts) {
       feedEl.appendChild(card);
 
     } else if (item.type === "location") {
-      var loc = document.createElement("a");
+      var inert = item.locked || item.current; // carte non cliquable
+      var loc = document.createElement(inert ? "div" : "a");
       loc.className = "feed-card location";
       if (item.isNew) loc.classList.add("is-new");
-      loc.href = item.url;
+      if (inert) {
+        loc.classList.add("is-locked");
+        if (item.current) loc.classList.add("is-current");
+      } else {
+        loc.href = item.url;
+      }
 
       if (item.thumb) {
         var img = document.createElement("img");
@@ -159,7 +169,7 @@ function initPhoneOverlay(items, opts) {
 
       var go = document.createElement("span");
       go.className = "go-btn";
-      go.textContent = "Go";
+      go.textContent = inert ? (item.lockedLabel || (item.current ? "Here" : "Closed")) : "Go";
       loc.appendChild(go);
 
       feedEl.appendChild(loc);
