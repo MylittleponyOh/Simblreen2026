@@ -59,53 +59,50 @@
     { type: "location", name: "Copperdale Police Station", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../police-station-3/" }
   ];
 
-  // Débloqué seulement quand Ashley récupère la serviette (index 14)
+  // UNLOCKED SLIDE 14
   var FERN_LOCATION = {
     type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends",
-    thumb: "../../assets/images/map-icon.jpg", url: "../fern-auto-repair-3/"
+    thumb: "../../assets/images/map-icon.jpg", url: "../fern-auto-repair-3/",
+    isNew: true
   };
   var FERN_UNLOCK_INDEX = 14;
 
-  // Chaque réplique = sa propre slide (le texte précédent s'efface à chaque Next).
-  // Même image réutilisée = même cadrage, juste une ligne différente.
   var SLIDES = [
-    // 0 — Pete
+
     { img: "../../assets/images/scene3-counter3-01.jpg", speaker: "PETE", text: "What brings you around here, hon? Don't get many new faces in this town!" },
-    // 1 — Ashley
+
     { img: "../../assets/images/scene3-counter3-02.jpg", speaker: "ASHLEY", text: "Oh, nothing much. Just an old missing persons case... hon." },
-    // 2-4 — même image 03
+
     { img: "../../assets/images/scene3-counter3-03.jpg", speaker: "PETE", text: "Oh, you mean little Bliss, the one who disappeared back in '94? If you ask me, it was the stepfather! He showed up in town in '92 and wasted no time marrying Jodie Bliss, Melissa's mother. How they even met, no idea. Anyway, it's a secret he took to the grave with him." },
     { img: "../../assets/images/scene3-counter3-03.jpg", speaker: "ASHLEY", text: "Great. A first lead that goes nowhere... off to a good start.", tone: "mumble" },
     
     { img: "../../assets/images/scene3-counter3-04.jpg", speaker: "ASHLEY", text: "Hey...hmm...What's your name again...?" },
-    // 5 — Pete
+
     { img: "../../assets/images/scene3-counter3-06.jpg", speaker: "PETE", text: "Pete. Name's Pete." },
-    // 6 — Ashley
+
     { img: "../../assets/images/scene3-counter3-04.jpg", speaker: "ASHLEY", text: "Right, Pete. Do you happen to know a Seth? Fern?" },
-    // 7 — Pete
-    { img: "../../assets/images/scene3-counter3-03.jpg", speaker: "PETE", text: "Oh, Fern, sure — he runs the garage, Fern Auto Repair. Oh, right, he and Melissa were together. Poor guy looked devastated when he found out she'd disappeared." },
-    // 8 — Ashley
+
+    { img: "../../assets/images/scene3-counter3-03.jpg", speaker: "PETE", text: "Oh, Fern, sure! He runs the garage, Fern Auto Repair. Oh... right, he and Melissa were together. Poor guy looked devastated when he found out she'd disappeared." },
+
     { img: "../../assets/images/scene3-counter3-07.jpg", speaker: "ASHLEY", text: "Devastated... I see.", tone: "mumble" },
-    // 9 — Ashley
+
     { img: "../../assets/images/scene3-counter3-08.jpg", speaker: "ASHLEY", text: "And tell me, Pete, do you know if the garage is open tomorrow?" },
-    // 10 — Pete
+
     { img: "../../assets/images/scene3-counter3-09.jpg", speaker: "PETE", text: "Ah, got a little problem with your... ride?" },
-    // 11 — Ashley
+
     { img: "../../assets/images/scene3-counter3-07.jpg", speaker: "ASHLEY", text: "Yeah... something like that." },
-    // 12-13 — Pete, image 06 réutilisée
+
     { img: "../../assets/images/scene3-counter3-02.jpg", speaker: "PETE", text: "Unfortunately, the garage is closed on weekends. But if it's an emergency, you can always go see Seth at his place." },
     { img: "../../assets/images/scene3-counter3-02.jpg", speaker: "PETE", text: "Try not to get him too worked up. He's in the middle of a divorce..." },
-    // 14 — Ashley prend la serviette → Fern Auto Repair se débloque ici
+
     { img: "../../assets/images/scene3-counter3-04.jpg", speaker: "ASHLEY", text: "Great... I'll do that, then. Thanks." },
-    // 15 — fausse sortie vers le motel (mémoire du corps)
+
     { img: "../../assets/images/scene3-counter3-10.jpg", speaker: "ASHLEY", text: "It's been a long day. Time to head back to the motel." }
   ];
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   initSlideshow(SLIDES, {
-    // Le texte dit "motel", mais le vrai lien mène ailleurs —
-    // mémoire du corps, fil rouge inconscient d'Ashley.
     nextUrl: "../seth-3/",
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(BASE_LOCATIONS);
