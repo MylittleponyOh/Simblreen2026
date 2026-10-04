@@ -195,11 +195,28 @@
 }
 
 .feed-card {
+  position: relative;
   border: 1px solid rgba(36, 29, 51, 0.25);
   border-radius: 8px;
   padding: 0.55rem 0.6rem;
   text-decoration: none;
   display: block;
+}
+
+/* Tag "NEW" sur un item tout juste débloqué (isNew: true) */
+.feed-card.is-new::after {
+  content: "NEW";
+  position: absolute;
+  top: -7px;
+  right: 12px;
+  background: #c0473f;
+  color: #fff;
+  border: 2px solid #F5F5F5;
+  border-radius: 10px;
+  font-size: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.45rem;
 }
 
 /* Carte message — vert, façon vieille messagerie */
@@ -277,7 +294,7 @@
   width: 46px;
   height: 46px;
   border-radius: 5px;
-  object-fit: cover;
+  object-fit: contain;
   flex-shrink: 0;
   background: rgba(255, 255, 255, 0.15);
   display: flex;
@@ -295,11 +312,10 @@
 
 .feed-card.location .loc-name {
   font-size: 0.75rem;
+  line-height: 1.25;
   color: #f2efe9;
   margin: 0 0 0.1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
 }
 
 .feed-card.location .loc-blurb {
