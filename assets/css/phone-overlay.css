@@ -324,6 +324,23 @@
   margin: 0;
 }
 
+/* Lieu verrouillé : visible sur la carte mais pas visitable */
+.feed-card.location.is-locked {
+  cursor: default;
+}
+
+.feed-card.location.is-locked:not(.is-current) .loc-info,
+.feed-card.location.is-locked:not(.is-current) .loc-thumb,
+.feed-card.location.is-locked:not(.is-current) .loc-thumb-placeholder {
+  opacity: 0.8;
+}
+
+.feed-card.location.is-locked .go-btn {
+  background: transparent;
+  color: #c9d4ed;
+  border: 1px solid rgba(201, 212, 237, 0.55);
+}
+
 .feed-card.location .go-btn {
   flex-shrink: 0;
   background: #f2efe9;
