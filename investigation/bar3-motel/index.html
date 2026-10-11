@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
 <script src="../../assets/js/report-viewer.js"></script>
@@ -66,7 +67,7 @@
     { img: "../../assets/images/scene3-bar3-motel-02.jpg", speaker: "ASHLEY", text: "I don't even remember turning here. I barely paid attention to the road.", tone: "whisper" },
     { img: "../../assets/images/scene3-bar3-motel-02.jpg", speaker: "ASHLEY", text: "Instincts again...", tone: "whisper" },
     { img: "../../assets/images/scene3-bar3-motel-03.jpg", speaker: "ASHLEY", text: "That run-down little house...", tone: "whisper" },
-    { img: "../../assets/images/scene3-bar3-motel-03.jpg", speaker: "ASHLEY", text: "Looks like someone's home... What time is it? Past midnight... Should I knock ? Or come back tomorrow?", choices: [{ label: "Knock anyway", url: "../door-3/" }, { label: "Come back tomorrow", url: "../motel-3/" }] }
+    { img: "../../assets/images/scene3-bar3-motel-03.jpg", speaker: "ASHLEY", text: "Looks like someone's home... What time is it? Past midnight... Should I knock? Or come back tomorrow?", choices: [{ label: "Knock anyway", url: "../door-3/" }, { label: "Come back tomorrow", url: "../motel-3/" }] }
   ];
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
@@ -75,7 +76,7 @@
     nextUrl: "#",
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
-      initPhoneOverlay(items, { hasNew: false, imgPath: PHONE_IMG });
+      initPhoneOverlay(GameState.items(items), { hasNew: false, imgPath: PHONE_IMG });
     }
   });
 </script>
