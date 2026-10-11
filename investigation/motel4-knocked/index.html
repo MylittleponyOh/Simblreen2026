@@ -74,7 +74,7 @@
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
-      if (index < 5) return;
+      if (index < SLIDES.length - 1) return;
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
       initPhoneOverlay(items, { hasNew: false, newCount: 1, imgPath: PHONE_IMG });
     }
