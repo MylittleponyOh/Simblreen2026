@@ -70,7 +70,7 @@
   initSlideshow(SLIDES, {
     nextUrl: "../scene-3/",
     onSlideChange: function (index) {
-      // Slide 0 : Gift 1 — le texto initial de Mike
+      // Slide 0 : Gift 1
       if (index === 0) {
         initPhoneOverlay(
           [
@@ -85,12 +85,12 @@
         );
       }
 
-      // Slide 1 : le message ne traîne pas, le feed se vide
+      
       if (index === 1) {
         initPhoneOverlay([], { hasNew: false, imgPath: PHONE_IMG });
       }
 
-      // Slide 3 : Gift 2 — "arrivée bien passée ?" — Mike demande, Ashley répond avec une photo + un nouveau gift
+      // Slide 3 : Gift 2
       if (index === 3) {
         initPhoneOverlay(
           [
@@ -104,19 +104,19 @@
               from: "ASHLEY",
               text: "Yeah. Charming place.",
               image: "../../assets/images/motel-photo-night.jpg",
-              attachment: { label: "GIFT 2 LABEL — à remplacer", url: "GIFT 2 URL — à remplacer" }
+              attachment: { label: "🔗", url: "We don't have those in San Myshuno" }
             }
           ],
           { hasNew: true, newCount: 2, imgPath: PHONE_IMG }
         );
       }
 
-      // Slide 4 : ce deuxième message ne traîne pas non plus
+
       if (index === 4) {
         initPhoneOverlay([], { hasNew: false, imgPath: PHONE_IMG });
       }
 
-      // Slide 8 : le rapport d'enquête apparaît
+
       if (index === 9) {
         initPhoneOverlay(
           [
