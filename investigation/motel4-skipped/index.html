@@ -53,7 +53,7 @@
   };
 
   var LOCATIONS = [
-    { type: "location", name: "Seth Fern's House", blurb: "Address from Pete", thumb: "../../assets/images/map-icon.jpg", url: "../door-4/", isNew: true },
+    { type: "location", name: "Seth Fern's House", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../door-4/", isNew: true },
     { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: "../../assets/images/map-icon.jpg", locked: true, lockedLabel: "Opens later" },
     { type: "location", name: "Copperdale National Forest", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../forest-3/" },
     { type: "location", name: "Gas Station", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../gas-station-3/" },
@@ -63,7 +63,10 @@
 
   var SLIDES = [
     { img: "../../assets/images/motel-photo-day-wide.jpg", speaker: "", text: "October 17th 2009 — Lake View Motel, Copperdale." },
-    { img: "../../assets/images/scene4-01.jpg", speaker: "ASHLEY", text: "Guess it is time to show Mr Fern a little visit..." }
+    { img: "../../assets/images/scene4-01.jpg", speaker: "", text: "" },
+    { img: "../../assets/images/scene4-02.jpg", speaker: "ASHLEY", text: "Guess it is time to show Mr Fern a little visit..." },
+    { img: "../../assets/images/scene4-03.jpg", speaker: "", text: "" },    
+    { img: "../../assets/images/scene4-04.jpg", speaker: "", text: "" }
   ];
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
@@ -71,7 +74,7 @@
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
-      if (index < 1) return;
+      if (index < SLIDES.length - 1) return;
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
       initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
     }
