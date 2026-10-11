@@ -125,7 +125,7 @@ function initPhoneOverlay(items, opts) {
         att.href = item.attachment.url;
         att.target = "_blank";
         att.rel = "noopener";
-        att.textContent = "📎 " + item.attachment.label;
+        att.textContent = "🔗 " + item.attachment.label;
         card.appendChild(att);
       }
 
