@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
 <script src="../../assets/js/report-viewer.js"></script>
@@ -60,6 +61,8 @@
     { type: "location", name: "Copperdale Police Station", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../police-station-3/" }
   ];
 
+  var FERN_LOCATION = { type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: "../../assets/images/map-icon.jpg", locked: true };
+
   var SLIDES = [
 
     { img: "../../assets/images/forest-night.jpg", speaker: "ASHLEY", text: "It's a little late to go wandering through a forest...", tone: "whisper" },
@@ -73,7 +76,8 @@
     nextUrl: "#",
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
-      initPhoneOverlay(items, { hasNew: false, imgPath: PHONE_IMG });
+      if (GameState.flag("fern")) items.push(FERN_LOCATION);
+      initPhoneOverlay(GameState.items(items), { hasNew: false, imgPath: PHONE_IMG });
     }
   });
 </script>
