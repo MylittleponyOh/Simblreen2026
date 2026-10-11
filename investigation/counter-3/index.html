@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
 <script src="../../assets/js/report-viewer.js"></script>
@@ -104,11 +105,12 @@
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   initSlideshow(SLIDES, {
-    nextUrl: "../bar3-motel/",
+    nextUrl: GameState.link("../bar3-motel/", { flag: "fern" }),
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(BASE_LOCATIONS);
       var unlocked = index >= FERN_UNLOCK_INDEX;
       if (unlocked) items.push(FERN_LOCATION);
+      if (unlocked) items = GameState.items(items, { flag: "fern" });
 
       initPhoneOverlay(items, {
         hasNew: index === FERN_UNLOCK_INDEX, // badge seulement au moment précis du déblocage
