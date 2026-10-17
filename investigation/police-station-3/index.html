@@ -17,9 +17,7 @@
 <script src="../../assets/js/report-viewer.js"></script>
 <script>
 
-  // ── À REMPLIR ──────────────────────────────────────────
-  var NEIGHBOR_TOWN = "Moonwood Mill";   // nom de la ville voisine
-  // ───────────────────────────────────────────────────────
+  var NEIGHBOR_TOWN = "Moonwood Mill"; 
 
   var REPORT_DATA = {
     title: "Case File #21071994/M-B",
@@ -57,19 +55,17 @@
     ]
   };
 
-  // Dead end de nuit (16/10) : lieux de la partie 3
   var LOCATIONS = [
     { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: "../../assets/images/map-icon.jpg", url: "../bar-3/" },
     { type: "location", name: "Copperdale National Forest", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../forest-3/" },
     { type: "location", name: "Gas Station", blurb: "Where Melissa worked", thumb: "../../assets/images/map-icon.jpg", url: "../gas-station-3/" },
     { type: "location", name: "Copperdale Police Station", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../police-station-3/", current: true }
   ];
-  // La carte Fern n'apparait qu'une fois l'adresse donnee par Pete
+  
   if (GameState.flag("fern")) {
     LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: "../../assets/images/map-icon.jpg", locked: true });
   }
 
-  // ── Noms d'images : à renommer selon tes fichiers ──────
   var IMG = "../../assets/images/";
   var SLIDES = [
     { img: IMG + "police-station-night.jpg", speaker: "", text: "" },
