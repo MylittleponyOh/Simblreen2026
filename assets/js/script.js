@@ -14,7 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  // Ouverture : 31 octobre 2026, 18h00 heure de Paris (heure d'hiver, +01:00)
   var targetDate = new Date("2026-10-31T18:00:00+01:00").getTime();
+
   var daysEl = document.getElementById("cd-days");
   var hoursEl = document.getElementById("cd-hours");
   var minutesEl = document.getElementById("cd-minutes");
