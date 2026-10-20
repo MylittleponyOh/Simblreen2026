@@ -67,19 +67,19 @@
     { img: IMG + "scene4-fern4-07.jpg", speaker: "ASHLEY", text: "... Damn... I didn't think this through... Think, Morris! ", tone: "whisper" },
     { img: IMG + "scene4-fern4-08.jpg", speaker: "ASHLEY", text: "It won't start... well, it doesn't always start." },
 
-    { img: IMG + "scene4-fern4-09.jpg", speaker: "SETH",   text: "Ah... I'll take a look." }, // Pose Asking the keys + Ash handing the keys
-    { img: IMG + "scene4-fern4-10.jpg", speaker: "SETH",   text: "So, what's a journalist doing in a backwater like Copperdale?" }, // Under the hood + Ash adossée sur la portière
+    { img: IMG + "scene4-fern4-09.jpg", speaker: "SETH",   text: "Ah... I'll take a look." },
+    { img: IMG + "scene4-fern4-10.jpg", speaker: "SETH",   text: "So, what's a journalist doing in a backwater like Copperdale?" },
 
     { img: IMG + "scene4-fern4-11.jpg", speaker: "ASHLEY", text: "I'm writing an article on the local police." },
-    { img: IMG + "scene4-fern4-10.jpg", speaker: "SETH", text: "...cough...", tone: "mumble" }, // variation de 10 ?
+    { img: IMG + "scene4-fern4-10.jpg", speaker: "SETH", text: "...cough...", tone: "mumble" },
     { img: IMG + "scene4-fern4-11.jpg", speaker: "ASHLEY", text: "Do you know the Melissa Bliss case?" },
 
-    { img: IMG + "scene4-fern4-12.jpg", speaker: "SETH",   text: "You read the file, didn't you? You don't have any car trouble at all, do you?" }, // Slam the hood shut + pose deux mains sur le capot
-    { img: IMG + "scene4-fern4-13.jpg", speaker: "ASHLEY", text: "Yes, I read the file... Listen, Seth..." }, // S'est écartée de la voiture pose defensive
+    { img: IMG + "scene4-fern4-12.jpg", speaker: "SETH",   text: "You read the file, didn't you? You don't have any car trouble at all, do you?" },
+    { img: IMG + "scene4-fern4-13.jpg", speaker: "ASHLEY", text: "Yes, I read the file... Listen, Seth..." },
 
-    { img: IMG + "scene4-fern4-14.jpg", speaker: "SETH",   text: "I've got nothing to say to you. If you've read the file, go talk to the others!" }, // Pose throw the keys
-    { img: IMG + "scene4-fern4-15.jpg", speaker: "SETH",   text: "Get out! You've wasted enough of my time." }, // Pose actually throws the keys
-    { img: IMG + "scene4-fern4-16.jpg", speaker: "",   text: "" } // Pose recoit les clefs au visage
+    { img: IMG + "scene4-fern4-14.jpg", speaker: "SETH",   text: "I've got nothing to say to you. If you've read the file, go talk to the others!" }, 
+    { img: IMG + "scene4-fern4-15.jpg", speaker: "SETH",   text: "Get out! You've wasted enough of my time." },
+    { img: IMG + "scene4-fern4-16.jpg", speaker: "",   text: "" } 
   ];
 
   var LOCATIONS = [
@@ -98,7 +98,8 @@
     onSlideChange: function (index) {
       if (index < SLIDES.length - 1) return;
       var items = GameState.items(
-        [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS)
+        [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
+        { flag: "garage" }
       );
       initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
     }
