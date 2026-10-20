@@ -66,16 +66,16 @@
     { img: IMG + "scene4-bar4-05.jpg", speaker: "ASHLEY", text: "That's clearly not Linda... That loser already looks drunk and it's only 11 a.m. Let's see if I can get something out of him...", tone: "whisper" },
     { img: IMG + "scene4-bar4-06.jpg", speaker: "", text: "" },
     { img: IMG + "scene4-bar4-07.jpg", speaker: "ASHLEY", text: "Hello, Mr... Fern?" },
-    { img: IMG + "scene4-bar4-08.jpg", speaker: "SETH", text: "What do you want from me? Did Linda send you? What are you, a lawyer?" },
+    
     {
-      img: IMG + "scene4-bar4-08.jpg",
-      speaker: "",
-      text: "",
-      choices: [
-        { label: "Ask about Melissa", url: GameState.link("./", { flag: "c1" }) },
-        { label: "Lie about car trouble", url: GameState.link("./", { flag: "c2" }) }
-      ]
-    }
+  img: IMG + "scene4-bar4-08.jpg",
+  speaker: "SETH",
+  text: "What do you want from me? Did Linda send you? What are you, a lawyer?",
+  choices: [
+    { label: "Ask about Melissa", url: GameState.link("./", { flag: "c1" }) },
+    { label: "Lie about car trouble", url: GameState.link("./", { flag: "c2" }) }
+  ]
+}
   ];
 
   // ── CHOIX 1 ─────────────────────────────────────────────
