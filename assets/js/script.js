@@ -14,8 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  var targetDate = new Date("2026-10-31T00:00:00+01:00").getTime();
-
+  var targetDate = new Date("2026-10-31T18:00:00+01:00").getTime();
   var daysEl = document.getElementById("cd-days");
   var hoursEl = document.getElementById("cd-hours");
   var minutesEl = document.getElementById("cd-minutes");
