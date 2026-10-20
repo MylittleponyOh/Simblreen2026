@@ -55,6 +55,8 @@
 
   
   var KNOCKED = GameState.flag("knocked");
+  var C2      = GameState.flag("c2");
+  var GARAGE  = GameState.flag("garage");
 
   var ICON = "../../assets/images/map-icon.jpg";
 
@@ -63,17 +65,26 @@
 
   var FACTORY_OPEN   = { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: ICON, url: "../bar-4/" };
   var FACTORY_LOCKED = { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: ICON, locked: true, lockedLabel: "Opens later" };
+  var FACTORY_DONE   = { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: ICON, locked: true, lockedLabel: "Visited" };
 
   var FOREST   = { type: "location", name: "Copperdale National Forest", blurb: "", thumb: ICON, url: "../forest-4/", current: true };
-  var OTHER_LOCATIONS = [
-    { type: "location", name: "Gas Station", blurb: "", thumb: ICON, url: "../gas-station-4/" },
-    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: ICON, url: "../police-station-4/" }
-  ];
-  var FERN_AUTO = { type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: ICON, locked: true };
+  var GAS      = { type: "location", name: "Gas Station", blurb: "", thumb: ICON, url: "../gas-station-4/" };
 
-  var LOCATIONS = KNOCKED
-    ? [FACTORY_OPEN, FOREST].concat(OTHER_LOCATIONS, [HOUSE_VISITED, FERN_AUTO])
-    : [HOUSE_NEW, FACTORY_LOCKED, FOREST].concat(OTHER_LOCATIONS, [FERN_AUTO]);
+  var FERN_AUTO    = { type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: ICON, locked: true };
+  var FERN_INVITED = { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: ICON, url: "../fern-4/", isNew: true };
+  var FERN_DONE    = { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: ICON, locked: true, lockedLabel: "Visited" };
+
+  var POLICE = { type: "location", name: "Copperdale Police Station", blurb: "", thumb: ICON, url: "../scene5/", isNew: true };
+
+  var LOCATIONS;
+  if (C2) {
+    LOCATIONS = [HOUSE_VISITED, FACTORY_DONE, FOREST, GAS, GARAGE ? FERN_DONE : FERN_INVITED];
+    if (GARAGE) LOCATIONS.push(POLICE);
+  } else {
+    LOCATIONS = KNOCKED
+      ? [FACTORY_OPEN, FOREST, GAS, HOUSE_VISITED, FERN_AUTO]
+      : [HOUSE_NEW, FACTORY_LOCKED, FOREST, GAS, FERN_AUTO];
+  }
 
   var SLIDES = [
     { img: "../../assets/images/forest-day.jpg", speaker: "ASHLEY", text: "Nothing but trees...", tone: "whisper" },
@@ -87,7 +98,7 @@
     nextUrl: "#",
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
-      initPhoneOverlay(GameState.items(items, { flag: "fern" }), { hasNew: false, imgPath: PHONE_IMG });
+      initPhoneOverlay(GameState.items(items, { flag: "fern" }), { hasNew: C2, newCount: C2 ? 1 : 0, imgPath: PHONE_IMG });
     }
   });
 </script>
