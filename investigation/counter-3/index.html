@@ -64,10 +64,34 @@
   var FERN_LOCATION = {
     type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends",
     thumb: "../../assets/images/map-icon.jpg",
-    locked: true, // visible sur la carte, mais pas visitable
+    locked: true,
     isNew: true
   };
   var FERN_UNLOCK_INDEX = 14;
+
+  var MOTEL_LOCATION = {
+    type: "location", name: "Lake View Motel", blurb: "Where you're staying",
+    thumb: "../../assets/images/map-icon.jpg",
+    url: "../bar3-motel/",
+    isNew: true
+  };
+
+
+  var GIFT_URL = "#"; // GIFT URL !!!
+  var JUKEBOX_MESSAGES = [
+    {
+      type: "message",
+      from: "ASHLEY",
+      text: "You and your love of old things... look at this little marvel.",
+      image: "../../assets/images/jukebox-preview.jpg",
+      attachment: { label: "Put a coin in", url: GIFT_URL }
+    },
+    {
+      type: "message",
+      from: "MIKE",
+      text: "THAT is exactly what my office is missing."
+    }
+  ];
 
   var SLIDES = [
 
@@ -105,16 +129,21 @@
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   initSlideshow(SLIDES, {
-    nextUrl: GameState.link("../bar3-motel/", { flag: "fern" }),
+    nextUrl: "#",
     onSlideChange: function (index) {
+      var isLast = index === SLIDES.length - 1;
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(BASE_LOCATIONS);
       var unlocked = index >= FERN_UNLOCK_INDEX;
       if (unlocked) items.push(FERN_LOCATION);
+      if (isLast) {
+        items.push(MOTEL_LOCATION);
+        items = JUKEBOX_MESSAGES.concat(items);
+      }
       if (unlocked) items = GameState.items(items, { flag: "fern" });
 
       initPhoneOverlay(items, {
-        hasNew: index === FERN_UNLOCK_INDEX, // badge seulement au moment précis du déblocage
-        newCount: 1,
+        hasNew: index === FERN_UNLOCK_INDEX || isLast,
+        newCount: isLast ? 3 : 1,
         imgPath: PHONE_IMG
       });
     }
