@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Before you begin — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+  .warning {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    box-sizing: border-box;
+  }
+  .warning-card {
+    max-width: 520px;
+    width: 100%;
+    text-align: left;
+  }
+  .warning-card h1 { margin: 0 0 16px; }
+  .warning-card ul { margin: 12px 0 20px; padding-left: 20px; }
+  .warning-card li { margin: 6px 0; }
+  .warning-help { margin: 0 0 24px; opacity: 0.85; }
+  .warning-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .warning-leave-note { margin-top: 16px; font-size: 0.9em; opacity: 0.7; }
+  .warning-actions .cta { display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="warning">
+  <div class="warning-card">
+    <h1>Before you begin</h1>
+    <p>This is a story-driven investigation for mature audiences. It deals with:</p>
+    <ul>
+      <li>Violence and its aftermath</li>
+      <li>Controlling and abusive relationships</li>
+      <li>Loss and grief</li>
+      <li>Blood and injury</li>
+    </ul>
+    <p class="warning-help">You can step away at any time. If you need support, you're not alone:<br>
+      France: 3919 &middot; US: 1-800-799-7233</p>
+
+    <div class="warning-actions">
+      <!-- Continue : vers le hub de l'enquete (adapter si l'adresse change) -->
+      <a href="../investigation/" class="cta">Continue</a>
+      <!-- Leave : vers le dossier des cadeaux (adresse a renseigner le 30/10) -->
+      <a href="#" class="cta" id="leave-btn">Leave</a>
+    </div>
+    <p class="warning-leave-note">Leaving takes you to the free gifts. You don't have to play the story to get them.</p>
+  </div>
+</div>
+
+<script>
+  // Adresse du dossier des cadeaux : a remplir quand elle existe.
+  var GIFTS_URL = "";
+  var leave = document.getElementById("leave-btn");
+  if (GIFTS_URL) { leave.href = GIFTS_URL; }
+</script>
+
+</body>
+</html>
