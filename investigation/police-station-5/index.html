@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Copperdale Police Station — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<link rel="stylesheet" href="../../assets/css/report-viewer.css">
+</head>
+<body>
+
+<script src="../../assets/js/state.js"></script>
+<script src="../../assets/js/slideshow.js"></script>
+<script src="../../assets/js/phone-overlay.js"></script>
+<script src="../../assets/js/report-viewer.js"></script>
+<script>
+
+  var REPORT_DATA = {
+    title: "Case File #21071994/M-B",
+    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
+    sections: [
+      {
+        heading: "Incident Report",
+        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+      },
+      {
+        heading: "Jodie Merrick (46) — Mother",
+        body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
+        note: "The stepfather. Interesting…"
+      },
+      {
+        heading: "Garret Merrick (52) — Stepfather",
+        body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+      },
+      {
+        heading: "Seth Fern (23) — Boyfriend",
+        body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+      },
+      {
+        heading: "Daphne Holzer (23) — Best Friend",
+        body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her — alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
+        note: "She knew more than she told the police. I'd bet my press badge on it."
+      },
+      {
+        heading: "Leandro Larozzi (25) — Coworker",
+        body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
+        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+      }
+    ]
+  };
+
+  var IMG = "../../assets/images/";
+  var GIFT_URL = "#"; // GIFT URL !!!
+
+  var SLIDES = [
+
+    { img: IMG + "copperdale-police.jpg", speaker: "", text: "October 17th 2009 - Copperdale Police Station" },
+    { img: IMG + "scene5-police-01.jpg", speaker: "", text: "" },
+
+    { img: IMG + "scene5-police-02.jpg", speaker: "ASHLEY",    text: "Hello, I'd like to speak with the captain." },
+    { img: IMG + "scene5-police-03.jpg", speaker: "SECRETARY", text: "What is it about?" },
+    { img: IMG + "scene5-police-04.jpg", speaker: "ASHLEY",    text: "I'd like to consult a file on a missing person case." },
+    { img: IMG + "scene5-police-05.jpg", speaker: "SECRETARY", text: "The Melissa Bliss case?" },
+    { img: IMG + "scene5-police-06.jpg", speaker: "ASHLEY",    text: "Exactly." },
+    { img: IMG + "scene5-police-07.jpg", speaker: "SECRETARY", text: "Uh, I'm not sure..." },
+    { img: IMG + "scene5-police-08.jpg", speaker: "ASHLEY",    text: "You know the law allows any citizen to consult a closed case file as soon as the closure decision is made, don't you? I don't even need to ask your permission. Or the captain's, for this district." },
+    { img: IMG + "scene5-police-09.jpg", speaker: "SECRETARY",  text: "The archive room is at the back, on the left. But you have to sign the register." },
+    { img: IMG + "scene5-police-10.jpg", speaker: "ASHLEY",    text: "Very well." },
+
+    { img: IMG + "scene5-police-11.jpg", speaker: "", text: "" }, // Secretary + Ash heading to the archive room
+    { img: IMG + "scene5-police-12.jpg", speaker: "", text: "" }, // Secretary + Ash heading to the archive room
+    { img: IMG + "scene5-police-13.jpg", speaker: "", text: "" }, // Ash is going through the aisle of case files
+    { img: IMG + "scene5-police-14.jpg", speaker: "", text: "" }, // Ash is going through the aisle of case files
+
+    { img: IMG + "scene5-police-15.jpg", speaker: "ASHLEY",   text: "Just one box...", tone: "whisper" },
+    { img: IMG + "scene5-police-16.jpg", speaker: "SECRETARY", text: "You can consult it here." },
+    { img: IMG + "scene5-police-17.jpg", speaker: "ASHLEY",   text: "Sure." },
+    { img: IMG + "scene5-police-18.jpg", speaker: "", text: "" },
+    { img: IMG + "scene5-police-19.jpg", speaker: "", text: "" },
+
+    { img: IMG + "scene5-police-20.jpg", speaker: "ASHLEY", text: "Ah, Melissa's address is in the report. Interesting...", tone: "whisper" },
+    { img: IMG + "scene5-police-20.jpg", speaker: "ASHLEY", text: "And... I see here the sector that was searched on July 23rd, 1994, in the forest...", tone: "whisper" },
+
+    // Journalist reflex: Ashley photographs the cruiser (gift) — phone with the gift only
+    { img: IMG + "scene5-police-21.jpg", speaker: "", text: "" },
+
+    // Last slide: box unlocks (phone with report + map)
+    { img: IMG + "scene5-police-22.jpg", speaker: "", text: "" }
+  ];
+
+  var MESSAGES = [
+    {
+      type: "message",
+      from: "ASHLEY",
+      text: "*click*",
+      image: IMG + "patrol-car-preview.jpg",
+      attachment: { label: "Patrol car", url: GIFT_URL }
+    }
+  ];
+
+  // Fern visited only if the player lied about the car (choice 2)
+  var FERN_VISITED = GameState.flag("c2");
+
+  var LOCATIONS = [
+    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "Merricks' House", blurb: "1994 address", thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "New search areas", thumb: IMG + "map-icon.jpg", url: "../forest-5/", isNew: true }
+  ];
+  if (FERN_VISITED) {
+    LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" });
+  }
+  LOCATIONS.push({ type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../police-station-5/", current: true });
+
+  var PHONE_IMG = IMG + "phone-frame.png";
+
+  initSlideshow(SLIDES, {
+    nextUrl: "#",
+    onSlideChange: function (index) {
+      var last = SLIDES.length - 1;
+
+      if (index === last - 1) {
+        initPhoneOverlay(MESSAGES, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        return;
+      }
+
+      if (index === last) {
+        var items = GameState.items(
+          [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
+          { flag: "box" }
+        );
+        initPhoneOverlay(items, { hasNew: true, newCount: 2, imgPath: PHONE_IMG });
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
