@@ -57,7 +57,7 @@
 
   var CHOICE = GameState.flag("c1") ? 1 : (GameState.flag("c2") ? 2 : 0);
 
-  // ── INTRO ───────────────────────────────────────────────
+  // INTRO 
   var INTRO = [
     { img: IMG + "scene4-bar4-01.jpg", speaker: "PETE", text: "Well, if it isn't the little lady from last night!" },
     { img: IMG + "scene4-bar4-02.jpg", speaker: "ASHLEY", text: "Hi, Pete. I couldn't find Seth, but I did meet his wife, Linda..." },
@@ -78,15 +78,16 @@
 }
   ];
 
-  // ── CHOIX 1 ─────────────────────────────────────────────
+  // CHOIX 1
   var CHOICE1 = [
     { img: IMG + "scene4-bar4-c1-01.jpg", speaker: "ASHLEY", text: "I have some questions about Melissa Bliss." },
     { img: IMG + "scene4-bar4-c1-02.jpg", speaker: "SETH", text: "I've got nothing to say to you about her." },
     { img: IMG + "scene4-bar4-c1-03.jpg", speaker: "SETH", text: "Now get lost." },
-    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Okay... clearly a sore spot. I lacked tact. I won't get anything out of him now. Nice one, Morris... Really nice one.", tone: "whisper" }
+    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Okay... clearly a sore spot. I lacked tact. I won't get anything out of him now. Nice one, Morris... Really nice one.", tone: "whisper" },
+    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Who in this damn town is finally going to talk to me about this case?", tone: "whisper" }
   ];
 
-  // ── CHOIX 2 ─────────────────────────────────────────────
+  // CHOIX 2
   var CHOICE2 = [
     { img: IMG + "scene4-bar4-c2-01.jpg", speaker: "ASHLEY", text: "I'm having trouble with my car, and Pete recommended your... expertise." },
     { img: IMG + "scene4-bar4-c2-02.jpg", speaker: "SETH", text: "The garage is closed until Monday, but I can make an exception for a damsel in distress." },
@@ -105,15 +106,33 @@
     { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", url: "../fern-4/", isNew: true }
   ];
 
+  var LOCATIONS_C1 = [
+    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: IMG + "map-icon.jpg", url: "../bar-4/", current: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
+    { type: "location", name: "Gas Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../gas-station-4/" },
+    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../police-station-5/", isNew: true }
+  ];
+
   var PHONE_IMG = IMG + "phone-frame.png";
 
   var SLIDES = CHOICE === 1 ? CHOICE1 : (CHOICE === 2 ? CHOICE2 : INTRO);
 
   initSlideshow(SLIDES, {
-    nextUrl: CHOICE === 1 ? GameState.link("../scene5/") : "#",
+    nextUrl: "#",
     onSlideChange: function (index) {
-      if (CHOICE !== 2) return;
+      if (CHOICE === 0) return;
       if (index < SLIDES.length - 1) return;
+
+      if (CHOICE === 1) {
+        var items1 = GameState.items(
+          [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS_C1),
+          { flag: "police" }
+        );
+        initPhoneOverlay(items1, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        return;
+      }
+
       var items = GameState.items(
         [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS)
       );
