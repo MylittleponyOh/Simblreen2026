@@ -116,13 +116,11 @@
     onSlideChange: function (index) {
       var last = SLIDES.length - 1;
 
-      // Car photo: messages only (keys gift)
       if (index === last - 1) {
         initPhoneOverlay(MESSAGES, { hasNew: true, newCount: MESSAGES.length, imgPath: PHONE_IMG });
         return;
       }
 
-      // Final thought: messages + report + map (police unlocked)
       if (index === last) {
         var items = GameState.items(
           MESSAGES.concat([{ type: "report", label: "Case File #21071994", data: REPORT_DATA }], LOCATIONS),
