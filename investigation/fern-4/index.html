@@ -123,7 +123,7 @@
 
       if (index === last) {
         var items = GameState.items(
-          MESSAGES.concat([{ type: "report", label: "Case File #21071994", data: REPORT_DATA }], LOCATIONS),
+          [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
           { flag: "police" }
         );
         initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
