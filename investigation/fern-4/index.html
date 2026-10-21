@@ -83,7 +83,9 @@
     { img: IMG + "scene4-fern4-15.jpg", speaker: "SETH",   text: "NOW GET THE FUCK OUT! You've wasted enough of my time." },
     { img: IMG + "scene4-fern4-16.jpg", speaker: "",   text: "" },
 
-    { img: IMG + "scene4-fern4-17.jpg", speaker: "",   text: "" }
+    { img: IMG + "scene4-fern4-17.jpg", speaker: "",   text: "" },
+
+    { img: IMG + "scene4-fern4-18.jpg", speaker: "ASHLEY", text: "Who in this damn town is finally going to talk to me about this case?", tone: "whisper" }
   ];
 
   var LOCATIONS = [
@@ -91,33 +93,43 @@
     { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
     { type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
     { type: "location", name: "Gas Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../gas-station-4/" },
-    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../scene5/", isNew: true },
+    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../police-station-5/", isNew: true },
     { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", url: "../fern-4/", current: true }
   ];
 
   var PHONE_IMG = IMG + "phone-frame.png";
 
+  var MESSAGES = [
+    { type: "message", from: "MIKE",   text: "Everything alright?" },
+    { type: "message", from: "ASHLEY", text: "Have you ever had car keys thrown in your face?" },
+    { type: "message", from: "MIKE",   text: "Damn! Are you okay? Looks like you dug up a file somebody doesn't want to see resurface!!!" },
+    {
+      type: "message",
+      from: "ASHLEY",
+      text: "Clearly! And no, not a scratch! Queen of the dodge.",
+      attachment: { label: "Catch the keys", url: GIFT_URL }
+    }
+  ];
+
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
-      if (index < SLIDES.length - 1) return;
-      var MESSAGES = [
-        { type: "message", from: "MIKE",   text: "Everything alright?" },
-        { type: "message", from: "ASHLEY", text: "Have you ever had car keys thrown in your face?" },
-        { type: "message", from: "MIKE",   text: "Damn! Are you okay? Looks like you dug up a file somebody doesn't want to see resurface!!!" },
-        {
-          type: "message",
-          from: "ASHLEY",
-          text: "Clearly! And no, not a scratch! Queen of the dodge.",
-          attachment: { label: "Catch the keys", url: GIFT_URL }
-        }
-      ];
+      var last = SLIDES.length - 1;
 
-      var items = GameState.items(
-        MESSAGES.concat([{ type: "report", label: "Case File #21071994", data: REPORT_DATA }], LOCATIONS),
-        { flag: "garage" }
-      );
-      initPhoneOverlay(items, { hasNew: true, newCount: 5, imgPath: PHONE_IMG });
+      // Car photo: messages only (keys gift)
+      if (index === last - 1) {
+        initPhoneOverlay(MESSAGES, { hasNew: true, newCount: MESSAGES.length, imgPath: PHONE_IMG });
+        return;
+      }
+
+      // Final thought: messages + report + map (police unlocked)
+      if (index === last) {
+        var items = GameState.items(
+          MESSAGES.concat([{ type: "report", label: "Case File #21071994", data: REPORT_DATA }], LOCATIONS),
+          { flag: "police" }
+        );
+        initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+      }
     }
   });
 </script>
