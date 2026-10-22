@@ -71,10 +71,10 @@
     { img: IMG + "police-station-day-07.jpg", speaker: "SECRETARY",  text: "The archive room is at the back, on the left. But you have to sign the register." },
     { img: IMG + "police-station-day-08.jpg", speaker: "ASHLEY",    text: "Very well." },
 
-    { img: IMG + "police-station-day-09.jpg", speaker: "", text: "" }, // Secretary + Ash heading to the archive room
-    { img: IMG + "police-station-day-10.jpg", speaker: "", text: "" }, // Secretary + Ash heading to the archive room
-    { img: IMG + "police-station-day-11.jpg", speaker: "", text: "" }, // Ash is going through the aisle of case files
-    { img: IMG + "police-station-day-12.jpg", speaker: "", text: "" }, // Ash is going through the aisle of case files
+    { img: IMG + "police-station-day-09.jpg", speaker: "", text: "" },
+    { img: IMG + "police-station-day-10.jpg", speaker: "", text: "" },
+    // Click & point: find the Melissa Bliss box (hover = glow, click = continue)
+    { img: IMG + "police-station-day-11.jpg", speaker: "ASHLEY", text: "No dates... no labels. Of course.", tone: "whisper", search: true },
 
     { img: IMG + "police-station-day-13.jpg", speaker: "ASHLEY",   text: "Just one box...", tone: "whisper" },
     { img: IMG + "police-station-day-14.jpg", speaker: "SECRETARY", text: "You can consult it here." },
@@ -117,10 +117,72 @@
 
   var PHONE_IMG = IMG + "phone-frame.png";
 
+  // CLICK & POINT
+  var BOX_BBOX = { x1: 607, y1: 323, x2: 716, y2: 436 };
+  var BOX_PAD = 8;
+  var BOX_GLOW_IMG = IMG + "police-station-day-11-box.png";
+
+  var searchIndex = -1;
+  SLIDES.forEach(function (sl, i) { if (sl.search) searchIndex = i; });
+  var currentIndex = 0;
+  var boxGlow = null;
+
+  var css = document.createElement("style");
+  css.textContent =
+    ".slide img.box-glow{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .25s ease,filter .25s ease;}" +
+    ".slide img.box-glow.on{opacity:1;filter:brightness(1.9) drop-shadow(0 0 14px rgba(255,236,180,.9));}" +
+    "#slideshow-root.searching .next-btn{display:none !important;}" +
+    "#slideshow-root.searching .slide.active{cursor:default;}" +
+    "#slideshow-root.searching .slide.active.over-box{cursor:pointer;}";
+  document.head.appendChild(css);
+
+  function setupBoxSearch() {
+    if (searchIndex < 0) return;
+    var root = document.getElementById("slideshow-root");
+    var slideEl = root.querySelectorAll(".slide")[searchIndex];
+
+    boxGlow = document.createElement("img");
+    boxGlow.className = "box-glow";
+    boxGlow.alt = "";
+    boxGlow.src = BOX_GLOW_IMG;
+    slideEl.appendChild(boxGlow);
+
+    function inBox(e) {
+      var r = slideEl.getBoundingClientRect();
+      var scale = Math.max(r.width / 1920, r.height / 1080);
+      var offX = (r.width - 1920 * scale) / 2;
+      var offY = (r.height - 1080 * scale) / 2;
+      var x = (e.clientX - r.left - offX) / scale;
+      var y = (e.clientY - r.top - offY) / scale;
+      return x >= BOX_BBOX.x1 - BOX_PAD && x <= BOX_BBOX.x2 + BOX_PAD &&
+             y >= BOX_BBOX.y1 - BOX_PAD && y <= BOX_BBOX.y2 + BOX_PAD;
+    }
+
+    slideEl.addEventListener("mousemove", function (e) {
+      if (!root.classList.contains("searching")) return;
+      var over = inBox(e);
+      boxGlow.classList.toggle("on", over);
+      slideEl.classList.toggle("over-box", over);
+    });
+
+    slideEl.addEventListener("click", function (e) {
+      if (!root.classList.contains("searching")) return;
+      if (!inBox(e)) return;
+      root.classList.remove("searching");
+      boxGlow.classList.add("on");
+      var btn = root.querySelector(".next-btn");
+      btn.click();
+      if (currentIndex === searchIndex) btn.click();
+    });
+  }
+
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
       var last = SLIDES.length - 1;
+      currentIndex = index;
+      var rootEl = document.getElementById("slideshow-root");
+      if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
 
       if (index === last - 1) {
         initPhoneOverlay(MESSAGES, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
@@ -136,6 +198,7 @@
       }
     }
   });
+  setupBoxSearch();
 </script>
 
 </body>
