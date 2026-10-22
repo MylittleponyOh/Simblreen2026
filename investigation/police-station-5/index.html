@@ -73,8 +73,9 @@
 
     { img: IMG + "police-station-day-09.jpg", speaker: "", text: "" },
     { img: IMG + "police-station-day-10.jpg", speaker: "", text: "" },
+
     // Click & point: find the Melissa Bliss box (hover = glow, click = continue)
-    { img: IMG + "police-station-day-11.jpg", speaker: "ASHLEY", text: "No dates... no labels. Of course.", tone: "whisper", search: true },
+    { img: IMG + "police-station-day-11.jpg", speaker: "ASHLEY", text: "No dates... no labels. Of course. I guess it's time to browse all this mess...", tone: "whisper", search: true },
 
     { img: IMG + "police-station-day-13.jpg", speaker: "ASHLEY",   text: "Just one box...", tone: "whisper" },
     { img: IMG + "police-station-day-14.jpg", speaker: "SECRETARY", text: "You can consult it here." },
@@ -102,7 +103,7 @@
     }
   ];
 
-  // Fern visited only if the player lied about the car (choice 2)
+  
   var FERN_VISITED = GameState.flag("c2");
 
   var LOCATIONS = [
@@ -118,22 +119,28 @@
   var PHONE_IMG = IMG + "phone-frame.png";
 
   // CLICK & POINT
-  var BOX_BBOX = { x1: 607, y1: 323, x2: 716, y2: 436 };
+  var BOXES = [
+    { img: IMG + "police-station-day-11-box.png",  real: true,  bbox: { x1: 607,  y1: 323, x2: 716,  y2: 436 } },
+    { img: IMG + "police-station-day-11-box1.png", real: false, bbox: { x1: 407,  y1: 556, x2: 502,  y2: 668 }, line: "Nothing here." },
+    { img: IMG + "police-station-day-11-box2.png", real: false, bbox: { x1: 1513, y1: 799, x2: 1758, y2: 932 }, line: "Just old paperwork." },
+    { img: IMG + "police-station-day-11-box3.png", real: false, bbox: { x1: 1101, y1: 524, x2: 1181, y2: 587 }, line: "Wrong box." }
+  ];
   var BOX_PAD = 8;
-  var BOX_GLOW_IMG = IMG + "police-station-day-11-box.png";
 
   var searchIndex = -1;
   SLIDES.forEach(function (sl, i) { if (sl.search) searchIndex = i; });
   var currentIndex = 0;
-  var boxGlow = null;
 
   var css = document.createElement("style");
   css.textContent =
     ".slide img.box-glow{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .25s ease,filter .25s ease;}" +
     ".slide img.box-glow.on{opacity:1;filter:brightness(1.9) drop-shadow(0 0 14px rgba(255,236,180,.9));}" +
     "#slideshow-root.searching .next-btn{display:none !important;}" +
-    "#slideshow-root.searching .slide.active{cursor:default;}" +
-    "#slideshow-root.searching .slide.active.over-box{cursor:pointer;}";
+    "#slideshow-root.searching .slide.active.over-box{cursor:pointer;}" +
+    ".box-hint{position:absolute;top:8vh;left:50%;transform:translateX(-50%);z-index:6;padding:.7rem 1.2rem;" +
+    "background:rgba(5,7,10,.85);border:1px solid rgba(216,201,176,.3);border-radius:4px;" +
+    "font-size:.95rem;font-style:italic;color:#a99c86;letter-spacing:.02em;opacity:0;pointer-events:none;transition:opacity .25s ease;}" +
+    ".box-hint.show{opacity:1;}";
   document.head.appendChild(css);
 
   function setupBoxSearch() {
@@ -141,35 +148,57 @@
     var root = document.getElementById("slideshow-root");
     var slideEl = root.querySelectorAll(".slide")[searchIndex];
 
-    boxGlow = document.createElement("img");
-    boxGlow.className = "box-glow";
-    boxGlow.alt = "";
-    boxGlow.src = BOX_GLOW_IMG;
-    slideEl.appendChild(boxGlow);
+    BOXES.forEach(function (b) {
+      var g = document.createElement("img");
+      g.className = "box-glow";
+      g.alt = "";
+      g.src = b.img;
+      slideEl.appendChild(g);
+      b.glow = g;
+    });
 
-    function inBox(e) {
+    var hint = document.createElement("div");
+    hint.className = "box-hint";
+    root.appendChild(hint);
+    var hintTimer = null;
+
+    function boxAt(e) {
       var r = slideEl.getBoundingClientRect();
       var scale = Math.max(r.width / 1920, r.height / 1080);
       var offX = (r.width - 1920 * scale) / 2;
       var offY = (r.height - 1080 * scale) / 2;
       var x = (e.clientX - r.left - offX) / scale;
       var y = (e.clientY - r.top - offY) / scale;
-      return x >= BOX_BBOX.x1 - BOX_PAD && x <= BOX_BBOX.x2 + BOX_PAD &&
-             y >= BOX_BBOX.y1 - BOX_PAD && y <= BOX_BBOX.y2 + BOX_PAD;
+      for (var i = 0; i < BOXES.length; i++) {
+        var bb = BOXES[i].bbox;
+        if (x >= bb.x1 - BOX_PAD && x <= bb.x2 + BOX_PAD && y >= bb.y1 - BOX_PAD && y <= bb.y2 + BOX_PAD) return BOXES[i];
+      }
+      return null;
     }
 
     slideEl.addEventListener("mousemove", function (e) {
       if (!root.classList.contains("searching")) return;
-      var over = inBox(e);
-      boxGlow.classList.toggle("on", over);
-      slideEl.classList.toggle("over-box", over);
+      var over = boxAt(e);
+      BOXES.forEach(function (b) { b.glow.classList.toggle("on", b === over); });
+      slideEl.classList.toggle("over-box", !!over);
     });
 
     slideEl.addEventListener("click", function (e) {
       if (!root.classList.contains("searching")) return;
-      if (!inBox(e)) return;
+      var hit = boxAt(e);
+      if (!hit) return;
+
+      if (!hit.real) {
+        hint.textContent = hit.line;
+        hint.classList.add("show");
+        clearTimeout(hintTimer);
+        hintTimer = setTimeout(function () { hint.classList.remove("show"); }, 2200);
+        return;
+      }
+
       root.classList.remove("searching");
-      boxGlow.classList.add("on");
+      hint.classList.remove("show");
+      hit.glow.classList.add("on");
       var btn = root.querySelector(".next-btn");
       btn.click();
       if (currentIndex === searchIndex) btn.click();
