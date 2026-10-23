@@ -89,9 +89,9 @@
 
   var MESSAGES = [
     {
-      type: "message",
-      from: "ASHLEY",
-      text: "*click*",
+      type: "Notes",
+      from: "Copperdale Police",
+      text: "YW 7596, Ford Crown Victoria Interceptor Patrol Car #993",
       image: IMG + "patrol-car-preview.jpg",
       attachment: { label: "Patrol car", url: GIFT_URL }
     }
@@ -198,7 +198,32 @@
       if (currentIndex === searchIndex) btn.click();
     });
   }
-
+  // Flash for slide 13
+  var FLASH_IMG = IMG + "police-station-day-13-flash.png";
+  var flashed = false;
+  function phoneFlash(slideIndex) {
+    if (flashed) return;
+    flashed = true;
+    var slideEl = document.querySelectorAll("#slideshow-root .slide")[slideIndex];
+    if (!slideEl) return;
+    var f = document.createElement("img");
+    f.alt = "";
+    f.src = FLASH_IMG;
+    f.style.cssText = "position:absolute;inset:0;opacity:0;pointer-events:none;";
+    slideEl.appendChild(f);
+    var states = [1, 0, 1, 0, 1, 0];
+    var gaps   = [90, 160, 90, 160, 90, 0];
+    var i = 0;
+    function tick() {
+      f.style.opacity = states[i];
+      var wait = gaps[i];
+      i++;
+      if (i < states.length) setTimeout(tick, wait);
+      else setTimeout(function () { f.remove(); }, 100);
+    }
+    setTimeout(tick, 300);
+  }
+  
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
@@ -208,10 +233,10 @@
       if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
 
       if (index === last - 1) {
+        phoneFlash(index);
         initPhoneOverlay(MESSAGES, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
         return;
       }
-
       if (index === last) {
         var items = GameState.items(
           [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
