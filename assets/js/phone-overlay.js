@@ -68,7 +68,7 @@ function initPhoneOverlay(items, opts) {
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
-  var SECTION_LABELS = { message: "Messages", report: "Files", location: "Locations" };
+  var SECTION_LABELS = { message: "Messages", note: "Notes", report: "Files", location: "Locations" };
   var lastType = null;
 
   // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
@@ -95,7 +95,7 @@ function initPhoneOverlay(items, opts) {
       lastType = item.type;
     }
 
-    if (item.type === "message") {
+    if (item.type === "message" || item.type === "note") {
       var card = document.createElement("div");
       card.className = "feed-card message";
       if (item.isNew) card.classList.add("is-new");
