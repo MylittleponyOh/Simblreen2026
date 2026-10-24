@@ -56,7 +56,8 @@
   
   var KNOCKED = GameState.flag("knocked");
   var C2      = GameState.flag("c2");
-  var GARAGE  = GameState.flag("garage");
+  var C1        = GameState.flag("c1");
+  var POLICE_ON = GameState.flag("police");
 
   var ICON = "../../assets/images/map-icon.jpg";
 
@@ -74,12 +75,14 @@
   var FERN_INVITED = { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: ICON, url: "../fern-4/", isNew: true };
   var FERN_DONE    = { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: ICON, locked: true, lockedLabel: "Visited" };
 
-  var POLICE = { type: "location", name: "Copperdale Police Station", blurb: "", thumb: ICON, url: "../scene5/", isNew: true };
+  var POLICE = { type: "location", name: "Copperdale Police Station", blurb: "", thumb: ICON, url: "../police-station-5/", isNew: true };
 
   var LOCATIONS;
   if (C2) {
-    LOCATIONS = [HOUSE_VISITED, FACTORY_DONE, FOREST, GAS, GARAGE ? FERN_DONE : FERN_INVITED];
-    if (GARAGE) LOCATIONS.push(POLICE);
+    LOCATIONS = [HOUSE_VISITED, FACTORY_DONE, FOREST, GAS, POLICE_ON ? FERN_DONE : FERN_INVITED];
+    if (POLICE_ON) LOCATIONS.push(POLICE);
+  } else if (C1 && POLICE_ON) {
+    LOCATIONS = [HOUSE_VISITED, FACTORY_DONE, FOREST, GAS, POLICE];
   } else {
     LOCATIONS = KNOCKED
       ? [FACTORY_OPEN, FOREST, GAS, HOUSE_VISITED, FERN_AUTO]
