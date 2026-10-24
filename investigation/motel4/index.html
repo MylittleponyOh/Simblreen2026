@@ -53,7 +53,6 @@
     ]
   };
 
-  // ── Chemin du joueur : l'adresse contient ?f=knocked s'il a sonné chez Linda la veille ──
   var KNOCKED = GameState.flag("knocked");
 
   var ICON = "../../assets/images/map-icon.jpg";
@@ -66,7 +65,6 @@
 
   var OTHER_LOCATIONS = [
     { type: "location", name: "Copperdale National Forest", blurb: "", thumb: ICON, url: "../forest-4/" },
-    { type: "location", name: "Gas Station", blurb: "", thumb: ICON, url: "../gas-station-3/" },
     { type: "location", name: "Copperdale Police Station", blurb: "", thumb: ICON, url: "../police-station-3/" }
   ];
   var FERN_AUTO = { type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: ICON, locked: true };
@@ -75,13 +73,11 @@
     ? [FACTORY_OPEN].concat(OTHER_LOCATIONS, [HOUSE_VISITED, FERN_AUTO])
     : [HOUSE_NEW, FACTORY_LOCKED].concat(OTHER_LOCATIONS, [FERN_AUTO]);
 
-  // ── Slides communes ──
   var COMMON_SLIDES = [
     { img: "../../assets/images/motel-photo-day-wide.jpg", speaker: "", text: "October 17th 2009, 9:30 — Lake View Motel, Copperdale." },
     { img: "../../assets/images/scene4-01.jpg", speaker: "", text: "" }
   ];
 
-  // ── Slides finales : elles dépendent du chemin ──
   var KNOCKED_SLIDES = [
     { img: "../../assets/images/scene4-02.jpg", speaker: "ASHLEY", text: "What did Linda say last night about Seth again?", tone: "whisper" },
     { img: "../../assets/images/scene4-03.jpg", speaker: "ASHLEY", text: "Ah, right. He’s probably drinking himself into oblivion at the bar.", tone: "whisper" },
@@ -100,7 +96,7 @@
   initSlideshow(SLIDES, {
     nextUrl: "#",
     onSlideChange: function (index) {
-      if (index < SLIDES.length - 1) return; // téléphone seulement sur la dernière slide
+      if (index < SLIDES.length - 1) return;
       var items = [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS);
       initPhoneOverlay(GameState.items(items, { flag: "fern" }), { hasNew: !KNOCKED, newCount: 1, imgPath: PHONE_IMG });
     }
