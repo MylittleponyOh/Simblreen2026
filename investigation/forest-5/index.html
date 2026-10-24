@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Copperdale National Forest — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<link rel="stylesheet" href="../../assets/css/report-viewer.css">
+</head>
+<body>
+
+<script src="../../assets/js/state.js"></script>
+<script src="../../assets/js/slideshow.js"></script>
+<script src="../../assets/js/phone-overlay.js"></script>
+<script src="../../assets/js/report-viewer.js"></script>
+<script>
+
+  var REPORT_DATA = {
+    title: "Case File #21071994/M-B",
+    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
+    sections: [
+      {
+        heading: "Incident Report",
+        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+      },
+      {
+        heading: "Jodie Merrick (46) — Mother",
+        body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
+        note: "The stepfather. Interesting…"
+      },
+      {
+        heading: "Garret Merrick (52) — Stepfather",
+        body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+      },
+      {
+        heading: "Seth Fern (23) — Boyfriend",
+        body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+      },
+      {
+        heading: "Daphne Holzer (23) — Best Friend",
+        body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her — alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
+        note: "She knew more than she told the police. I'd bet my press badge on it."
+      },
+      {
+        heading: "Leandro Larozzi (25) — Coworker",
+        body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
+        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+      }
+    ]
+  };
+
+  var IMG = "../../assets/images/";
+
+  var SLIDES = [
+
+    { img: IMG + "forest-5.jpg", speaker: "", text: "Copperdale National Forest" },
+
+    { img: IMG + "forest-5-01.jpg", speaker: "", text: "" },
+    { img: IMG + "forest-5-02.jpg", speaker: "", text: "" },
+    { img: IMG + "forest-5-03.jpg", speaker: "", text: "" },
+    { img: IMG + "forest-5-04.jpg", speaker: "", text: "" },
+
+    { img: IMG + "forest-5-05.jpg", speaker: "ASHLEY", text: "Nothing... What was I thinking? Fifteen years later, in a forest this big...", tone: "whisper" },
+
+    { img: IMG + "forest-5-06.jpg", speaker: "", text: "" }
+  ];
+
+  var FERN_VISITED = GameState.flag("c2");
+
+  var LOCATIONS = [
+    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" }
+  ];
+  if (FERN_VISITED) {
+    LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" });
+  }
+  LOCATIONS.push({ type: "location", name: "Merricks' House", blurb: "1994 address", thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true });
+  LOCATIONS.push({ type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-5/", current: true });
+
+  var PHONE_IMG = IMG + "phone-frame.png";
+
+  initSlideshow(SLIDES, {
+    nextUrl: "#",
+    onSlideChange: function (index) {
+      if (index < SLIDES.length - 1) return;
+      // flag "jog": the forest dead end has been done
+      var items = GameState.items(
+        [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
+        { flag: "jog" }
+      );
+      initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+    }
+  });
+</script>
+
+</body>
+</html>
