@@ -69,16 +69,11 @@
     { img: IMG + "forest5-06.jpg", speaker: "", text: "" }
   ];
 
-  var FERN_VISITED = GameState.flag("c2");
-
   var LOCATIONS = [
-    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" }
+    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "Merricks' House", blurb: "1994 address", thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-5/", current: true }
   ];
-  if (FERN_VISITED) {
-    LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" });
-  }
-  LOCATIONS.push({ type: "location", name: "Merricks' House", blurb: "1994 address", thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true });
-  LOCATIONS.push({ type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-5/", current: true });
 
   var PHONE_IMG = IMG + "phone-frame.png";
 
