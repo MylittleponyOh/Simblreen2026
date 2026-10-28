@@ -6,51 +6,70 @@
 <title>The Forest — The Girl Who Went Missing</title>
 <link rel="stylesheet" href="../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/slideshow.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<style>#slideshow-root.searching .next-btn{display:none !important;}</style>
 </head>
 <body>
 
 <script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
+<script src="../../assets/js/phone-overlay.js"></script>
 <script>
 
   var IMG = "../../assets/images/";
+  var PHONE_IMG = IMG + "phone-frame.png";
+  var REC = GameState.flag("rec");   // true once the player pressed "Record" on the phone
 
-  // ── Images used several times: change the file name here only ──
-  var ASH   = IMG + "forest-6-03.jpg";   // Ashley facing Seth
-  var SETH  = IMG + "forest-6-04.jpg";   // Seth facing Ashley
-  var GRAB  = IMG + "forest-6-10.jpg";   // Seth grabs Ashley's arm (also used for the "present" lines)
+  // Voice Recorder (the only thing on the phone for this slide)
+  var RECORDER = [{
+    type: "message",
+    from: "VOICE RECORDER",
+    text: "Ready. Tap to start recording.",
+    attachment: { label: "Record", url: GameState.link("./", { flag: "rec" }) }
+  }];
 
   var SLIDES = [
-    // ── Into the forest ──
     { img: IMG + "forest-6-01.jpg", speaker: "", text: "Ashley makes her way into the forest. The October night is already starting to fall. The further she goes, the darker it gets." },
     { img: IMG + "forest-6-02.jpg", speaker: "", text: "She hears a crack behind her and turns around, thinking she'll find Daphne coming to join her. But it's Seth Fern standing there." },
+    { img: IMG + "forest-6-03.jpg", speaker: "ASHLEY", text: "Mr. Fern?" },
+    { img: IMG + "forest-6-03.jpg", speaker: "", text: "" },
+    { img: IMG + "forest-6-03.jpg", speaker: "SETH",   text: "You know, it's a small town, Miss journalist from San Myshuno. I heard you're still digging into what happened to Melissa. But you need to stop." },
+    { img: IMG + "forest-6-04.jpg", speaker: "ASHLEY", text: "You know, others before you have threatened me, and I'm not the type to let go." },
+    { img: IMG + "forest-6-05.jpg", speaker: "SETH",   text: "You come into MY town, you stir up shit, and on top of that you think you're protected?! Don't make me laugh." },
+    { img: IMG + "forest-6-06.jpg", speaker: "ASHLEY", text: "Stirring up shit? Is that how you talk about your missing girlfriend?" },
+    { img: IMG + "forest-6-05.jpg", speaker: "SETH",   text: "My ex-girlfriend! I don't need any lessons from you, get lost!" },
+    { img: IMG + "forest-6-04.jpg", speaker: "ASHLEY", text: "That's exactly the kind of reaction that makes me want to stay and dig even deeper." },
+    { img: IMG + "forest-6-07.jpg", speaker: "", text: "" }, // Seth runs at Ashley and grabs her arm violently.
 
-    // ── Confrontation ──
-    { img: ASH,  speaker: "ASHLEY", text: "Mr. Fern?" },
-    { img: SETH, speaker: "SETH",   text: "You know, it's a small town, Miss journalist from San Myshuno. I heard you're still digging into what happened to Melissa. But you need to stop." },
-    { img: ASH,  speaker: "ASHLEY", text: "You know, others before you have threatened me, and I'm not the type to let go." },
-    { img: SETH, speaker: "SETH",   text: "You come into MY town, you stir up shit, and on top of that you think you're protected?! Don't make me laugh." },
-    { img: ASH,  speaker: "ASHLEY", text: "Stirring up shit? Is that how you talk about your missing girlfriend?" },
-    { img: SETH, speaker: "SETH",   text: "My ex-girlfriend. I don't need any lessons from you, get lost!" },
-    { img: ASH,  speaker: "ASHLEY", text: "That's exactly the kind of reaction that makes me want to stay and dig even deeper." },
-    { img: GRAB, speaker: "", text: "Seth runs at Ashley and grabs her arm violently." },
-
-    // ── Flashbacks (past / present) ──
-    { img: IMG + "forest-6-11.jpg", speaker: "", text: "" },   // PAST: Melissa and Seth arguing in the forest
-    { img: GRAB, speaker: "ASHLEY", text: "Oh... oh my God..." },
-    { img: GRAB, speaker: "SETH",   text: "I told you to get lost, do you hear me?!" },
-    { img: IMG + "forest-6-12.jpg", speaker: "", text: "" },   // PAST: Seth pushes Melissa, she falls, blood, everything blurs
-    { img: GRAB, speaker: "ASHLEY", text: "I... I... what's..." },
-    { img: IMG + "forest-6-13.jpg", speaker: "", text: "" },   // PAST: Melissa wakes up, blood on her hands
-    { img: IMG + "forest-6-14.jpg", speaker: "", text: "" },   // PAST: she walks out of the forest, a car and headlights
-    { img: GRAB, speaker: "SETH", text: "You were dead! I killed you!" },
-    { img: GRAB, speaker: "", text: "Ashley is frozen." },
-    { img: GRAB, speaker: "VOICE", text: "MELISSA!" },
-    { img: IMG + "forest-6-15.jpg", speaker: "", text: "Seth turns around and sees Daphne running toward them." }
+    // Flashbacks past / present
+    { img: IMG + "forest-6-08.jpg", speaker: "", text: "" },   // PAST: Melissa and Seth arguing in the forest
+    { img: IMG + "forest-6-07.jpg", speaker: "ASHLEY", text: "Oh... oh my God..." },
+    { img: IMG + "forest-6-07.jpg", speaker: "SETH",   text: "I told you to get lost, do you hear me?!" },
+    { img: IMG + "forest-6-09.jpg", speaker: "", text: "" },   // PAST: Seth pushes Melissa, she falls, blood, everything blurs
+    { img: IMG + "forest-6-07.jpg", speaker: "ASHLEY", text: "I... I... what's..." },
+    { img: IMG + "forest-6-10.jpg", speaker: "", text: "" },   // PAST: Melissa wakes up, blood on her hands
+    { img: IMG + "forest-6-11.jpg", speaker: "", text: "" },   // PAST: she walks out of the forest, a car and headlights
+    { img: IMG + "forest-6-07.jpg", speaker: "SETH", text: "You were dead! I killed you!" },
+    { img: IMG + "forest-6-07.jpg", speaker: "", text: "Ashley is frozen." },
+    { img: IMG + "forest-6-07.jpg", speaker: "VOICE", text: "MELISSA!" },
+    { img: IMG + "forest-6-12.jpg", speaker: "", text: "Seth turns around and sees Daphne running toward them." }
   ];
 
+  var PHONE_INDEX = 3;
+
+  // After pressing Record the page reloads with the flag: skip straight to Seth's first line
+  if (REC) SLIDES = SLIDES.slice(PHONE_INDEX + 1);
+
   initSlideshow(SLIDES, {
-    nextUrl: "../ending-7/"
+    nextUrl: "../ending-7/",
+    onSlideChange: function (index) {
+      var rootEl = document.getElementById("slideshow-root");
+      var onPhone = !REC && index === PHONE_INDEX;
+      if (rootEl) rootEl.classList.toggle("searching", onPhone);   // hides "Next" so the player must use the phone
+      if (onPhone) {
+        initPhoneOverlay(RECORDER, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+      }
+    }
   });
 
 </script>
