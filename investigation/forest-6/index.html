@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Forest — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+</head>
+<body>
+
+<script src="../../assets/js/state.js"></script>
+<script src="../../assets/js/slideshow.js"></script>
+<script>
+
+  var IMG = "../../assets/images/";
+
+  // ── Images used several times: change the file name here only ──
+  var ASH   = IMG + "forest-6-03.jpg";   // Ashley facing Seth
+  var SETH  = IMG + "forest-6-04.jpg";   // Seth facing Ashley
+  var GRAB  = IMG + "forest-6-10.jpg";   // Seth grabs Ashley's arm (also used for the "present" lines)
+
+  var SLIDES = [
+    // ── Into the forest ──
+    { img: IMG + "forest-6-01.jpg", speaker: "", text: "Ashley makes her way into the forest. The October night is already starting to fall. The further she goes, the darker it gets." },
+    { img: IMG + "forest-6-02.jpg", speaker: "", text: "She hears a crack behind her and turns around, thinking she'll find Daphne coming to join her. But it's Seth Fern standing there." },
+
+    // ── Confrontation ──
+    { img: ASH,  speaker: "ASHLEY", text: "Mr. Fern?" },
+    { img: SETH, speaker: "SETH",   text: "You know, it's a small town, Miss journalist from San Myshuno. I heard you're still digging into what happened to Melissa. But you need to stop." },
+    { img: ASH,  speaker: "ASHLEY", text: "You know, others before you have threatened me, and I'm not the type to let go." },
+    { img: SETH, speaker: "SETH",   text: "You come into MY town, you stir up shit, and on top of that you think you're protected?! Don't make me laugh." },
+    { img: ASH,  speaker: "ASHLEY", text: "Stirring up shit? Is that how you talk about your missing girlfriend?" },
+    { img: SETH, speaker: "SETH",   text: "My ex-girlfriend. I don't need any lessons from you, get lost!" },
+    { img: ASH,  speaker: "ASHLEY", text: "That's exactly the kind of reaction that makes me want to stay and dig even deeper." },
+    { img: GRAB, speaker: "", text: "Seth runs at Ashley and grabs her arm violently." },
+
+    // ── Flashbacks (past / present) ──
+    { img: IMG + "forest-6-11.jpg", speaker: "", text: "" },   // PAST: Melissa and Seth arguing in the forest
+    { img: GRAB, speaker: "ASHLEY", text: "Oh... oh my God..." },
+    { img: GRAB, speaker: "SETH",   text: "I told you to get lost, do you hear me?!" },
+    { img: IMG + "forest-6-12.jpg", speaker: "", text: "" },   // PAST: Seth pushes Melissa, she falls, blood, everything blurs
+    { img: GRAB, speaker: "ASHLEY", text: "I... I... what's..." },
+    { img: IMG + "forest-6-13.jpg", speaker: "", text: "" },   // PAST: Melissa wakes up, blood on her hands
+    { img: IMG + "forest-6-14.jpg", speaker: "", text: "" },   // PAST: she walks out of the forest, a car and headlights
+    { img: GRAB, speaker: "SETH", text: "You were dead! I killed you!" },
+    { img: GRAB, speaker: "", text: "Ashley is frozen." },
+    { img: GRAB, speaker: "VOICE", text: "MELISSA!" },
+    { img: IMG + "forest-6-15.jpg", speaker: "", text: "Seth turns around and sees Daphne running toward them." }
+  ];
+
+  initSlideshow(SLIDES, {
+    nextUrl: "../ending-7/"
+  });
+
+</script>
+</body>
+</html>
