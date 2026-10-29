@@ -7,7 +7,15 @@
 <link rel="stylesheet" href="../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/slideshow.css">
 <link rel="stylesheet" href="../../assets/css/phone-overlay.css">
-<style>#slideshow-root.searching .next-btn{display:none !important;}</style>
+<style>
+
+  #slideshow-root.recording .next-btn{display:none !important;}
+
+
+  .fb-flash{position:fixed;inset:0;z-index:25;background:#fff;opacity:0;pointer-events:none;}
+  .fb-flash.go{animation:fbFlash .55s ease-out;}
+  @keyframes fbFlash{0%{opacity:.95}100%{opacity:0}}
+</style>
 </head>
 <body>
 
@@ -18,14 +26,6 @@
 
   var IMG = "../../assets/images/";
   var PHONE_IMG = IMG + "phone-frame.png";
-  var REC = GameState.flag("rec");
-
-  var RECORDER = [{
-    type: "message",
-    from: "VOICE RECORDER",
-    text: "Ready. Tap to start recording.",
-    attachment: { label: "Record", url: GameState.link("./", { flag: "rec" }) }
-  }];
 
   var SLIDES = [
     { img: IMG + "forest-6-01.jpg", speaker: "", text: "" },
@@ -55,19 +55,53 @@
     { img: IMG + "forest-6-12.jpg", speaker: "", text: "" }
   ];
 
-  var PHONE_INDEX = 3;
+  var REC_INDEX = 3;
 
-  if (REC) SLIDES = SLIDES.slice(PHONE_INDEX + 1);
+  // Flash range
+  function indexOfImg(name) {
+    for (var i = 0; i < SLIDES.length; i++) if (SLIDES[i].img.indexOf(name) > -1) return i;
+    return -1;
+  }
+  var FB_START = indexOfImg("forest-6-08.jpg");
+  var FB_END   = indexOfImg("forest-6-13.jpg") + 1;
+
+  // Flash
+  var flashEl = document.createElement("div");
+  flashEl.className = "fb-flash";
+  document.body.appendChild(flashEl);
+  function flash() {
+    flashEl.classList.remove("go");
+    void flashEl.offsetWidth;
+    flashEl.classList.add("go");
+  }
+
+  // Voice Recorder
+  function goNext() {
+    var next = document.querySelector("#slideshow-root .next-btn");
+    if (next) next.click();
+  }
+  var RECORDER = [{ type: "recorder", label: "Voice Recorder", isNew: true, onDone: goNext }];
+
+  function setPhoneVisible(on) {
+    var pk = document.getElementById("phone-peek-btn");
+    if (pk) pk.style.display = on ? "" : "none";
+  }
 
   initSlideshow(SLIDES, {
     nextUrl: "../ending-7/",
     onSlideChange: function (index) {
       var rootEl = document.getElementById("slideshow-root");
-      var onPhone = !REC && index === PHONE_INDEX;
-      if (rootEl) rootEl.classList.toggle("searching", onPhone);
-      if (onPhone) {
+      var onRec = index === REC_INDEX;
+      if (rootEl) rootEl.classList.toggle("recording", onRec);
+
+      if (onRec) {
         initPhoneOverlay(RECORDER, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        setPhoneVisible(true);
+      } else {
+        setPhoneVisible(false);
       }
+
+      if (index >= FB_START && index <= FB_END) flash();
     }
   });
 
