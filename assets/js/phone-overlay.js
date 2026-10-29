@@ -1,16 +1,40 @@
+/* ═══════════════════════════════════════════════════════════
+   PHONE OVERLAY — moteur réutilisable
+   Chaque page appelle : initPhoneOverlay(FEED_ITEMS, { hasNew: true/false })
+   FEED_ITEMS est un tableau d'objets :
+     - Message :  { type: "message", from: "MIKE", text: "...", attachment: { label: "...", url: "..." } }
+     - Lieu :     { type: "location", name: "...", blurb: "...", thumb: null, url: "..." }
+                  (optionnel : isNew: true → en tête + tag NEW ;
+                   current: true → le lieu où se trouve Ashley : non cliquable, pastille "Here" ;
+                   locked: true → affiché mais non visitable, non cliquable, pastille "Closed" ;
+                   lockedLabel: "..." pour changer le texte de la pastille)
+
+     - Recorder : { type: "recorder", label: "Voice Recorder", isNew: true, onDone: function () { ... } }
+                  (appli dictaphone : le joueur appuie sur Rec, ~3 s d'enregistrement,
+                   puis le téléphone se ferme et onDone() est appelée)
+
+   Peut être appelé PLUSIEURS FOIS sur la même page (ex: depuis
+   onSlideChange d'un diaporama) : le premier appel crée le téléphone,
+   les suivants mettent juste à jour son contenu sans le dupliquer.
+   ═══════════════════════════════════════════════════════════ */
+
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
 
-  // Voice Recorder
+  // Style de l'appli Voice Recorder (injecté une seule fois)
   if (!document.getElementById("phone-recorder-style")) {
     var recCss = document.createElement("style");
     recCss.id = "phone-recorder-style";
     recCss.textContent =
-      ".feed-card.recorder{cursor:pointer;}" +
-      ".feed-card.recorder .go-btn{white-space:nowrap;}" +
+      ".feed-card.recorder{display:flex;align-items:center;gap:0.6rem;cursor:pointer;background:#2a2d38;border-color:rgba(255,255,255,0.18);}" +
+      ".feed-card.recorder .report-icon{font-size:1.7rem;flex-shrink:0;}" +
+      ".feed-card.recorder .loc-info{flex:1;min-width:0;}" +
+      ".feed-card.recorder .loc-name{margin:0;color:#f2efe9;font-size:0.85rem;font-weight:600;}" +
+      ".feed-card.recorder .loc-blurb{margin:0.15rem 0 0;color:#b9bccb;font-size:0.72rem;}" +
+      ".feed-card.recorder .go-btn{flex-shrink:0;white-space:nowrap;background:#f2efe9;color:#b3261e;font-size:0.6rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.3rem 0.6rem;border-radius:14px;}" +
       ".feed-card.recorder.is-recording{cursor:default;}" +
       ".feed-card.recorder.is-recording .go-btn{background:#e5322d;color:#fff;animation:recBlink 1s ease-in-out infinite;}" +
-      ".feed-card.recorder.is-recording .rec-status{color:#e5322d;}" +
+      ".feed-card.recorder.is-recording .loc-blurb{color:#ff8a84;}" +
       "@keyframes recBlink{50%{opacity:.5}}";
     document.head.appendChild(recCss);
   }
@@ -20,7 +44,7 @@ function initPhoneOverlay(items, opts) {
   var peekBtn = document.getElementById("phone-peek-btn");
   var alreadyExists = !!peekBtn;
 
-  // DOM
+  // ── Construction du DOM (uniquement au premier appel) ────
   if (!alreadyExists) {
     peekBtn = document.createElement("div");
     peekBtn.id = "phone-peek-btn";
@@ -56,22 +80,22 @@ function initPhoneOverlay(items, opts) {
     });
   }
 
-  // BADGE "NEW"
+  // ── Mise à jour du badge "nouveau" ────────────────────────
   peekBtn.classList.toggle("has-new", !!opts.hasNew);
   var pillEl = document.getElementById("peek-notif-pill");
   var countEl = document.getElementById("peek-notif-count");
   if (pillEl) pillEl.style.display = opts.hasNew ? "flex" : "none";
   if (countEl) countEl.textContent = opts.newCount || 1;
 
-  // FEED
+  // ── Remplissage du feed (à chaque appel : on regénère tout) ─
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
   var SECTION_LABELS = { message: "Messages", note: "Notes", report: "Files", location: "Locations", recorder: "Apps" };
   var lastType = null;
 
-  // Regroupement par type
-  // isNew: true passe en tête de liste
+  // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
+  // les items marqués isNew: true passent en premier, le reste garde son ordre.
   var typeOrder = [];
   var groups = {};
   items.forEach(function (item) {
