@@ -1,27 +1,7 @@
-/* ═══════════════════════════════════════════════════════════
-   PHONE OVERLAY — moteur réutilisable
-   Chaque page appelle : initPhoneOverlay(FEED_ITEMS, { hasNew: true/false })
-   FEED_ITEMS est un tableau d'objets :
-     - Message :  { type: "message", from: "MIKE", text: "...", attachment: { label: "...", url: "..." } }
-     - Lieu :     { type: "location", name: "...", blurb: "...", thumb: null, url: "..." }
-                  (optionnel : isNew: true → en tête + tag NEW ;
-                   current: true → le lieu où se trouve Ashley : non cliquable, pastille "Here" ;
-                   locked: true → affiché mais non visitable, non cliquable, pastille "Closed" ;
-                   lockedLabel: "..." pour changer le texte de la pastille)
-
-     - Recorder : { type: "recorder", label: "Voice Recorder", isNew: true, onDone: function () { ... } }
-                  (appli dictaphone : le joueur appuie sur Rec, ~3 s d'enregistrement,
-                   puis le téléphone se ferme et onDone() est appelée)
-
-   Peut être appelé PLUSIEURS FOIS sur la même page (ex: depuis
-   onSlideChange d'un diaporama) : le premier appel crée le téléphone,
-   les suivants mettent juste à jour son contenu sans le dupliquer.
-   ═══════════════════════════════════════════════════════════ */
-
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
 
-  // Style de l'appli Voice Recorder (injecté une seule fois)
+  // Voice Recorder Style
   if (!document.getElementById("phone-recorder-style")) {
     var recCss = document.createElement("style");
     recCss.id = "phone-recorder-style";
@@ -44,7 +24,7 @@ function initPhoneOverlay(items, opts) {
   var peekBtn = document.getElementById("phone-peek-btn");
   var alreadyExists = !!peekBtn;
 
-  // ── Construction du DOM (uniquement au premier appel) ────
+  // DOM
   if (!alreadyExists) {
     peekBtn = document.createElement("div");
     peekBtn.id = "phone-peek-btn";
@@ -80,14 +60,14 @@ function initPhoneOverlay(items, opts) {
     });
   }
 
-  // ── Mise à jour du badge "nouveau" ────────────────────────
+  // Mise à jour badge "new"
   peekBtn.classList.toggle("has-new", !!opts.hasNew);
   var pillEl = document.getElementById("peek-notif-pill");
   var countEl = document.getElementById("peek-notif-count");
   if (pillEl) pillEl.style.display = opts.hasNew ? "flex" : "none";
   if (countEl) countEl.textContent = opts.newCount || 1;
 
-  // ── Remplissage du feed (à chaque appel : on regénère tout) ─
+  // Remplissage du feed (à chaque appel : tout est regen)
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
@@ -95,7 +75,7 @@ function initPhoneOverlay(items, opts) {
   var lastType = null;
 
   // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
-  // les items marqués isNew: true passent en premier, le reste garde son ordre.
+  // isNew: true en haut de liste. 
   var typeOrder = [];
   var groups = {};
   items.forEach(function (item) {
@@ -220,15 +200,14 @@ function initPhoneOverlay(items, opts) {
         recStatus.textContent = "Recording… 00:00";
         var tick = setInterval(function () {
           sec++;
-          recStatus.textContent = "Recording… 00:0" + sec;
-          if (sec >= 3) {
-            clearInterval(tick);
-            recStatus.textContent = "Saved";
+          recStatus.textContent = "Recording… 00:0" + Math.min(sec, 9);
+          if (sec === 3) {
             setTimeout(function () {
+              clearInterval(tick);
               var bd = document.getElementById("phone-overlay-backdrop");
               if (bd) bd.classList.remove("open");
               if (item.onDone) item.onDone();
-            }, 600);
+            }, 700);
           }
         }, 1000);
       });
