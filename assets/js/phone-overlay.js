@@ -1,7 +1,7 @@
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
 
-  // Style de l'appli Voice Recorder (injecté une seule fois)
+
   if (!document.getElementById("phone-recorder-style")) {
     var recCss = document.createElement("style");
     recCss.id = "phone-recorder-style";
@@ -15,6 +15,7 @@ function initPhoneOverlay(items, opts) {
       ".feed-card.recorder.is-recording{cursor:default;}" +
       ".feed-card.recorder.is-recording .go-btn{background:#e5322d;color:#fff;animation:recBlink 1s ease-in-out infinite;}" +
       ".feed-card.recorder.is-recording .loc-blurb{color:#ff8a84;}" +
+      ".feed-card.location .go-btn.is-visited{opacity:.6;}" +
       "@keyframes recBlink{50%{opacity:.5}}";
     document.head.appendChild(recCss);
   }
@@ -24,7 +25,6 @@ function initPhoneOverlay(items, opts) {
   var peekBtn = document.getElementById("phone-peek-btn");
   var alreadyExists = !!peekBtn;
 
-  // Construction du DOM (uniquement au premier appel)
   if (!alreadyExists) {
     peekBtn = document.createElement("div");
     peekBtn.id = "phone-peek-btn";
@@ -60,22 +60,20 @@ function initPhoneOverlay(items, opts) {
     });
   }
 
-  // Mise à jour du badge "nouveau"
   peekBtn.classList.toggle("has-new", !!opts.hasNew);
   var pillEl = document.getElementById("peek-notif-pill");
   var countEl = document.getElementById("peek-notif-count");
   if (pillEl) pillEl.style.display = opts.hasNew ? "flex" : "none";
   if (countEl) countEl.textContent = opts.newCount || 1;
 
-  // Remplissage du feed (à chaque appel : on regénère tout)
+
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
   var SECTION_LABELS = { message: "Messages", note: "Notes", report: "Files", location: "Locations", recorder: "Apps" };
   var lastType = null;
 
-  // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
-  // les items marqués isNew: true passent en premier, le reste garde son ordre.
+
   var typeOrder = [];
   var groups = {};
   items.forEach(function (item) {
@@ -143,7 +141,7 @@ function initPhoneOverlay(items, opts) {
       feedEl.appendChild(card);
 
     } else if (item.type === "location") {
-      var inert = item.locked || item.current; // carte non cliquable
+      var inert = item.locked || item.current;
       var loc = document.createElement(inert ? "div" : "a");
       loc.className = "feed-card location";
       if (item.isNew) loc.classList.add("is-new");
@@ -180,7 +178,8 @@ function initPhoneOverlay(items, opts) {
 
       var go = document.createElement("span");
       go.className = "go-btn";
-      go.textContent = inert ? (item.lockedLabel || (item.current ? "Here" : "Closed")) : "Go";
+      go.textContent = inert ? (item.lockedLabel || (item.current ? "Here" : "Closed")) : (item.visited ? "Visited" : "Go");
+      if (item.visited && !inert) go.classList.add("is-visited");
       loc.appendChild(go);
 
       feedEl.appendChild(loc);
@@ -232,7 +231,6 @@ function initPhoneOverlay(items, opts) {
         '  <p class="loc-blurb">Tap to read</p>' +
         '</div>';
       rep.addEventListener("click", function () {
-        // Ferme le téléphone, ouvre le rapport en plein format
         var backdrop = document.getElementById("phone-overlay-backdrop");
         if (backdrop) backdrop.classList.remove("open");
         openReport(item.data);
