@@ -290,7 +290,6 @@
       if (index === last) {
         var items = GameState.items(
           [
-            { type: "report", label: "Melissa's Diary", data: DIARY_DATA },
             { type: "report", label: "Case File #21071994", data: REPORT_DATA }
           ].concat(LOCATIONS),
           { flag: "diary" }
@@ -303,13 +302,6 @@
       if (diaryIndex >= 0 && index === diaryIndex && !diaryOpened) {
         diaryOpened = true;
         setTimeout(function () { openReport(DIARY_DATA); }, 800);
-      }
-
-
-      if (diaryIndex >= 0 && index >= diaryIndex) {
-        var d = { type: "report", label: "Melissa's Diary", data: DIARY_DATA, isNew: index === diaryIndex };
-        initPhoneOverlay([d, { type: "report", label: "Case File #21071994", data: REPORT_DATA }],
-          { hasNew: index === diaryIndex, newCount: 1, imgPath: PHONE_IMG });
       }
     }
   });
