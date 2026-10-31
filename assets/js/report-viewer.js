@@ -1,22 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   REPORT VIEWER
-   Structure attendue pour openReport(data) :
-   {
-     title: "CASE FILE #21071994/M-B",
-     subtitle: "Melissa Bliss — Missing Person",
-     sectionsPerPage: 4,  // optionnel, défaut 4
-     sections: [
-       {
-         heading: "Jodie Merrick (46) — Mother",
-         body: "Texte officiel du témoignage...",
-         note: "Commentaire d'Ashley (optionnel, piste/indice)"
-       },
-       ...
-     ]
-   }
-
-   Le nombre de pages est calculé automatiquement selon le nombre
-   de sections et sectionsPerPage — pas besoin de découper à la main.
+   REPORT VIEWER & DIARY
    ═══════════════════════════════════════════════════════════ */
 
 function buildSectionEl(sec) {
@@ -74,7 +57,19 @@ function openReport(data) {
     });
   }
 
-  // ── En-tête (titre/sous-titre), toujours visible, hors pagination ─
+  // Look du document : "diary"
+  var paperEl = document.getElementById("report-paper");
+  var isDiary = data.style === "diary";
+  paperEl.classList.toggle("is-diary", isDiary);
+  if (isDiary && !document.getElementById("diary-font")) {
+    var fontLink = document.createElement("link");
+    fontLink.id = "diary-font";
+    fontLink.rel = "stylesheet";
+    fontLink.href = "https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap";
+    document.head.appendChild(fontLink);
+  }
+
+  // En-tête (titre/sous-titre), toujours visible, hors pagination
   var headerEl = document.getElementById("report-header");
   headerEl.innerHTML = "";
 
@@ -90,7 +85,7 @@ function openReport(data) {
     headerEl.appendChild(subtitle);
   }
 
-  // ── Découpage des sections en pages ────────────────────────
+  // Découpage des sections en pages
   var perPage = data.sectionsPerPage || 4;
   var sections = data.sections || [];
   var pages = [];
