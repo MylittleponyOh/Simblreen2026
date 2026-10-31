@@ -63,6 +63,7 @@
 
   var DIARY_DATA = {
     title: "Melissa's Diary",
+    style: "diary",
     subtitle: "1994",
     sections: [
       { heading: "January 1st, 1994", body: "We celebrated New Year's Eve with Seth at some friends of his. We fought again during the party. Because one of his friends tried to hit on me... I missed Daph so much, I would've rather partied with her." },
@@ -288,7 +289,7 @@
       if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
 
       if (index === last && SLIDES !== INTRO) {
-      var items = GameState.items(
+        var items = GameState.items(
           [
             { type: "report", label: "Case File #21071994", data: REPORT_DATA }
           ].concat(LOCATIONS),
