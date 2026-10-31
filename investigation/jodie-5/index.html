@@ -287,8 +287,8 @@
       var rootEl = document.getElementById("slideshow-root");
       if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
 
-      if (index === last) {
-        var items = GameState.items(
+      if (index === last && SLIDES !== INTRO) {
+      var items = GameState.items(
           [
             { type: "report", label: "Case File #21071994", data: REPORT_DATA }
           ].concat(LOCATIONS),
