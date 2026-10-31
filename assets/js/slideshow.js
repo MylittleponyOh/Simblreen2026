@@ -1,29 +1,12 @@
-/* ═══════════════════════════════════════════════════════════
-   SLIDESHOW ENGINE
-   Chaque page appelle : initSlideshow(SLIDES, { nextUrl: "...", skipUrl: "..." })
-
-   SLIDES est un tableau d'objets, 3 formats possibles par slide :
-     1) Une seule réplique : { img: "...", speaker: "ASHLEY", text: "..." }
-     2) Plusieurs répliques : { img: "...", lines: [ {speaker, text}, {speaker, text} ] }
-     3) Pas de dialogue : speaker/text vides (ou omets lines) → boîte cachée,
-        seuls les boutons restent visibles
-
-   opts :
-     nextUrl    (obligatoire) — où aller après la dernière slide
-     skipUrl     (optionnel) — si fourni, affiche un bouton "Skip"
-     skipLabel    (optionnel) — texte du bouton skip, défaut "Skip"
-     typeSpeed    (optionnel) — ms par caractère, défaut 35
-   ═══════════════════════════════════════════════════════════ */
-
 function initSlideshow(SLIDES, opts) {
   opts = opts || {};
   var typeSpeed = opts.typeSpeed || 35;
 
-  // ── Construction du DOM racine ───────────────────────────
+
   var root = document.createElement("div");
   root.id = "slideshow-root";
 
-  // Génère les slides (image ou placeholder)
+
   SLIDES.forEach(function (slide, i) {
     var div = document.createElement("div");
     div.className = "slide";
@@ -43,7 +26,7 @@ function initSlideshow(SLIDES, opts) {
     root.appendChild(div);
   });
 
-  // Rangée du bas : boîte de dialogue + boutons à côté
+
   var bottomRow = document.createElement("div");
   bottomRow.className = "slideshow-bottom-row";
 
@@ -84,11 +67,11 @@ function initSlideshow(SLIDES, opts) {
 
   document.body.appendChild(root);
 
-  // ── Effet machine à écrire ────────────────────────────────
+
   var current = 0;
   var isTyping = false;
   var typeTimeouts = [];
-  var updateActionButtons = function () {}; // réassignée à chaque render()
+  var updateActionButtons = function () {};
 
   function clearTypeTimeouts() {
     typeTimeouts.forEach(function (id) { clearTimeout(id); });
@@ -124,8 +107,7 @@ function initSlideshow(SLIDES, opts) {
     var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text, tone: slide.tone }];
     var hasContent = lines.some(function (l) { return l.speaker || l.text; });
 
-    // La boîte entière se cache s'il n'y a rien à dire ;
-    // les boutons restent toujours visibles à côté, indépendamment.
+
     dialogueBoxEl.style.display = hasContent ? "block" : "none";
     linesEl.innerHTML = "";
 
@@ -147,6 +129,7 @@ function initSlideshow(SLIDES, opts) {
       wrap.appendChild(sp);
       wrap.appendChild(tx);
       linesEl.appendChild(wrap);
+      if (textEls.length > 0) wrap.style.visibility = "hidden";
 
       textEls.push(tx);
       fullTexts.push(l.text || "");
@@ -167,8 +150,7 @@ function initSlideshow(SLIDES, opts) {
       });
     }
 
-    // Affiche soit Next (pendant la frappe / slides sans choix),
-    // soit les boutons de choix (une fois la frappe terminée, si la slide en a).
+    
     updateActionButtons = function () {
       if (slide.choices && !isTyping) {
         nextBtn.style.display = "none";
@@ -192,13 +174,14 @@ function initSlideshow(SLIDES, opts) {
     updateActionButtons();
 
     var lineIndex = 0;
-    var pauseBetweenLines = 500; // ms de pause avant la réplique suivante
+    var pauseBetweenLines = 500;
     function typeNextLine() {
       if (lineIndex >= textEls.length) {
         isTyping = false;
         updateActionButtons();
         return;
       }
+      textEls[lineIndex].parentNode.style.visibility = "visible";
       typeLine(textEls[lineIndex], fullTexts[lineIndex], function () {
         lineIndex++;
         typeTimeouts.push(setTimeout(typeNextLine, pauseBetweenLines));
@@ -213,7 +196,10 @@ function initSlideshow(SLIDES, opts) {
     var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text, tone: slide.tone }];
     var textEls = linesEl.querySelectorAll(".dialogue-text");
     lines.forEach(function (l, i) {
-      if (textEls[i]) textEls[i].textContent = l.text || "";
+      if (textEls[i]) {
+        textEls[i].textContent = l.text || "";
+        textEls[i].parentNode.style.visibility = "visible";
+      }
     });
     isTyping = false;
     updateActionButtons();
