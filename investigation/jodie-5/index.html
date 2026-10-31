@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Merricks' House — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+<link rel="stylesheet" href="../../assets/css/phone-overlay.css">
+<link rel="stylesheet" href="../../assets/css/report-viewer.css">
+</head>
+<body>
+
+<script src="../../assets/js/state.js"></script>
+<script src="../../assets/js/slideshow.js"></script>
+<script src="../../assets/js/phone-overlay.js"></script>
+<script src="../../assets/js/report-viewer.js"></script>
+<script>
+
+  var REPORT_DATA = {
+    title: "Case File #21071994/M-B",
+    subtitle: "Melissa Bliss — Missing Person — Status: Closed (Unsolved)",
+    sections: [
+      {
+        heading: "Incident Report",
+        body: "July 21st, 1994, 00:04 — A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+      },
+      {
+        heading: "Jodie Merrick (46) — Mother",
+        body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
+        note: "The stepfather. Interesting…"
+      },
+      {
+        heading: "Garret Merrick (52) — Stepfather",
+        body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+      },
+      {
+        heading: "Seth Fern (23) — Boyfriend",
+        body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+      },
+      {
+        heading: "Daphne Holzer (23) — Best Friend",
+        body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her — alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
+        note: "She knew more than she told the police. I'd bet my press badge on it."
+      },
+      {
+        heading: "Leandro Larozzi (25) — Coworker",
+        body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
+        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+      }
+    ]
+  };
+
+  var IMG = "../../assets/images/";
+  var GIFT_URL = "#"; // GIFT URL !!! (hiding place gift, if there is one)
+
+  // Flags: "jog"  = the forest dead end was already done (no choice at the door)
+  //        "rang" = the player chose to ring the bell
+  var JOG  = GameState.flag("jog");
+  var RANG = GameState.flag("rang");
+
+  var DIARY_DATA = {
+    title: "Melissa's Diary",
+    subtitle: "1994",
+    sections: [
+      { heading: "January 1st, 1994", body: "We celebrated New Year's Eve with Seth at some friends of his. We fought again during the party. Because one of his friends tried to hit on me... I missed Daph so much, I would've rather partied with her." },
+      { heading: "January 3rd, 1994", body: "Seth apologized for the party and gave me a necklace." },
+      { heading: "January 10th, 1994", body: "A position opened up at the gas station, I dropped off my résumé! Fingers crossed I get the job!" },
+      { heading: "February 9th, 1994", body: "It's been a month since I started working at the gas station. I met a super nice coworker who's here for his studies, but he comes from Tartosa. I would love to go to Tartosa one day! This job will let me save up to travel." },
+      { heading: "February 14th, 1994", body: "This year Seth suggested we go see a car race... I thought he'd understand that celebrating our 5 years together would be important to me, but apparently not. He completely forgot Valentine's Day... I decided not to give him what I had bought for him..." },
+      { heading: "March 25th, 1994", body: "Today is Daph's birthday! The weekend is going to be incredible!" },
+      { heading: "March 27th, 1994", body: "We partied until the end of the night! We even went to the lake for a swim with the last few brave ones." },
+      { heading: "April 1st, 1994", body: "Seth made a scene because he wasn't invited to Daph's party. He told me he'd been worried because he didn't know where I was. He even went to see Garret to ask where I was! Garret!!!" },
+      { heading: "April 15th, 1994", body: "Today at the gas station, Leandro and I laughed so much. He's so kind and funny. And really cute (crossed out). We talked about so many interesting things. And then Seth showed up unannounced. We went outside to talk and he made a scene out there. I can't take his jealous fits anymore..." },
+      { heading: "May 3rd, 1994", body: "I decided to run home through the forest after work. It gives me a nice half hour of running in nature and it clears my head so much! I get a little breathing room, and above all I can't stand Seth picking me up every evening to hang around at his place anymore. I hate where he lives." },
+      { heading: "May 24th, 1994", body: "I'm officially 23! Happy birthday to you, Melissa!" },
+      { heading: "June 15th, 1994", body: "Leandro gave me a gift, (PLACEHOLDER FOR THE GIFT)! And then he told me he liked me... I was so shaken. He's so kind, we're interested in the same things. I'm completely lost... And it's true that I like him too... But Seth..." },
+      { heading: "June 26th, 1994", body: "He scared me again, I don't know what to do anymore. Garret saw us arguing at the gas station. He wanted to come help and calm things down and I told him to go to hell. I know he meant well. But I hate it when people get involved in my life!" },
+      { heading: "July 5th, 1994", body: "I think I'm falling in love with Leandro and it really scares me. Thank goodness Daph helps me carry this secret. I'm a bit ashamed, and at the same time, it makes me feel so alive." },
+      { heading: "July 21st, 1994", body: "Tonight I'm leaving Seth. Tonight I'M-LEAVING-SETH!" }
+    ]
+  };
+
+  var INTRO = [
+    { img: IMG + "merricks.jpg", speaker: "", text: "" },
+    { img: IMG + "merricks-01.jpg",    speaker: "ASHLEY", text: "Merricks' House...at least in 1994...", tone: "mumble" },
+    
+    {
+      img: IMG + "merricks-02.jpg", speaker: "ASHLEY", text: "Someone is on the porch...", tone: "whisper",
+      choices: [
+        { label: "Ask for Jodie", url: GameState.link("./", { flag: "rang" }) },
+        { label: "Mmmh, it looks like it's someone else's home...",       url: GameState.link("../forest-5/") }
+      ]
+    }
+  ];
+
+  // Forest already done
+  var INTRO_JOG = [
+    INTRO[0],
+    INTRO[1],
+    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "I don't know why, my guts tell me to ask around...", tone: "whisper" },
+    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "Alright. Enough stalling.", tone: "whisper" }
+  ];
+
+  var MAIN = [
+    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "Hello, can I help you?" },
+    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "I... Uh... Mrs Merrick?" },
+    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "In the flesh." },
+    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "Ashley. Ashley Morris-Wint. I'm a journalist at the San Myshuno Inspector." },
+    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "Oh, I suppose you're here to talk about my daughter?" },
+
+  // correction nom d'images
+    { img: IMG + "merricks-07.jpg", speaker: "", text: "" },
+
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "So... How can I help you?" },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "Well, to tell the truth... I'm surprised... I didn't expect..." },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "That I'd go on living after going through the hardest thing a parent can go through? I'm the first to be surprised, believe me." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "How come?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "It was my duty as a parent. You know, I lost my first husband, the love of my life, at 45. Melissa's father. That was an ordeal. Then Melissa disappeared. And I sank. But for her, I had to get back up. Everyone thinks she's dead and buried. But I can't help believing that if she's still alive, she wouldn't want to come back to a mother who's nothing but a shadow of herself... So I filled my house. I took in children, I gave love unconditionally. It's not easy every day. And there isn't a day that goes by that I don't think of her... But it was my only way to hold on." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "You have no idea what could have happened to her?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Melissa was very secretive with me, but Garret, my second husband, told me that something between her and Seth, her boyfriend at the time, wasn't right. He had caught them one evening arguing in front of the gas station where she worked... He wanted to help, but she kindly told him to go fly a kite. You know how young people are, you must never let their parents get involved in their love lives..." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "I heard Garret and Melissa didn't get along..." },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Oh... He just wanted to protect her like his own daughter. I'm so glad I had him by my side after Melissa disappeared. I know the neighbors gossiped, some said he was guilty. Even after his death... All Garret ever wanted was a family and for Melissa to be happy... What other people thought of him... He didn't care." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "Do you have anything of Melissa's that the police weren't interested in back then?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Oh, yes! Come, it's in her room!" },
+
+    { img: IMG + "merricks-09.jpg", speaker: "JODIE",  text: "They never set foot in her room, they didn't even go through her things in 1994! I went to the police station with a box full of her belongings and they sent me home... At the time I just told myself they had everything they needed to run the investigation, but in the end... They didn't care. They very quickly closed the case... There. Here we are. It's been left exactly as she left it." },
+    { img: IMG + "merricks-10.jpg", speaker: "JODIE",  text: "I can't go in... Can I leave you?" },
+    { img: IMG + "merricks-11.jpg", speaker: "ASHLEY", text: "Uh... of course." },
+
+    { img: IMG + "merricks-12.jpg", speaker: "", text: "" },   // Melissa's room, untouched
+    { img: IMG + "merricks-13.jpg", speaker: "", text: "" },   // Ashley on the bed, daydream
+
+    // Click & point: find the hiding place (hover = glow, click = continue)
+    { img: IMG + "merricks-bedroom.jpg", speaker: "ASHLEY", text: "Where would I hide a diary?", tone: "whisper", search: true },
+
+    { img: IMG + "merricks-14.jpg", speaker: "", text: "" },   // Ashley walks around, stops
+    { img: IMG + "merricks-15.jpg", speaker: "", text: "" },   // the floorboard creaks
+    { img: IMG + "merricks-bedroom-open.jpg", speaker: "", text: "", diary: true },   // floorboard lifted: the diary opens by itself
+
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "I found this. Do you mind if I keep it?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Oh, that's right, my Melissa loved to write. I think she needed it. It was her little therapy. Take it. Take anything that can help you." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "Thank you. Ah... Uh, Jodie... Are you still in touch with Daphne Holzer?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Daphne? Of course! She comes to see me about once a week. She doesn't live far. I can write down her address for you! Give me a moment." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "Thank you." },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "No, I'm the one who should thank you..." },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "You remind me of her. Her tenacity, that way of never letting go... Thank you for doing this for her. Everyone gave up. But not you." },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "There's something about this town that... calls to me. I can't put my finger on it. But like Melissa, I'm not letting go... Have a good day, Jodie." },
+
+    // Last slide: Daphne's address unlocked (phone with files + map)
+    { img: IMG + "merricks-17.jpg", speaker: "", text: "" }
+  ];
+
+  var SLIDES = RANG ? MAIN : (JOG ? INTRO_JOG.concat(MAIN) : INTRO);
+
+  var diaryIndex = -1, searchIndex = -1;
+  SLIDES.forEach(function (sl, i) {
+    if (sl.search) searchIndex = i;
+    if (sl.diary) diaryIndex = i;
+  });
+  var currentIndex = 0;
+  var diaryOpened = false;
+
+  var ICON = IMG + "map-icon.jpg";
+  var LOCATIONS = [
+    { type: "location", name: "Merricks' House", blurb: "", thumb: ICON, locked: true, current: true },
+    { type: "location", name: "Daphne's House", blurb: "Address from Jodie", thumb: ICON, url: "../daphne-6/", isNew: true }
+  ];
+
+  var PHONE_IMG = IMG + "phone-frame.png";
+
+  // ── CLICK & POINT: hiding place in Melissa's bedroom ──
+  // Each hotspot is a transparent PNG (same size as the bedroom photo) containing only the object.
+  // Its click area is read automatically from the non-transparent pixels.
+  // Add decoys: { img: IMG + "merricks-bedroom-decoy1.png", real: false, line: "Nothing here." }
+  // real = the floorboard. Decoys: add/remove freely (a missing PNG is simply ignored).
+  var HOTSPOTS = [
+    { img: IMG + "merricks-bedroom-spot.png",  real: true },
+    { img: IMG + "merricks-bedroom-box.png",   real: false, line: "Hair ties and nail polish. No diary." },
+    { img: IMG + "merricks-bedroom-board.png", real: false, line: "Photos and ticket stubs. Nothing hidden behind." },
+    { img: IMG + "merricks-bedroom-radio.png", real: false, line: "A mixtape. Not what I'm looking for." },
+    { img: IMG + "merricks-bedroom-bench.png", real: false, line: "Just old schoolbooks." }
+  ];
+  var HOT_PAD = 8;
+
+  var css = document.createElement("style");
+  css.textContent =
+    ".slide img.box-glow{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .25s ease,filter .25s ease;}" +
+    ".slide img.box-glow.on{opacity:1;filter:brightness(1.9) drop-shadow(0 0 14px rgba(255,236,180,.9));}" +
+    "#slideshow-root.searching .next-btn{display:none !important;}" +
+    "#slideshow-root.searching .slide.active.over-box{cursor:pointer;}" +
+    ".box-hint{position:absolute;top:8vh;left:50%;transform:translateX(-50%);z-index:6;padding:.7rem 1.2rem;" +
+    "background:rgba(5,7,10,.85);border:1px solid rgba(216,201,176,.3);border-radius:4px;" +
+    "font-size:.95rem;font-style:italic;color:#a99c86;letter-spacing:.02em;opacity:0;pointer-events:none;transition:opacity .25s ease;}" +
+    ".box-hint.show{opacity:1;}";
+  document.head.appendChild(css);
+
+  // Reads the bounding box of the opaque pixels of a PNG
+  function readBBox(src, cb) {
+    var im = new Image();
+    im.onload = function () {
+      try {
+        var w = im.naturalWidth, h = im.naturalHeight;
+        var c = document.createElement("canvas");
+        c.width = w; c.height = h;
+        var ctx = c.getContext("2d");
+        ctx.drawImage(im, 0, 0);
+        var d = ctx.getImageData(0, 0, w, h).data;
+        var x1 = w, y1 = h, x2 = -1, y2 = -1;
+        for (var y = 0; y < h; y++) {
+          for (var x = 0; x < w; x++) {
+            if (d[(y * w + x) * 4 + 3] > 20) {
+              if (x < x1) x1 = x;
+              if (x > x2) x2 = x;
+              if (y < y1) y1 = y;
+              if (y > y2) y2 = y;
+            }
+          }
+        }
+        cb(x2 < 0 ? null : { x1: x1, y1: y1, x2: x2, y2: y2, w: w, h: h });
+      } catch (e) { cb(null); }
+    };
+    im.onerror = function () { cb(null); };
+    im.src = src;
+  }
+
+  function setupHotspots() {
+    if (searchIndex < 0) return;
+    var root = document.getElementById("slideshow-root");
+    var slideEl = root.querySelectorAll(".slide")[searchIndex];
+
+    HOTSPOTS.forEach(function (hs) {
+      var g = document.createElement("img");
+      g.className = "box-glow";
+      g.alt = "";
+      g.src = hs.img;
+      slideEl.appendChild(g);
+      hs.glow = g;
+      readBBox(hs.img, function (bb) { hs.bbox = bb; });
+    });
+
+    var hint = document.createElement("div");
+    hint.className = "box-hint";
+    root.appendChild(hint);
+    var hintTimer = null;
+
+    function hotAt(e) {
+      var r = slideEl.getBoundingClientRect();
+      for (var i = 0; i < HOTSPOTS.length; i++) {
+        var bb = HOTSPOTS[i].bbox;
+        if (!bb) continue;
+        var scale = Math.max(r.width / bb.w, r.height / bb.h);
+        var offX = (r.width - bb.w * scale) / 2;
+        var offY = (r.height - bb.h * scale) / 2;
+        var x = (e.clientX - r.left - offX) / scale;
+        var y = (e.clientY - r.top - offY) / scale;
+        if (x >= bb.x1 - HOT_PAD && x <= bb.x2 + HOT_PAD && y >= bb.y1 - HOT_PAD && y <= bb.y2 + HOT_PAD) return HOTSPOTS[i];
+      }
+      return null;
+    }
+
+    slideEl.addEventListener("mousemove", function (e) {
+      if (!root.classList.contains("searching")) return;
+      var over = hotAt(e);
+      HOTSPOTS.forEach(function (h) { h.glow.classList.toggle("on", h === over); });
+      slideEl.classList.toggle("over-box", !!over);
+    });
+
+    slideEl.addEventListener("click", function (e) {
+      if (!root.classList.contains("searching")) return;
+      var hit = hotAt(e);
+      if (!hit) return;
+
+      if (!hit.real) {
+        hint.textContent = hit.line || "Nothing here.";
+        hint.classList.add("show");
+        clearTimeout(hintTimer);
+        hintTimer = setTimeout(function () { hint.classList.remove("show"); }, 2200);
+        return;
+      }
+
+      root.classList.remove("searching");
+      hint.classList.remove("show");
+      hit.glow.classList.add("on");
+      var btn = root.querySelector(".next-btn");
+      btn.click();                                   // skip typing if still typing
+      if (currentIndex === searchIndex) btn.click(); // then move to the next slide
+    });
+  }
+
+  var DIARY_ITEM = { type: "report", label: "Melissa's Diary", data: DIARY_DATA };
+
+  initSlideshow(SLIDES, {
+    nextUrl: "#",
+    onSlideChange: function (index) {
+      var last = SLIDES.length - 1;
+      currentIndex = index;
+      var rootEl = document.getElementById("slideshow-root");
+      if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
+
+      if (index === last) {
+        var items = GameState.items(
+          [
+            { type: "report", label: "Melissa's Diary", data: DIARY_DATA },
+            { type: "report", label: "Case File #21071994", data: REPORT_DATA }
+          ].concat(LOCATIONS),
+          { flag: "diary" }
+        );
+        initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        return;
+      }
+
+      // The diary is found: it opens by itself (same viewer as the case file)
+      if (diaryIndex >= 0 && index === diaryIndex && !diaryOpened) {
+        diaryOpened = true;
+        setTimeout(function () { openReport(DIARY_DATA); }, 800);
+      }
+
+      // From the moment the diary is found: it appears in the phone (Files)
+      if (diaryIndex >= 0 && index >= diaryIndex) {
+        var d = { type: "report", label: "Melissa's Diary", data: DIARY_DATA, isNew: index === diaryIndex };
+        initPhoneOverlay([d, { type: "report", label: "Case File #21071994", data: REPORT_DATA }],
+          { hasNew: index === diaryIndex, newCount: 1, imgPath: PHONE_IMG });
+      }
+    }
+  });
+  setupHotspots();
+</script>
+
+</body>
+</html>
