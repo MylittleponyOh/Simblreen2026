@@ -4,6 +4,7 @@
  * GameState.flag("fern")                 → true si le drapeau est dans l'adresse
  * GameState.link(url)                    → url + drapeaux actuels
  * GameState.link(url, { flag: "fern" })  → idem + ajoute le drapeau "fern"
+ *                                            (flag peut aussi être une liste : ["fern","motel"])
  * GameState.items(liste)                 → cartes du téléphone, liens mis à jour
  * GameState.items(liste, { flag: "fern" }) → idem + ajoute le drapeau "fern"
  *   + « Visited » automatique : le lieu actuel est mémorisé (drapeau "v_<dossier>")
@@ -18,8 +19,9 @@ var GameState = (function () {
   function link(url, opts) {
     if (!url || url === "#" || /^https?:/i.test(url)) return url;
     var list = flags.slice();
-    if (opts && opts.flag && list.indexOf(opts.flag) === -1) list.push(opts.flag);
-    if (opts && opts._also && list.indexOf(opts._also) === -1) list.push(opts._also);
+    [].concat((opts && opts.flag) || []).forEach(function (f) {
+      if (f && list.indexOf(f) === -1) list.push(f);
+    });
     if (!list.length) return url;
 
     var hashIndex = url.indexOf("#");
@@ -53,7 +55,7 @@ var GameState = (function () {
       // "Visited" si le drapeau de ce lieu voyage déjà dans l'adresse
       if (flags.indexOf("v_" + folderOf(it.url)) !== -1) copy.visited = true;
       // le lieu actuel est ajouté aux drapeaux pour la page suivante
-      var withHere = hereFlag ? link(it.url, { flag: hereFlag, _also: opts && opts.flag }) : link(it.url, opts);
+      var withHere = link(it.url, { flag: [].concat(hereFlag || [], (opts && opts.flag) || []) });
       copy.url = withHere;
       return copy;
     });
