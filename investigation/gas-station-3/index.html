@@ -65,6 +65,11 @@
     LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", thumb: "../../assets/images/map-icon.jpg", locked: true });
   }
 
+  // Lake View Motel : fermé tant que counter-3 n'est pas terminé (drapeau "motel")
+  LOCATIONS.push(GameState.flag("motel")
+    ? { type: "location", name: "Lake View Motel", blurb: "Where you're staying", thumb: "../../assets/images/map-icon.jpg", url: "../bar3-motel/" }
+    : { type: "location", name: "Lake View Motel", blurb: "Where you're staying", thumb: "../../assets/images/map-icon.jpg", locked: true });
+
   var SLIDES = [
     { img: "../../assets/images/scene3-gasstation-01.jpg", speaker: "", text: "" },
     { img: "../../assets/images/scene3-gasstation-02.jpg", speaker: "", text: "" },
