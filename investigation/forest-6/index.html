@@ -82,6 +82,15 @@
   }
   var RECORDER = [{ type: "recorder", label: "Voice Recorder", isNew: true, onDone: goNext }];
 
+  var GIFT_URL = "http://www.simfileshare.net/download/6328204/";
+  var GIFT = [{
+    type: "note",
+    from: "Props",
+    text: "Blood make-up, in case your Sims also have a bad day in the forest.",
+    isNew: true,
+    attachment: { label: "Download the make-ups", url: GIFT_URL }
+  }];
+
   function setPhoneVisible(on) {
     var pk = document.getElementById("phone-peek-btn");
     if (pk) pk.style.display = on ? "" : "none";
@@ -99,6 +108,11 @@
         setPhoneVisible(true);
       } else {
         setPhoneVisible(false);
+      }
+
+      if (index === SLIDES.length - 1) {
+        initPhoneOverlay(GIFT, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        setPhoneVisible(true);
       }
 
       if (index >= FB_START && index <= FB_END) flash();
