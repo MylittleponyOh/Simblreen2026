@@ -77,6 +77,12 @@
   };
 
 
+  var MOTEL_CLOSED = {
+    type: "location", name: "Lake View Motel", blurb: "Where you're staying",
+    thumb: "../../assets/images/map-icon.jpg",
+    locked: true
+  };
+
   var GIFT_URL = "http://www.simfileshare.net/download/6328202/";
   var JUKEBOX_MESSAGES = [
     {
@@ -138,8 +144,11 @@
       if (isLast) {
         items.push(MOTEL_LOCATION);
         items = JUKEBOX_MESSAGES.concat(items);
+      } else {
+        items.push(MOTEL_CLOSED);
       }
-      if (unlocked) items = GameState.items(items, { flag: "fern" });
+      // Dernière slide : le drapeau "motel" ouvre le motel sur toutes les autres pages
+      items = GameState.items(items, unlocked ? { flag: isLast ? ["fern", "motel"] : "fern" } : undefined);
 
       initPhoneOverlay(items, {
         hasNew: index === FERN_UNLOCK_INDEX || isLast,
