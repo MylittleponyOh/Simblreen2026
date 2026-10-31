@@ -218,3 +218,8 @@
   pointer-events: auto;
   transform: translateY(0);
 }
+
+.report-page .report-section:first-child .report-note {
+  bottom: auto;
+  top: calc(100% + 8px);
+}
