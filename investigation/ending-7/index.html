@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<link rel="stylesheet" href="../../assets/css/slideshow.css">
+</head>
+<body>
+
+<script src="../../assets/js/state.js"></script>
+<script src="../../assets/js/slideshow.js"></script>
+<script>
+
+  var IMG = "../../assets/images/";
+
+  var SLIDES = [
+    { img: IMG + "forest-6-07.jpg", speaker: "ASHLEY", text: "Seth didn't resist. He let himself drop against a tree and he talked. Everything. As if he'd kept those words in his mouth for fifteen years." },
+    { img: IMG + "forest-6-03.jpg", speaker: "ASHLEY", text: "The state police arrived an hour later. My recorder was still running in my pocket. An old habit..." },
+    { img: IMG + "daphne-05.jpg",   speaker: "ASHLEY", text: "Daphne took me back to her place. We talked at length. For a very long time." },
+
+    { img: IMG + "black.jpg",       speaker: "MELISSA", text: "I am Melissa Bliss." },
+
+    { img: IMG + "floorboard-bedroom-open.jpg", speaker: "MELISSA", text: "I had written it in my diary. Tonight, I'm leaving Seth. I had asked Seth to meet me at my place. A safe place, with people around. And I had asked Daphne to join me around 11 p.m. You don't end a story like that without needing a friend afterward." },
+    { img: IMG + "forest-6-01.jpg",  speaker: "MELISSA", text: "But Seth didn't let me get there. He knew my habits. He waited for me in the forest, where no one could hear us." },
+    { img: IMG + "daphne-16.jpg",    speaker: "MELISSA", text: "Daphne found me by the side of the road. Dazed, covered in blood. I no longer knew who I was. She could have taken me back to my mother. Ten minutes. But she made a choice that would change my life." },
+    { img: IMG + "daphne-17.jpg",    speaker: "MELISSA", text: "She knew Captain Fern. She knew that if she took me to the police, it would all end up on the desk of Seth's father. He had always covered for his son. Whatever Seth had done, it had never gone further than that desk." },
+    { img: IMG + "black.jpg",        speaker: "MELISSA", text: "So she decided to protect me. She took me to a hospital far from Copperdale and gave the staff the first name that came to her. They took care of me. Little by little, I had a future. I became Ashley Morris." },
+    { img: IMG + "merricks.jpg",     speaker: "MELISSA", text: "She didn't ask me to forgive her. I don't know yet if I can. I only know that she carried that silence alone for fifteen years, and that she never stopped visiting my mother." },
+    { img: IMG + "merricks-01.jpg",  speaker: "MELISSA", text: "The next day, I went back to ring the doorbell of a little house full of children's toys." },
+    { img: IMG + "black.jpg",        speaker: "MELISSA", text: "Then I wrote the article I had come to Copperdale to write. But it was no longer quite about the police." },
+
+    // Last slide: the newspaper. If the image isn't ready: use "black.jpg" and put the title in text: "The Girl Who Went Missing"
+    { img: IMG + "ending-newspaper.jpg", speaker: "", text: "" }
+  ];
+
+  initSlideshow(SLIDES, {
+    nextUrl: "#"   // TODO: thanks / credits / gifts page, if there is time
+  });
+
+</script>
+</body>
+</html>
