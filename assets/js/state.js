@@ -6,6 +6,8 @@
  * GameState.link(url, { flag: "fern" })  → idem + ajoute le drapeau "fern"
  * GameState.items(liste)                 → cartes du téléphone, liens mis à jour
  * GameState.items(liste, { flag: "fern" }) → idem + ajoute le drapeau "fern"
+ *   + « Visited » automatique : le lieu actuel est mémorisé (drapeau "v_<dossier>")
+ *     et les cartes des lieux déjà visités reçoivent visited:true
  */
 var GameState = (function () {
   var params = new URLSearchParams(window.location.search);
@@ -17,6 +19,7 @@ var GameState = (function () {
     if (!url || url === "#" || /^https?:/i.test(url)) return url;
     var list = flags.slice();
     if (opts && opts.flag && list.indexOf(opts.flag) === -1) list.push(opts.flag);
+    if (opts && opts._also && list.indexOf(opts._also) === -1) list.push(opts._also);
     if (!list.length) return url;
 
     var hashIndex = url.indexOf("#");
@@ -29,12 +32,29 @@ var GameState = (function () {
     return bare + "?" + q.toString().replace(/%2C/gi, ",") + hash;
   }
 
+  // Dernier dossier d'une url : "../bar-3/?x=1" -> "bar-3"
+  function folderOf(url) {
+    var u = String(url || "").split("#")[0].split("?")[0];
+    var parts = u.split("/").filter(function (p) { return p && p !== "." && p !== ".." && !/\.html?$/i.test(p); });
+    return parts.length ? parts[parts.length - 1] : "";
+  }
+
   function items(list, opts) {
+    // Lieu où se trouve le joueur : la carte "current", sinon le dossier de la page.
+    var here = "";
+    list.forEach(function (it) { if (it.type === "location" && it.current && it.url) here = folderOf(it.url); });
+    if (!here) here = folderOf(window.location.pathname);
+    var hereFlag = here ? "v_" + here : "";
+
     return list.map(function (it) {
       if (it.type !== "location" || !it.url || it.locked || it.current) return it;
       var copy = {};
       for (var k in it) copy[k] = it[k];
-      copy.url = link(it.url, opts);
+      // "Visited" si le drapeau de ce lieu voyage déjà dans l'adresse
+      if (flags.indexOf("v_" + folderOf(it.url)) !== -1) copy.visited = true;
+      // le lieu actuel est ajouté aux drapeaux pour la page suivante
+      var withHere = hereFlag ? link(it.url, { flag: hereFlag, _also: opts && opts.flag }) : link(it.url, opts);
+      copy.url = withHere;
       return copy;
     });
   }
