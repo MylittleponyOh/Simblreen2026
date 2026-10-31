@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   REPORT VIEWER — overlay plein format pour lire le dossier
+   REPORT VIEWER et DIARY VIEWER
    ═══════════════════════════════════════════════════════════ */
 
 #report-backdrop {
@@ -21,7 +21,7 @@
   pointer-events: auto;
 }
 
-/* Conteneur qui porte l'effet de pile de pages */
+/* Pile de pages */
 #report-paper-stack {
   position: relative;
   width: 100%;
@@ -29,7 +29,7 @@
   max-height: 88svh;
 }
 
-/* Feuille du dessous, purement décorative — donne l'illusion d'un dossier épais */
+/* Feuille du dessous*/
 #report-paper-stack::before,
 #report-paper-stack::after {
   content: "";
@@ -162,7 +162,7 @@
   margin: 0 0 0.5rem;
 }
 
-/* Le nom — style de base, pour tous les titres */
+/* style de base, pour tous les titres */
 .report-name-trigger {
   position: relative;
   display: inline-block;
@@ -179,7 +179,7 @@
   cursor: help;
 }
 
-/* Note d'Ashley — même esthétique que la dialogue-box du diaporama, cachée par défaut */
+/* Note d'Ashley même esthétique que la dialogue-box du diaporama, cachée par défaut */
 .report-note {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -222,4 +222,84 @@
 .report-page .report-section:first-child .report-note {
   bottom: auto;
   top: calc(100% + 8px);
+}
+
+/* ═══════════════════════════════════════════════════════════
+                           JOURNAL INTIME
+   ═══════════════════════════════════════════════════════════ */
+#report-paper.is-diary {
+  --diary-line: 1.9rem;
+  font-family: 'Caveat', 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
+  color: #1f2f5c;
+  background-color: #f6efdc;
+  background-image:
+    linear-gradient(to right, transparent 3.6rem, rgba(190, 60, 60, 0.45) 3.6rem, rgba(190, 60, 60, 0.45) calc(3.6rem + 2px), transparent calc(3.6rem + 2px)),
+    repeating-linear-gradient(to bottom, transparent 0, transparent calc(var(--diary-line) - 1px), rgba(80, 110, 165, 0.3) calc(var(--diary-line) - 1px), rgba(80, 110, 165, 0.3) var(--diary-line));
+  background-attachment: local;
+  padding: 1.9rem 2.4rem 2.6rem 5rem;
+}
+
+#report-paper.is-diary #report-close-btn {
+  background: #1f2f5c;
+  color: #f6efdc;
+}
+
+#report-paper.is-diary .report-title {
+  font-size: 2.3rem;
+  line-height: 3.8rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  font-weight: 700;
+  border-bottom: none;
+  margin: 0;
+  padding: 0;
+  color: #1f2f5c;
+}
+
+#report-paper.is-diary .report-subtitle {
+  font-size: 1.35rem;
+  line-height: var(--diary-line);
+  margin: 0 0 var(--diary-line);
+  color: #4b5b8a;
+}
+
+#report-paper.is-diary .report-section {
+  margin-bottom: var(--diary-line);
+}
+
+#report-paper.is-diary .report-name-trigger {
+  display: block;
+  font-size: 1.45rem;
+  line-height: var(--diary-line);
+  letter-spacing: 0;
+  text-transform: none;
+  font-weight: 700;
+  margin: 0;
+  color: #1f2f5c;
+  border-bottom: none;
+}
+
+#report-paper.is-diary .report-section p {
+  font-size: 1.3rem;
+  line-height: var(--diary-line);
+  margin: 0;
+}
+
+#report-paper.is-diary #report-pagination {
+  border-top: none;
+  margin-top: var(--diary-line);
+  padding-top: 0;
+}
+
+#report-paper.is-diary .report-page-btn {
+  font-family: inherit;
+  font-size: 1.2rem;
+  border-color: #1f2f5c;
+  color: #1f2f5c;
+}
+
+#report-paper.is-diary .report-page-indicator {
+  font-family: inherit;
+  font-size: 1.2rem;
+  color: #4b5b8a;
 }
