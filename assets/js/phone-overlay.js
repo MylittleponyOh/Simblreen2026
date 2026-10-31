@@ -1,7 +1,7 @@
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
 
-  // Voice Recorder Style
+  // Style de l'appli Voice Recorder (injecté une seule fois)
   if (!document.getElementById("phone-recorder-style")) {
     var recCss = document.createElement("style");
     recCss.id = "phone-recorder-style";
@@ -24,7 +24,7 @@ function initPhoneOverlay(items, opts) {
   var peekBtn = document.getElementById("phone-peek-btn");
   var alreadyExists = !!peekBtn;
 
-  // DOM
+  // Construction du DOM (uniquement au premier appel)
   if (!alreadyExists) {
     peekBtn = document.createElement("div");
     peekBtn.id = "phone-peek-btn";
@@ -60,14 +60,14 @@ function initPhoneOverlay(items, opts) {
     });
   }
 
-  // Mise à jour badge "new"
+  // Mise à jour du badge "nouveau"
   peekBtn.classList.toggle("has-new", !!opts.hasNew);
   var pillEl = document.getElementById("peek-notif-pill");
   var countEl = document.getElementById("peek-notif-count");
   if (pillEl) pillEl.style.display = opts.hasNew ? "flex" : "none";
   if (countEl) countEl.textContent = opts.newCount || 1;
 
-  // Remplissage du feed (à chaque appel : tout est regen)
+  // Remplissage du feed (à chaque appel : on regénère tout)
   var feedEl = document.getElementById("phone-feed");
   feedEl.innerHTML = "";
 
@@ -75,7 +75,7 @@ function initPhoneOverlay(items, opts) {
   var lastType = null;
 
   // Regroupe par type (ordre de première apparition) ; dans chaque groupe,
-  // isNew: true en haut de liste. 
+  // les items marqués isNew: true passent en premier, le reste garde son ordre.
   var typeOrder = [];
   var groups = {};
   items.forEach(function (item) {
@@ -129,6 +129,14 @@ function initPhoneOverlay(items, opts) {
         att.target = "_blank";
         att.rel = "noopener";
         att.textContent = "🔗 " + item.attachment.label;
+        if (!item.attachment.url || item.attachment.url === "#") {
+          att.removeAttribute("href");
+          att.removeAttribute("target");
+          att.textContent = "🔗 " + item.attachment.label + " (coming soon)";
+          att.style.opacity = "0.55";
+          att.style.pointerEvents = "none";
+          att.style.cursor = "default";
+        }
         card.appendChild(att);
       }
 
