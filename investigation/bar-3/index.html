@@ -60,6 +60,11 @@
     { type: "location", name: "Copperdale Police Station", blurb: "", thumb: "../../assets/images/map-icon.jpg", url: "../police-station-3/" }
   ];
 
+  // Lake View Motel : fermé tant que counter-3 n'est pas terminé (drapeau "motel")
+  LOCATIONS.push(GameState.flag("motel")
+    ? { type: "location", name: "Lake View Motel", blurb: "Where you're staying", thumb: "../../assets/images/map-icon.jpg", url: "../bar3-motel/" }
+    : { type: "location", name: "Lake View Motel", blurb: "Where you're staying", thumb: "../../assets/images/map-icon.jpg", locked: true });
+
   var SLIDES = [
     { img: "../../assets/images/scene3-bar3-01.jpg", speaker: "", text: "" },
     { img: "../../assets/images/scene3-bar3-02.jpg", speaker: "", text: "" },
