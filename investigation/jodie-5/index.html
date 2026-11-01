@@ -54,10 +54,10 @@
   };
 
   var IMG = "../../assets/images/";
-  var GIFT_URL = "#"; // GIFT URL !!! (hiding place gift, if there is one)
+  var GIFT_URL = "#";
 
-  // Flags: "jog"  = the forest dead end was already done (no choice at the door)
-  //        "rang" = the player chose to ring the bell
+  // Flags: "jog"  = le dead end de la forêt est fait - pas de choix à la porte
+  //        "rang" = le joueur choisit de sonner
   var JOG  = GameState.flag("jog");
   var RANG = GameState.flag("rang");
 
@@ -97,7 +97,7 @@
     }
   ];
 
-  // Forest already done
+  // Forêt déjà faite
   var INTRO_JOG = [
     INTRO[0],
     INTRO[1],
@@ -153,7 +153,7 @@
     { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "You remind me of her. Her tenacity, that way of never letting go... Thank you for doing this for her. Everyone gave up. But not you." },
     { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "There's something about this town that... calls to me. I can't put my finger on it. But like Melissa, I'm not letting go... Have a good day, Jodie." },
 
-    // Last slide: Daphne's address unlocked (phone with files + map)
+    // Dernière slide : Adresse de Daph débloquée (téléphone avec dossier + map)
     { img: IMG + "merricks-01.jpg", speaker: "", text: "" }
   ];
 
