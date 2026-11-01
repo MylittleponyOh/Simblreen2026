@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thank you — The Girl Who Went Missing</title>
+<link rel="stylesheet" href="../../assets/css/style.css">
+<style>
+  .thanks {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+    box-sizing: border-box;
+  }
+  .thanks-card {
+    max-width: 560px;
+    width: 100%;
+    text-align: left;
+  }
+  .thanks-card h1 { margin: 0 0 16px; }
+  .thanks-card h2 { margin: 28px 0 10px; font-size: 1.05em; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.85; }
+  .thanks-card p { margin: 0 0 14px; line-height: 1.55; }
+  .thanks-list { list-style: none; margin: 0; padding: 0; }
+  .thanks-list li { margin: 0 0 10px; }
+  .thanks-list a { text-decoration: underline; text-underline-offset: 3px; }
+  .thanks-list .soon { opacity: 0.55; }
+  .thanks-help { margin-top: 28px; font-size: 0.9em; opacity: 0.7; }
+  .thanks-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+  .thanks-actions .cta { display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="thanks">
+  <div class="thanks-card">
+    <h1>Thank you for playing</h1>
+
+    <p>Melissa's story ends here. Thank you for following Ashley all the way to the end of it.</p>
+    <p>"The Girl Who Went Missing" was created for Simblreen 2026.</p>
+
+    <h2>Your gifts</h2>
+    <p>Everything you found along the way is free to keep, all in one folder.</p>
+    <div class="thanks-actions">
+      <a href="https://simfileshare.net/folder/277383/" target="_blank" rel="noopener" class="cta">Download all the gifts</a>
+    </div>
+
+    <h2>Credits</h2>
+    <p>Thank you to the creators whose custom content brought this story to life:</p>
+    <ul class="thanks-list" id="credit-list"></ul>
+
+    <ul class="thanks-list" id="link-list"></ul>
+
+    <p class="thanks-help">This story is fiction and deals with difficult themes. If anything in it stayed with you, you're not alone: France: 3919 &middot; US: 1-800-799-7233</p>
+
+    <div class="thanks-actions">
+      <a href="../../home/" class="cta">Back to the beginning</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── CREDITS : one line per creator. Leave url empty if there is no link.
+  var CREDITS = [
+    { name: "Algu", url: "" },
+  ];
+
+  var LINKS = [
+    { label: "Tumblr",  url: "https://mylittleponyoh.tumblr.com" },
+    { label: "Patreon", url: "https://patreon.com/MylittleponyOh" }
+  ];
+
+  function fill(listId, items, textKey) {
+    var ul = document.getElementById(listId);
+    items.forEach(function (it) {
+      var text = it[textKey];
+      var li = document.createElement("li");
+      if (it.url) {
+        var a = document.createElement("a");
+        a.href = it.url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.textContent = text;
+        li.appendChild(a);
+      } else if (listId === "credit-list") {
+        li.textContent = text;
+      } else {
+        return;
+      }
+      ul.appendChild(li);
+    });
+  }
+  fill("credit-list", CREDITS, "name");
+  fill("link-list", LINKS, "label");
+</script>
+
+</body>
+</html>
