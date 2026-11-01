@@ -26,6 +26,7 @@
   .thanks-list li { margin: 0 0 10px; }
   .thanks-list a { text-decoration: underline; text-underline-offset: 3px; }
   .thanks-list .soon { opacity: 0.55; }
+  .thanks-credits { line-height: 1.8; }
   .thanks-help { margin-top: 28px; font-size: 0.9em; opacity: 0.7; }
   .thanks-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
   .thanks-actions .cta { display: inline-block; }
@@ -48,7 +49,7 @@
 
     <h2>Credits</h2>
     <p>Thank you to the creators whose custom content brought this story to life:</p>
-    <ul class="thanks-list" id="credit-list"></ul>
+    <p class="thanks-credits" id="credit-line"></p>
 
     <ul class="thanks-list" id="link-list"></ul>
 
@@ -61,14 +62,64 @@
 </div>
 
 <script>
-  // ── CREDITS : one line per creator. Leave url empty if there is no link.
   var CREDITS = [
-    { name: "Algu", url: "" },
+    { name: "Algu" },
+    { name: "joannebernice" },
+    { name: "MelBennett" },
+    { name: "MOONSHINERSIMS" },
+    { name: "prada.poses" },
+    { name: "Simmerianne93" },
+    { name: "simsxen" },
+    { name: "sciophobis" },
+    { name: "Starry" },
+    { name: "sonechko" },
+    { name: "Acha" },
+    { name: "ATS4" },
+    { name: "atticwindowatdown" },
+    { name: "BakieGaming" },
+    { name: "DreamaDove" },
+    { name: "HYDRA" },
+    { name: "Leosims" },
+    { name: "Lukheya" },
+    { name: "Natalia Auditore" },
+    { name: "Pralinesims" },
+    { name: "Quid" },
+    { name: "Katverse" },
+    { name: "Ravasheen" },
+    { name: "simmerberlin" },
+    { name: "SurelySims" },
+    { name: "WhitmoreRoyals" },
+    { name: "xldkx" },
+    { name: "lazysimmies" },
+    { name: "Siminadee" },
+    { name: "Cuckoo" },
+    { name: "AwingedLlama" },
+    { name: "BreezeMotors" },
+    { name: "CharlyPancakes" },
+    { name: "OliOli" },
+    { name: "Max20" },
+    { name: "Sixam" },
+    { name: "Tamsie" },
+    { name: "Syboulette" },
+    { name: "SolovejCC" },
+    { name: "Yuzu" },
+    { name: "Freak" },
+    { name: "LightDeficient" },
+    { name: "myshunosun" },
+    { name: "Pierisim" },
+    { name: "Jammy" },
+    { name: "Roselipa" },
+    { name: "Vellesa" },
+    { name: "Zingsims" },
+    { name: "MUSAE" },
+    { name: "ninawhims" },
+    { name: "siimplysims" },
+    { name: "blue" }
   ];
 
   var LINKS = [
     { label: "Tumblr",  url: "https://mylittleponyoh.tumblr.com" },
-    { label: "Patreon", url: "https://patreon.com/MylittleponyOh" }
+    { label: "Patreon", url: "https://www.patreon.com/MylittleponyOh" }
   ];
 
   function fill(listId, items, textKey) {
@@ -83,15 +134,27 @@
         a.rel = "noopener";
         a.textContent = text;
         li.appendChild(a);
-      } else if (listId === "credit-list") {
-        li.textContent = text;
       } else {
         return;
       }
       ul.appendChild(li);
     });
+    
   }
-  fill("credit-list", CREDITS, "name");
+  var creditLine = document.getElementById("credit-line");
+  CREDITS.forEach(function (c, i) {
+    if (i > 0) creditLine.appendChild(document.createTextNode(" - "));
+    if (c.url) {
+      var a = document.createElement("a");
+      a.href = c.url;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.textContent = c.name;
+      creditLine.appendChild(a);
+    } else {
+      creditLine.appendChild(document.createTextNode(c.name));
+    }
+  });
   fill("link-list", LINKS, "label");
 </script>
 
