@@ -15,27 +15,44 @@
 
   var IMG = "../../assets/images/";
 
+  var MEMORY_FILTER = "sepia(0.55) saturate(0.85) contrast(1.05) brightness(0.92)";
+
   var SLIDES = [
     { img: IMG + "forest-6-12.jpg", speaker: "ASHLEY", text: "Seth didn't resist. He let himself drop against a tree and he talked. Said everything. As if he'd kept those words in his mouth for fifteen years." },
-    { img: IMG + "forest-6-03.jpg", speaker: "ASHLEY", text: "The state police arrived an hour later. My recorder was still running in my pocket. An old habit..." },
+    { img: IMG + "forest-6-14.jpg", speaker: "ASHLEY", text: "The state police arrived an hour later. My recorder was still running in my pocket. An old habit..." },
     { img: IMG + "daphne-05.jpg",   speaker: "ASHLEY", text: "Daphne took me back to her place. We talked at length. For a very long time." },
 
-    { img: IMG + "hero.jpg",       speaker: "ASHLEY", text: "I am the girl who went missing..." },
-    { img: IMG + "hero.jpg",       speaker: "ASHLEY", text: "I am Melissa Bliss." },
+    
+    { img: IMG + "scene1-01.jpg", speaker: "", text: "A few weeks later - San Myshuno Inspector" },
 
-    { img: IMG + "melissa-bedroom-floorboard.jpg", speaker: "ASHLEY", text: "I had written it in my diary. Tonight, I'm leaving Seth. I had asked Seth to meet me at my place. A safe place, with people around. And I had asked Daphne to join me around 11 p.m. You don't end a story like that without needing a friend afterward." },
-    { img: IMG + "forest-6-08.jpg",  speaker: "ASHLEY", text: "But Seth didn't let me get there. He knew my habits. He waited for me in the forest, where no one could hear us." },
-    { img: IMG + "forest-6-13.jpg",    speaker: "ASHLEY", text: "Daphne found me by the side of the road. Dazed, covered in blood. I no longer knew who I was. She could have taken me back to my mother. Ten minutes. But she made a choice that would change my life." },
-    { img: IMG + "daphne-13.jpg",    speaker: "ASHLEY", text: "She knew Captain Fern. She knew that if she took me to the police, it would all end up on the desk of Seth's father. He had always covered for his son. Whatever Seth had done, it had never gone further than that desk." },
-    { img: IMG + "forest-6-11.jpg",        speaker: "ASHLEY", text: "So she decided to protect me. She took me to a hospital far from Copperdale and gave the staff the first name that came to her. They took care of me. Little by little, I had a future. I became Ashley Morris." },
-    { img: IMG + "daphne-05.jpg",     speaker: "ASHLEY", text: "She didn't ask me to forgive her. I don't know yet if I can. I only know that she carried that silence alone for fifteen years, and that she never stopped visiting my mother." },
+    { img: IMG + "hero.jpg",       speaker: "ASHLEY", text: "I am the girl who went missing...", memory: true },
+    { img: IMG + "hero.jpg",       speaker: "ASHLEY", text: "I am Melissa Bliss.", memory: true },
+
+    { img: IMG + "melissa-bedroom-floorboard.jpg", speaker: "ASHLEY", text: "I had written it in my diary. Tonight, I'm leaving Seth. I had asked Seth to meet me at my place. A safe place, with people around. And I had asked Daphne to join me around 11 p.m. You don't end a story like that without needing a friend afterward.", memory: true },
+    { img: IMG + "forest-6-08.jpg",  speaker: "ASHLEY", text: "But Seth didn't let me get there. He knew my habits. He waited for me in the forest, where no one could hear us.", memory: true },
+    { img: IMG + "forest-6-13.jpg",    speaker: "ASHLEY", text: "Daphne found me by the side of the road. Dazed, covered in blood.", memory: true },
+    { img: IMG + "forest-6-11.jpg", speaker: "ASHLEY", text: "I no longer knew who I was.", memory: true },
+    { img: IMG + "forest-6-13.jpg",    speaker: "ASHLEY", text: "She could have taken me back to my mother. Ten minutes. But she made a choice that would change my life.", memory: true },
+    { img: IMG + "daphne-13.jpg",    speaker: "ASHLEY", text: "She knew Captain Fern. She knew that if she took me to the police, it would all end up on the desk of Seth's father. He had always covered for his son. Whatever Seth had done, it had never gone further than that desk.", memory: true },
+    { img: IMG + "forest-6-11.jpg",        speaker: "ASHLEY", text: "So she decided to protect me.", memory: true },
+    { img: IMG + "forest-6-11.jpg",        speaker: "ASHLEY", text: "She took me to a hospital far from Copperdale and gave the staff the first name that came to her. Ashley Morris.", memory: true },
+    { img: IMG + "daphne-05.jpg",     speaker: "ASHLEY", text: "She didn't ask me to forgive her. I don't know yet if I can. I only know that she carried that silence alone for fifteen years, and that she never stopped visiting my mother. With the burden of lies to bear.", memory: true },
+
     { img: IMG + "merricks-01.jpg",  speaker: "ASHLEY", text: "The next day, I went back to ring the doorbell of a little house full of children's toys." },
     { img: IMG + "scene1-02.jpg",        speaker: "ASHLEY", text: "Then I wrote the article I had come to Copperdale to write. But it was no longer quite about the police." },
     { img: IMG + "ending-newspaper.jpg", speaker: "", text: "" }
   ];
 
+  var css = document.createElement("style");
+  css.textContent = ".slide img{transition:filter .6s ease;} #slideshow-root.memory .slide img{filter:" + MEMORY_FILTER + ";}";
+  document.head.appendChild(css);
+
   initSlideshow(SLIDES, {
-    nextUrl: "#"   // TODO: thanks / credits / gifts page, if there is time
+    nextUrl: "#",   // TODO: thanks / credits / gifts page, if there is time
+    onSlideChange: function (index) {
+      var rootEl = document.getElementById("slideshow-root");
+      if (rootEl) rootEl.classList.toggle("memory", !!SLIDES[index].memory);
+    }
   });
 
 </script>
