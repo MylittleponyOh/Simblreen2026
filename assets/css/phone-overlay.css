@@ -1,8 +1,6 @@
-/* ═══════════════════════════════════════════════════════════
-   PHONE OVERLAY — composant réutilisable sur toutes les pages
-   ═══════════════════════════════════════════════════════════ */
+/*PHONE OVERLAY : réutilisable sur toutes les pages */
 
-/* Bouton flottant qui "peek" en bas à droite */
+/* Bouton du tel en "peek" */
 #phone-peek-btn {
   position: fixed;
   bottom: 0;
@@ -42,8 +40,7 @@
   z-index: 2;
 }
 
-/* Fond noir simple et discret — pas de wallpaper, pour ne pas donner l'impression
-   que le téléphone est allumé quand il n'y a rien de nouveau à voir. */
+/* Si téléphone off = fond noir */
 #phone-peek-btn .peek-screen-fill {
   position: absolute;
   top: 15.33%;
@@ -59,7 +56,7 @@
   padding: 4px;
 }
 
-/* Badge pill "N New", confiné dans l'écran de la mini vignette */
+/* Badge pill " x New" */
 #phone-peek-btn .peek-notif-pill {
   display: flex;
   align-items: center;
@@ -95,7 +92,7 @@
   50% { transform: scale(1.06); }
 }
 
-/* ── Overlay / fond assombri ─────────────────────────────── */
+/* Overlay ouverture tel */
 #phone-overlay-backdrop {
   position: fixed;
   inset: 0;
@@ -112,7 +109,7 @@
   pointer-events: auto;
 }
 
-/* ── Le téléphone en grand (modal) ───────────────────────── */
+/* Modal tel */
 #phone-modal {
   position: fixed;
   left: 50%;
@@ -170,7 +167,7 @@
   background-position: center;
 }
 
-/* ── Feed : messages + lieux + rapport, groupés par section ── */
+/* Feed (en sections) : messages + lieux + rapport */
 .feed {
   display: flex;
   flex-direction: column;
@@ -203,7 +200,7 @@
   display: block;
 }
 
-/* Tag "NEW" sur un item tout juste débloqué (isNew: true) */
+/* Tag "NEW" sur un item ébloqué (isNew: true) */
 .feed-card.is-new::after {
   content: "NEW";
   position: absolute;
@@ -219,7 +216,7 @@
   padding: 0.1rem 0.45rem;
 }
 
-/* Carte message — vert, façon vieille messagerie */
+/* Carte message */
 .feed-card.message {
   background: linear-gradient(135deg, #a8e6a3, #5cb86e);
 }
@@ -258,7 +255,7 @@
   text-decoration: none;
 }
 
-/* Carte rapport d'enquête — jaune, icône fichier */
+/* Carte rapport d'enquête */
 .feed-card.report {
   display: flex;
   align-items: center;
@@ -281,7 +278,7 @@
   flex-shrink: 0;
 }
 
-/* Carte lieu — dégradé bleu vif vers indigo profond */
+/* Carte lieu */
 .feed-card.location {
   display: flex;
   align-items: center;
