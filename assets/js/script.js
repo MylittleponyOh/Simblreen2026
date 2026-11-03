@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var noteEl = document.getElementById("closed-note");
   var ctaEl = document.getElementById("enter-btn");
 
-  // Admin Shortcut Debug : Preview the button on the landing page to enter the investigation page
+  // Admin
   var params = new URLSearchParams(window.location.search);
   if (params.get("preview") === "true") {
     countdownEl.style.display = "none";
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  // Ouverture : 31 octobre 2026, 20h00 heure de Paris (heure d'hiver, +01:00)
+  // Launch
   var targetDate = new Date("2026-10-31T20:30:00+01:00").getTime();
   
   var daysEl = document.getElementById("cd-days");
