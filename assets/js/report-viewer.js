@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════════════════════════
-   REPORT VIEWER & DIARY
-   ═══════════════════════════════════════════════════════════ */
+/* REPORT VIEWER & DIARY */
 
 function buildSectionEl(sec) {
   var wrap = document.createElement("div");
@@ -57,7 +55,7 @@ function openReport(data) {
     });
   }
 
-  // Look du document : "diary"
+  // Journal intime
   var paperEl = document.getElementById("report-paper");
   var isDiary = data.style === "diary";
   paperEl.classList.toggle("is-diary", isDiary);
@@ -69,7 +67,6 @@ function openReport(data) {
     document.head.appendChild(fontLink);
   }
 
-  // En-tête (titre/sous-titre), toujours visible, hors pagination
   var headerEl = document.getElementById("report-header");
   headerEl.innerHTML = "";
 
@@ -85,7 +82,6 @@ function openReport(data) {
     headerEl.appendChild(subtitle);
   }
 
-  // Découpage des sections en pages
   var perPage = data.sectionsPerPage || 4;
   var sections = data.sections || [];
   var pages = [];
