@@ -1,6 +1,4 @@
-/* ═══════════════════════════════════════════════════════════
-   REPORT VIEWER et DIARY VIEWER
-   ═══════════════════════════════════════════════════════════ */
+/* REPORT VIEWER et DIARY VIEWER */
 
 #report-backdrop {
   position: fixed;
@@ -21,7 +19,6 @@
   pointer-events: auto;
 }
 
-/* Pile de pages */
 #report-paper-stack {
   position: relative;
   width: 100%;
@@ -29,7 +26,6 @@
   max-height: 88svh;
 }
 
-/* Feuille du dessous*/
 #report-paper-stack::before,
 #report-paper-stack::after {
   content: "";
@@ -162,7 +158,7 @@
   margin: 0 0 0.5rem;
 }
 
-/* style de base, pour tous les titres */
+
 .report-name-trigger {
   position: relative;
   display: inline-block;
@@ -173,13 +169,11 @@
   color: #4a3f2e;
 }
 
-/* Seuls les noms avec une note d'Ashley signalent qu'on peut les survoler */
 .report-name-trigger.has-note {
   border-bottom: 1px dotted #4a3f2e;
   cursor: help;
 }
 
-/* Note d'Ashley même esthétique que la dialogue-box du diaporama, cachée par défaut */
 .report-note {
   position: absolute;
   bottom: calc(100% + 8px);
@@ -224,9 +218,8 @@
   top: calc(100% + 8px);
 }
 
-/* ═══════════════════════════════════════════════════════════
-                           JOURNAL INTIME
-   ═══════════════════════════════════════════════════════════ */
+/* JOURNAL INTIME */
+
 #report-paper.is-diary {
   --diary-line: 1.9rem;
   font-family: 'Caveat', 'Segoe Print', 'Bradley Hand', 'Comic Sans MS', cursive;
