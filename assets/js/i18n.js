@@ -1,4 +1,3 @@
-// Language
 var Lang = {
   get: function () {
     try {
@@ -6,6 +5,16 @@ var Lang = {
       if (l === "fr" || l === "en") return l;
     } catch (e) {}
     return "en";
+  },
+
+  slides: function (slides) {
+    if (this.get() !== "fr") return slides;
+    slides.forEach(function (sl) {
+      if (sl.fr !== undefined) sl.text = sl.fr;
+      if (sl.lines) sl.lines.forEach(function (l) { if (l.fr !== undefined) l.text = l.fr; });
+      if (sl.choices) sl.choices.forEach(function (c) { if (c.fr !== undefined) c.label = c.fr; });
+    });
+    return slides;
   },
 
   apply: function (dict) {
