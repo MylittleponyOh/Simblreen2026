@@ -32,31 +32,50 @@
 
 <div class="warning">
   <div class="warning-card">
-    <h1>Before you begin</h1>
-    <p>This is a story-driven investigation for mature audiences. It deals with:</p>
+    <h1 data-i18n="title">Before you begin</h1>
+    <p data-i18n="intro">This is a story-driven investigation for mature audiences. It deals with:</p>
     <ul>
-      <li>Violence and its aftermath</li>
-      <li>Controlling and abusive relationships</li>
-      <li>Loss and grief</li>
-      <li>Blood and injury</li>
+      <li data-i18n="t1">Violence and its aftermath</li>
+      <li data-i18n="t2">Controlling and abusive relationships</li>
+      <li data-i18n="t3">Loss and grief</li>
+      <li data-i18n="t4">Blood and injury</li>
     </ul>
-    <p class="warning-help">You can step away at any time. If you need support, you're not alone:<br>
+    <p class="warning-help" data-i18n="help">You can step away at any time. If you need support, you're not alone:<br>
       France: 3919 &middot; US: 1-800-799-7233</p>
-    <p class="warning-help">Best way to play: on a computer, in fullscreen mode (F11 on Windows, Ctrl+Cmd+F on Mac). Press the same keys again to exit, for example to open the gift downloads.</p>
-    <p class="warning-help">Play your best thriller playlist!</p>
+    <p class="warning-help" data-i18n="fullscreen">Best way to play: on a computer, in fullscreen mode (F11 on Windows, Ctrl+Cmd+F on Mac). Press the same keys again to exit, for example to open the gift downloads.</p>
+    <p class="warning-help" data-i18n="playlist">Play your best thriller playlist!</p>
 
     
     <div class="warning-actions">
-      <a href="../investigation/" class="cta">Continue</a>
-      <a href="https://simfileshare.net/folder/277383/" class="cta" id="leave-btn">Leave</a>
+      <a href="../investigation/" class="cta" data-i18n="continue">Continue</a>
+      <a href="https://simfileshare.net/folder/277383/" class="cta" id="leave-btn" data-i18n="leave">Leave</a>
     </div>
   </div>
 </div>
 
+<script src="../assets/js/i18n.js"></script>
 <script>
   var GIFTS_URL = "https://simfileshare.net/folder/277383/";
   var leave = document.getElementById("leave-btn");
   if (GIFTS_URL) { leave.href = GIFTS_URL; }
+
+  // TRAD FR
+  Lang.apply({
+    fr: {
+      _title: "Avant de commencer - The Girl Who Went Missing",
+      title: "Avant de commencer",
+      intro: "Cette enquête fictive est réservée à un public mature. Elle aborde des sujets sensibles, tels que :",
+      t1: "Violence et ses conséquences",
+      t2: "Relations abusives",
+      t3: "Perte et deuil",
+      t4: "Sang et blessures",
+      help: "Vous pouvez quitter le jeu à tout moment. Si vous avez besoin d'aide, vous n'êtes pas seul·e :<br>France : 3919 &middot; US : 1-800-799-7233",
+      fullscreen: "Je recommande de jouer sur ordinateur, en mode plein écran (F11 sous Windows, Ctrl+Cmd+F sur Mac). Utilisez le même raccourci pour quitter le plein écran, par exemple pour ouvrir les cadeaux à télécharger.",
+      playlist: "Mettez votre meilleure playlist thriller !",
+      "continue": "Continuer",
+      leave: "Quitter"
+    }
+  });
 </script>
 
 </body>
