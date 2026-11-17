@@ -1,11 +1,13 @@
+function _t(s) { return (typeof Lang !== "undefined") ? Lang.t(s) : s; }
+
+/* SLIDESHOW */
+
 function initSlideshow(SLIDES, opts) {
   opts = opts || {};
   var typeSpeed = opts.typeSpeed || 35;
 
-
   var root = document.createElement("div");
   root.id = "slideshow-root";
-
 
   SLIDES.forEach(function (slide, i) {
     var div = document.createElement("div");
@@ -25,7 +27,6 @@ function initSlideshow(SLIDES, opts) {
 
     root.appendChild(div);
   });
-
 
   var bottomRow = document.createElement("div");
   bottomRow.className = "slideshow-bottom-row";
@@ -47,12 +48,12 @@ function initSlideshow(SLIDES, opts) {
 
   var skipBtn = document.createElement("button");
   skipBtn.className = "skip-btn";
-  skipBtn.textContent = opts.skipLabel || "Skip";
+  skipBtn.textContent = _t(opts.skipLabel || "Skip");
   if (!opts.skipUrl) skipBtn.style.visibility = "hidden";
 
   var nextBtn = document.createElement("button");
   nextBtn.className = "next-btn";
-  nextBtn.textContent = "Next";
+  nextBtn.textContent = _t("Next");
 
   var choicesEl = document.createElement("div");
   choicesEl.className = "slideshow-choices";
@@ -66,7 +67,6 @@ function initSlideshow(SLIDES, opts) {
   root.appendChild(bottomRow);
 
   document.body.appendChild(root);
-
 
   var current = 0;
   var isTyping = false;
@@ -107,7 +107,6 @@ function initSlideshow(SLIDES, opts) {
     var lines = slide.lines || [{ speaker: slide.speaker, text: slide.text, tone: slide.tone }];
     var hasContent = lines.some(function (l) { return l.speaker || l.text; });
 
-
     dialogueBoxEl.style.display = hasContent ? "block" : "none";
     linesEl.innerHTML = "";
 
@@ -135,7 +134,7 @@ function initSlideshow(SLIDES, opts) {
       fullTexts.push(l.text || "");
     });
 
-    nextBtn.textContent = (current === SLIDES.length - 1) ? "Continue" : "Next";
+    nextBtn.textContent = _t((current === SLIDES.length - 1) ? "Continue" : "Next");
 
     choicesEl.innerHTML = "";
     if (slide.choices) {
@@ -150,7 +149,7 @@ function initSlideshow(SLIDES, opts) {
       });
     }
 
-    
+
     updateActionButtons = function () {
       if (slide.choices && !isTyping) {
         nextBtn.style.display = "none";
