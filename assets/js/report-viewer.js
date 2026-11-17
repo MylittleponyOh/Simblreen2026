@@ -1,4 +1,6 @@
-/* REPORT VIEWER & DIARY */
+function _t(s) { return (typeof Lang !== "undefined") ? Lang.t(s) : s; }
+
+/* REPORT & DIARY VIEWER */
 
 function buildSectionEl(sec) {
   var wrap = document.createElement("div");
@@ -13,7 +15,7 @@ function buildSectionEl(sec) {
       h.classList.add("has-note");
       var note = document.createElement("div");
       note.className = "report-note";
-      note.innerHTML = '<span class="report-note-label">Ashley\'s note</span>';
+      note.innerHTML = '<span class="report-note-label">' + _t("Ashley's note") + '</span>';
       var noteText = document.createElement("span");
       noteText.textContent = sec.note;
       note.appendChild(noteText);
@@ -25,7 +27,15 @@ function buildSectionEl(sec) {
 
   if (sec.body) {
     var p = document.createElement("p");
-    p.textContent = sec.body;
+    sec.body.split("~~").forEach(function (part, i) {
+      if (i % 2 === 1) {
+        var del = document.createElement("del");
+        del.textContent = part;
+        p.appendChild(del);
+      } else {
+        p.appendChild(document.createTextNode(part));
+      }
+    });
     wrap.appendChild(p);
   }
 
@@ -55,7 +65,6 @@ function openReport(data) {
     });
   }
 
-  // Journal intime
   var paperEl = document.getElementById("report-paper");
   var isDiary = data.style === "diary";
   paperEl.classList.toggle("is-diary", isDiary);
@@ -117,7 +126,7 @@ function openReport(data) {
     if (pages.length > 1) {
       var prevBtn = document.createElement("button");
       prevBtn.className = "report-page-btn";
-      prevBtn.textContent = "← Previous";
+      prevBtn.textContent = _t("← Previous");
       prevBtn.disabled = currentPage === 0;
       prevBtn.addEventListener("click", function () {
         currentPage--;
@@ -130,7 +139,7 @@ function openReport(data) {
 
       var nextBtn = document.createElement("button");
       nextBtn.className = "report-page-btn";
-      nextBtn.textContent = "Next →";
+      nextBtn.textContent = _t("Next →");
       nextBtn.disabled = currentPage === pages.length - 1;
       nextBtn.addEventListener("click", function () {
         currentPage++;
