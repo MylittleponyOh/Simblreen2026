@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
 <script src="../../assets/js/report-viewer.js"></script>
@@ -20,35 +21,65 @@
   var REPORT_DATA = {
     title: "Case File #21071994/M-B",
     subtitle: "Melissa Bliss - Missing Person - Status: Closed (Unsolved)",
+    fr: { title: "Dossier n° 21071994/M-B", subtitle: "Melissa Bliss - Personne disparue - Statut : Classé (non élucidé)" },
     sections: [
       {
         heading: "Incident Report",
-        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994.",
+        fr: {
+          heading: "Rapport d’incident",
+          body: "21 juillet 1994, 00 h 04 - Un appel signale la disparition de Melissa Bliss, 23 ans, déclarée disparue par sa mère, Jodie Merrick. Melissa travaillait dans une station-service de la ville voisine et rentrait habituellement chez elle en courant à travers la forêt qui relie les deux localités, après avoir terminé son service vers 22 h. Les recherches officielles n’ont commencé que 48 heures plus tard, le 23/07/1994."
+        }
       },
       {
         heading: "Jodie Merrick (46) - Mother",
         body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
-        note: "The stepfather. Interesting…"
+        note: "The stepfather. Interesting…",
+        fr: {
+          heading: "Jodie Merrick (46 ans) - Mère",
+          body: "Infirmière. Décrit une relation conflictuelle entre Melissa et son beau-père, Garret Merrick, depuis le récent remariage.",
+          note: "Le beau-père. Intéressant…"
+        }
       },
       {
         heading: "Garret Merrick (52) - Stepfather",
         body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
-        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?",
+        fr: {
+          heading: "Garret Merrick (52 ans) - Beau-père",
+          body: "Entrepreneur en bâtiment. Confirme une relation distante avec Melissa, sans hostilité déclarée. Décrit la relation entre Melissa et Seth comme « toxique ».",
+          note: "Ah, donc il y avait un petit ami… mais pourquoi est-ce Garret qui dit à la police que Seth était toxique, et pas Jodie ?"
+        }
       },
       {
         heading: "Seth Fern (23) - Boyfriend",
         body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
-        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)",
+        fr: {
+          heading: "Seth Fern (23 ans) - Petit ami",
+          body: "Sans emploi. Connaît Melissa depuis l’enfance. Profil décrit comme colérique et possessif. Admet des disputes fréquentes. Mentionne un collègue (Leandro) qu’il soupçonne d’avoir des sentiments pour Melissa. Affirme que Melissa a toujours nié toute relation avec lui. Redirige les enquêteurs vers Daphne Holzer pour plus d’informations. Comportement pendant l’interrogatoire : étonnamment calme.",
+          note: "Étonnamment calme, apparemment jaloux et violent… Le gendre idéal, celui-là. (Elle soupire.)"
+        }
       },
       {
         heading: "Daphne Holzer (23) - Best Friend",
         body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her - alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
-        note: "She knew more than she told the police. I'd bet my press badge on it."
+        note: "She knew more than she told the police. I'd bet my press badge on it.",
+        fr: {
+          heading: "Daphne Holzer (23 ans) - Meilleure amie",
+          body: "Serveuse (le soir) et étudiante (la journée). Amie proche depuis l’enfance. Décrit Seth comme manipulateur et jaloux. Confirme que Melissa lui a parlé de Leandro Larozzi - avances présumées, attirance mutuelle non avouée. Selon Daphne, Melissa refusait toute relation avec Leandro à cause de la réaction probable de Seth.",
+          note: "Elle en savait plus qu’elle ne l’a dit à la police. Je mettrais ma carte de presse en jeu."
+        }
       },
       {
         heading: "Leandro Larozzi (25) - Coworker",
         body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
-        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+        note: "Five people interviewed. Three of them point straight at Seth Fern…",
+        fr: {
+          heading: "Leandro Larozzi (25 ans) - Collègue",
+          body: "Employé de la station-service et étudiant. Admet avoir des sentiments pour Melissa. Déclare qu’elle l’a repoussé à cause de sa relation avec Seth. Décrit Seth comme instable et envahissant (présence fréquente sur son lieu de travail). Déclare avoir essayé d’offrir un soutien moral à Melissa.",
+          note: "Cinq personnes interrogées. Trois d’entre elles désignent directement Seth Fern…"
+        }
       }
     ]
   };
@@ -57,33 +88,39 @@
     {
       img: "../../assets/images/scene3-01.jpg",
       speaker: "ASHLEY",
-      text: "Let's take a look around... Things have surely changed in fifteen years, but when you really look... you always find something."
+      text: "Let's take a look around... Things have surely changed in fifteen years, but when you really look... you always find something.",
+      fr: "Allons faire un tour... Les choses ont sûrement changé en quinze ans, mais quand on regarde vraiment bien... on trouve toujours quelque chose."
     },
     {
       img: "../../assets/images/scene3-01.jpg",
       speaker: "ASHLEY",
-      text: "In a town this small, there should to be a place where tongues loosen."
+      text: "In a small town like this, there should to be a place where tongues loosen.",
+      fr: "Dans une petite ville comme celle-là, il doit bien y avoir un endroit où les langues se délient."
     }
   ];
+
+  Lang.slides(SLIDES);
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   initSlideshow(SLIDES, {
-    nextUrl: "#", // la suite se joue via le téléphone, pas via Next
+    nextUrl: "#",
     onSlideChange: function (index) {
-      // Dernière slide : la carte (= les 5 lieux) apparaît sur le téléphone
+     
       if (index === 1) {
         initPhoneOverlay(
-          [
+          Lang.items([
             {
               type: "report",
               label: "Case File #21071994",
+              fr: { label: "Dossier n° 21071994" },
               data: REPORT_DATA
             },
             {
               type: "location",
               name: "Copperdale National Forest",
               blurb: "",
+              fr: { name: "Forêt Nationale de Copperdale" },
               thumb: "../../assets/images/map-icon.jpg",
               url: "../forest-3/"
             },
@@ -91,6 +128,7 @@
               type: "location",
               name: "The Factory",
               blurb: "Local Bar & Diner",
+              fr: { blurb: "Bar et restaurant du coin" },
               thumb: "../../assets/images/map-icon.jpg",
               url: "../bar-3/"
             },
@@ -98,6 +136,7 @@
               type: "location",
               name: "Gas Station",
               blurb: "Where Melissa worked",
+              fr: { name: "Station-service", blurb: "" },
               thumb: "../../assets/images/map-icon.jpg",
               url: "../gas-station-3/"
             },
@@ -105,10 +144,11 @@
               type: "location",
               name: "Copperdale Police Station",
               blurb: "",
+              fr: { name: "Commissariat de Copperdale" },
               thumb: "../../assets/images/map-icon.jpg",
               url: "../police-station-3/"
             }
-          ],
+          ]),
           { hasNew: true, newCount: 1, imgPath: PHONE_IMG }
         );
       }
