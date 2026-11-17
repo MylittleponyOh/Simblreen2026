@@ -1,3 +1,5 @@
+function _t(s) { return (typeof Lang !== "undefined") ? Lang.t(s) : s; }
+
 function initPhoneOverlay(items, opts) {
   opts = opts || {};
 
@@ -29,7 +31,7 @@ function initPhoneOverlay(items, opts) {
     peekBtn = document.createElement("div");
     peekBtn.id = "phone-peek-btn";
     peekBtn.innerHTML =
-      '<div class="peek-screen-fill"><div class="peek-notif-pill" id="peek-notif-pill" style="display:none;"><span class="peek-notif-count" id="peek-notif-count">1</span>New</div></div>' +
+      '<div class="peek-screen-fill"><div class="peek-notif-pill" id="peek-notif-pill" style="display:none;"><span class="peek-notif-count" id="peek-notif-count">1</span>' + _t("New") + '</div></div>' +
       '<img src="' + imgPath + '" alt="Phone">';
     document.body.appendChild(peekBtn);
 
@@ -91,7 +93,7 @@ function initPhoneOverlay(items, opts) {
     if (item.type !== lastType) {
       var label = document.createElement("p");
       label.className = "feed-section-label";
-      label.textContent = SECTION_LABELS[item.type] || "";
+      label.textContent = _t(SECTION_LABELS[item.type] || "");
       feedEl.appendChild(label);
       lastType = item.type;
     }
@@ -130,7 +132,7 @@ function initPhoneOverlay(items, opts) {
         if (!item.attachment.url || item.attachment.url === "#") {
           att.removeAttribute("href");
           att.removeAttribute("target");
-          att.textContent = "🔗 " + item.attachment.label + " (coming soon)";
+          att.textContent = "🔗 " + item.attachment.label + " " + _t("(coming soon)");
           att.style.opacity = "0.55";
           att.style.pointerEvents = "none";
           att.style.cursor = "default";
@@ -160,7 +162,7 @@ function initPhoneOverlay(items, opts) {
       } else {
         var ph = document.createElement("div");
         ph.className = "loc-thumb-placeholder";
-        ph.textContent = "Photo";
+        ph.textContent = _t("Photo");
         loc.appendChild(ph);
       }
 
@@ -178,7 +180,7 @@ function initPhoneOverlay(items, opts) {
 
       var go = document.createElement("span");
       go.className = "go-btn";
-      go.textContent = inert ? (item.lockedLabel || (item.current ? "Here" : "Closed")) : (item.visited ? "Visited" : "Go");
+      go.textContent = _t(inert ? (item.lockedLabel || (item.current ? "Here" : "Closed")) : (item.visited ? "Visited" : "Go"));
       if (item.visited && !inert) go.classList.add("is-visited");
       loc.appendChild(go);
 
@@ -191,8 +193,8 @@ function initPhoneOverlay(items, opts) {
       recCard.innerHTML =
         '<span class="report-icon">🎙️</span>' +
         '<div class="loc-info">' +
-        '  <p class="loc-name">' + (item.label || "Voice Recorder") + '</p>' +
-        '  <p class="loc-blurb rec-status">Tap to record</p>' +
+        '  <p class="loc-name">' + _t(item.label || "Voice Recorder") + '</p>' +
+        '  <p class="loc-blurb rec-status">' + _t("Tap to record") + '</p>' +
         '</div>' +
         '<span class="go-btn rec-btn">● Rec</span>';
       var recStatus = recCard.querySelector(".rec-status");
@@ -204,10 +206,10 @@ function initPhoneOverlay(items, opts) {
         recCard.classList.add("is-recording");
         recBtnEl.textContent = "■ Rec";
         var sec = 0;
-        recStatus.textContent = "Recording… 00:00";
+        recStatus.textContent = _t("Recording…") + " 00:00";
         var tick = setInterval(function () {
           sec++;
-          recStatus.textContent = "Recording… 00:0" + Math.min(sec, 9);
+          recStatus.textContent = _t("Recording…") + " 00:0" + Math.min(sec, 9);
           if (sec === 3) {
             setTimeout(function () {
               clearInterval(tick);
@@ -228,7 +230,7 @@ function initPhoneOverlay(items, opts) {
         '<span class="report-icon">📄</span>' +
         '<div class="loc-info">' +
         '  <p class="loc-name">' + item.label + '</p>' +
-        '  <p class="loc-blurb">Tap to read</p>' +
+        '  <p class="loc-blurb">' + _t("Tap to read") + '</p>' +
         '</div>';
       rep.addEventListener("click", function () {
         var backdrop = document.getElementById("phone-overlay-backdrop");
