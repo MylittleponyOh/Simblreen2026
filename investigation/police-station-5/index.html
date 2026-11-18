@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
@@ -20,35 +21,65 @@
   var REPORT_DATA = {
     title: "Case File #21071994/M-B",
     subtitle: "Melissa Bliss - Missing Person - Status: Closed (Unsolved)",
+    fr: { title: "Dossier n° 21071994/M-B", subtitle: "Melissa Bliss - Personne disparue - Statut : Classé (non élucidé)" },
     sections: [
       {
         heading: "Incident Report",
-        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994.",
+        fr: {
+          heading: "Rapport d’incident",
+          body: "21 juillet 1994, 00 h 04 - Un appel signale la disparition de Melissa Bliss, 23 ans, déclarée disparue par sa mère, Jodie Merrick. Melissa travaillait dans une station-service de la ville voisine et rentrait habituellement chez elle en courant à travers la forêt qui relie les deux localités, après avoir terminé son service vers 22 h. Les recherches officielles n’ont commencé que 48 heures plus tard, le 23/07/1994."
+        }
       },
       {
         heading: "Jodie Merrick (46) - Mother",
         body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
-        note: "The stepfather. Interesting…"
+        note: "The stepfather. Interesting…",
+        fr: {
+          heading: "Jodie Merrick (46 ans) - Mère",
+          body: "Infirmière. Décrit une relation conflictuelle entre Melissa et son beau-père, Garret Merrick, depuis un récent remariage.",
+          note: "Le beau-père. Intéressant…"
+        }
       },
       {
         heading: "Garret Merrick (52) - Stepfather",
         body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
-        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?",
+        fr: {
+          heading: "Garret Merrick (52 ans) - Beau-père",
+          body: "Entrepreneur en bâtiment. Confirme une relation distante avec Melissa, sans hostilité déclarée. Décrit la relation entre Melissa et Seth comme « toxique ».",
+          note: "Ah, donc il y avait un petit ami… mais pourquoi est-ce Garret qui dit à la police que Seth était toxique, et pas Jodie ?"
+        }
       },
       {
         heading: "Seth Fern (23) - Boyfriend",
         body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
-        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (Sigh...)",
+        fr: {
+          heading: "Seth Fern (23 ans) - Petit ami",
+          body: "Sans emploi. Connaît Melissa depuis l’enfance. Profil décrit comme colérique et possessif. Admet des disputes fréquentes. Mentionne un collègue (Leandro) qu’il soupçonne d’avoir des sentiments pour Melissa. Affirme que Melissa a toujours nié toute relation avec lui. Redirige les enquêteurs vers Daphne Holzer pour plus d’informations. Comportement pendant l’interrogatoire : étonnamment calme.",
+          note: "Étonnamment calme, apparemment jaloux et violent… Le gendre idéal, celui-là. (Soupire...)"
+        }
       },
       {
         heading: "Daphne Holzer (23) - Best Friend",
         body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her - alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
-        note: "She knew more than she told the police. I'd bet my press badge on it."
+        note: "She knew more than she told the police. I'd bet my press badge on it.",
+        fr: {
+          heading: "Daphne Holzer (23 ans) - Meilleure amie",
+          body: "Serveuse (le soir) et étudiante (la journée). Amie proche depuis l’enfance. Décrit Seth comme manipulateur et jaloux. Confirme que Melissa lui a parlé de Leandro Larozzi - avances présumées, attirance mutuelle non avouée. Selon Daphne, Melissa refusait toute relation avec Leandro à cause de la réaction probable de Seth.",
+          note: "Elle en savait plus qu’elle ne l’a dit à la police. Je mettrais ma carte de presse en jeu."
+        }
       },
       {
         heading: "Leandro Larozzi (25) - Coworker",
         body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
-        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+        note: "Five people interviewed. Three of them point straight at Seth Fern…",
+        fr: {
+          heading: "Leandro Larozzi (25 ans) - Collègue",
+          body: "Employé de la station-service et étudiant. Admet avoir des sentiments pour Melissa. Déclare qu’elle l’a repoussé à cause de sa relation avec Seth. Décrit Seth comme instable et envahissant (présence fréquente sur son lieu de travail). Déclare avoir essayé d’offrir un soutien moral à Melissa.",
+          note: "Cinq personnes interrogées. Trois d’entre elles désignent directement Seth Fern…"
+        }
       }
     ]
   };
@@ -58,42 +89,46 @@
 
   var SLIDES = [
 
-    { img: IMG + "police-station-day.jpg", speaker: "", text: "October 17th 2009 - Copperdale Police Station" },
+    { img: IMG + "police-station-day.jpg", speaker: "", text: "October 17th 2009 - Copperdale Police Station", fr: "17 octobre 2009 - Commissariat de Copperdale" },
     { img: IMG + "police-station-day-01.jpg", speaker: "", text: "" },
 
-    { img: IMG + "police-station-day-02.jpg", speaker: "ASHLEY",    text: "Hello, I'd like to speak with the captain." },
-    { img: IMG + "police-station-day-03.jpg", speaker: "SECRETARY", text: "What is it about?" },
-    { img: IMG + "police-station-day-02.jpg", speaker: "ASHLEY",    text: "I'd like to consult a file on a missing person case." },
-    { img: IMG + "police-station-day-04.jpg", speaker: "SECRETARY", text: "The Melissa Bliss case? It's a small town, people talk..." },
-    { img: IMG + "police-station-day-05.jpg", speaker: "ASHLEY",    text: "I see..." },
-    { img: IMG + "police-station-day-06.jpg", speaker: "SECRETARY", text: "Well... I need to..." },
-    { img: IMG + "police-station-day-05.jpg", speaker: "ASHLEY",    text: "You know the law allows any citizen to consult a closed case file as soon as the closure decision is made, don't you? I don't even need to ask your permission. Or the captain's, for this district." },
-    { img: IMG + "police-station-day-07.jpg", speaker: "SECRETARY",  text: "The archive room is at the back, on the left. But you have to sign the register." },
-    { img: IMG + "police-station-day-08.jpg", speaker: "ASHLEY",    text: "Very well." },
+    { img: IMG + "police-station-day-02.jpg", speaker: "ASHLEY",    text: "Hello, I'd like to speak with the captain.", fr: "Bonjour, j’aimerais parler au capitaine." },
+    { img: IMG + "police-station-day-03.jpg", speaker: "SECRETARY", speakerFr: "SECRÉTAIRE", text: "What is it about?", fr: "C’est à quel sujet ?" },
+    { img: IMG + "police-station-day-02.jpg", speaker: "ASHLEY",    text: "I'd like to consult a file on a missing person case.", fr: "Je voudrais consulter un dossier sur une disparition." },
+    { img: IMG + "police-station-day-04.jpg", speaker: "SECRETARY", speakerFr: "SECRÉTAIRE", text: "The Melissa Bliss case? It's a small town, people talk...", fr: "L’affaire Melissa Bliss ? C’est une petite ville, les gens parlent..." },
+    { img: IMG + "police-station-day-05.jpg", speaker: "ASHLEY",    text: "I see...", fr: "Je vois..." },
+    { img: IMG + "police-station-day-06.jpg", speaker: "SECRETARY", speakerFr: "SECRÉTAIRE", text: "Well... I need to...", fr: "Eh bien... il faut que je..." },
+    { img: IMG + "police-station-day-05.jpg", speaker: "ASHLEY",    text: "You know the law allows any citizen to consult a closed case file as soon as the closure decision is made, don't you? I don't even need to ask your permission. Or the captain's, for this district.", fr: "Vous savez que la loi autorise tout citoyen à consulter un dossier classé dès que la décision de clôture est prise, n’est-ce pas ? Je n’ai même pas besoin de votre permission. Ni de celle du capitaine, pour ce district." },
+    { img: IMG + "police-station-day-07.jpg", speaker: "SECRETARY", speakerFr: "SECRÉTAIRE",  text: "The archive room is at the back, on the left. But you have to sign the register.", fr: "La salle des archives est au fond, à gauche. Mais vous devez signer le registre." },
+    { img: IMG + "police-station-day-08.jpg", speaker: "ASHLEY",    text: "Very well.", fr: "Très bien." },
 
     { img: IMG + "police-station-day-09.jpg", speaker: "", text: "" },
     { img: IMG + "police-station-day-10.jpg", speaker: "", text: "" },
 
-    // Click & point: find the Melissa Bliss box (hover = glow, click = continue)
-    { img: IMG + "police-station-day-11.jpg", speaker: "ASHLEY", text: "No dates... no labels. Of course. I guess it's time to browse all this mess...", tone: "whisper", search: true },
+    // Click & point
+    { img: IMG + "police-station-day-11.jpg", speaker: "ASHLEY", text: "No dates... no labels. Of course. I guess it's time to browse all this mess...", fr: "Pas de dates... pas d’étiquettes. Évidemment. Il est temps de fouiller tout ce bazar...", tone: "whisper", search: true },
 
-    { img: IMG + "police-station-day-12.jpg", speaker: "ASHLEY", text: "Ah, Melissa's address is in the report. Interesting...", tone: "whisper" },
-    { img: IMG + "police-station-day-12.jpg", speaker: "ASHLEY", text: "And... I see here the sector that was searched on July 23rd, 1994, in the forest...", tone: "whisper" },
+    { img: IMG + "police-station-day-12.jpg", speaker: "ASHLEY", text: "Ah, Melissa's address is in the report. Interesting...", fr: "Ah, l’adresse de Melissa est dans le rapport. Intéressant...", tone: "whisper" },
+    { img: IMG + "police-station-day-12.jpg", speaker: "ASHLEY", text: "And... I see here the sector that was searched on July 23rd, 1994, in the forest...", fr: "Et... je vois ici le secteur qui a été fouillé le 23 juillet 1994, dans la forêt...", tone: "whisper" },
 
-    // Journalist reflex: Ashley photographs the cruiser (gift) - phone with the gift only
+    // GIFT
     { img: IMG + "police-station-day-13.jpg", speaker: "", text: "" },
 
-    // Last slide: box unlocks (phone with report + map)
+    // Last slide: box unlocks
     { img: IMG + "police-station-day-14.jpg", speaker: "", text: "" }
   ];
+
+  Lang.slides(SLIDES);
 
   var MESSAGES = [
     {
       type: "note",
+      isNew: true,
       from: "Copperdale Police",
+      fr: { from: "Police de Copperdale" },
       text: "YW 7596, Ford Crown Victoria Interceptor Patrol Car #993",
       image: IMG + "patrol-car-preview.jpg",
-      attachment: { label: "Patrol car", url: GIFT_URL }
+      attachment: { label: "Patrol car", fr: "Voiture de patrouille", url: GIFT_URL }
     }
   ];
 
@@ -101,23 +136,23 @@
   var FERN_VISITED = GameState.flag("c2");
 
   var LOCATIONS = [
-    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
-    { type: "location", name: "Merricks' House", blurb: "1994 address", thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true },
-    { type: "location", name: "Copperdale National Forest", blurb: "New search areas", thumb: IMG + "map-icon.jpg", url: "../forest-5/", isNew: true }
+    { type: "location", name: "Seth Fern's House", blurb: "", fr: { name: "Maison de Seth Fern" }, thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "Merricks' House", blurb: "1994 address", fr: { name: "Maison des Merrick", blurb: "Adresse de 1994" }, thumb: IMG + "map-icon.jpg", url: "../jodie-5/", isNew: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "New search areas", fr: { name: "Forêt Nationale de Copperdale", blurb: "Nouvelles zones de recherche" }, thumb: IMG + "map-icon.jpg", url: "../forest-5/", isNew: true }
   ];
   if (FERN_VISITED) {
-    LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" });
+    LOCATIONS.push({ type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", fr: { blurb: "Le garage de Seth" }, thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" });
   }
-  LOCATIONS.push({ type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../police-station-5/", current: true });
+  LOCATIONS.push({ type: "location", name: "Copperdale Police Station", blurb: "", fr: { name: "Commissariat de Copperdale" }, thumb: IMG + "map-icon.jpg", url: "../police-station-5/", current: true });
 
   var PHONE_IMG = IMG + "phone-frame.png";
 
   // CLICK & POINT
   var BOXES = [
     { img: IMG + "police-station-day-11-box.png",  real: true,  bbox: { x1: 607,  y1: 323, x2: 716,  y2: 436 } },
-    { img: IMG + "police-station-day-11-box1.png", real: false, bbox: { x1: 407,  y1: 556, x2: 502,  y2: 668 }, line: "Nothing here." },
-    { img: IMG + "police-station-day-11-box2.png", real: false, bbox: { x1: 1513, y1: 799, x2: 1758, y2: 932 }, line: "Just old paperwork." },
-    { img: IMG + "police-station-day-11-box3.png", real: false, bbox: { x1: 1101, y1: 524, x2: 1181, y2: 587 }, line: "Wrong box." }
+    { img: IMG + "police-station-day-11-box1.png", real: false, bbox: { x1: 407,  y1: 556, x2: 502,  y2: 668 }, line: "Nothing here.", lineFr: "Rien ici." },
+    { img: IMG + "police-station-day-11-box2.png", real: false, bbox: { x1: 1513, y1: 799, x2: 1758, y2: 932 }, line: "Just old paperwork.", lineFr: "Que de vieilles paperasses." },
+    { img: IMG + "police-station-day-11-box3.png", real: false, bbox: { x1: 1101, y1: 524, x2: 1181, y2: 587 }, line: "Wrong box.", lineFr: "Mauvaise boîte." }
   ];
   var BOX_PAD = 8;
 
@@ -183,7 +218,7 @@
       if (!hit) return;
 
       if (!hit.real) {
-        hint.textContent = hit.line;
+        hint.textContent = (Lang.get() === "fr" && hit.lineFr) ? hit.lineFr : hit.line;
         hint.classList.add("show");
         clearTimeout(hintTimer);
         hintTimer = setTimeout(function () { hint.classList.remove("show"); }, 2200);
@@ -232,14 +267,20 @@
       var rootEl = document.getElementById("slideshow-root");
       if (rootEl) rootEl.classList.toggle("searching", index === searchIndex);
 
+      if (index === searchIndex + 1 && rootEl) {
+        var allSlides = rootEl.querySelectorAll(".slide");
+        allSlides[index].style.transition = "opacity 2s ease";
+        allSlides[index - 1].style.transition = "opacity 0s linear 2s";
+      }
+
       if (index === last - 1) {
         phoneFlash(index);
-        initPhoneOverlay(MESSAGES, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
+        initPhoneOverlay(Lang.items(MESSAGES), { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
         return;
       }
       if (index === last) {
         var items = GameState.items(
-          [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS),
+          Lang.items([{ type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }].concat(LOCATIONS)),
           { flag: "box" }
         );
         initPhoneOverlay(items, { hasNew: true, newCount: 2, imgPath: PHONE_IMG });
