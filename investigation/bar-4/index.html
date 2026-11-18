@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
@@ -20,35 +21,65 @@
   var REPORT_DATA = {
     title: "Case File #21071994/M-B",
     subtitle: "Melissa Bliss - Missing Person - Status: Closed (Unsolved)",
+    fr: { title: "Dossier n° 21071994/M-B", subtitle: "Melissa Bliss - Personne disparue - Statut : Classé (non élucidé)" },
     sections: [
       {
         heading: "Incident Report",
-        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994.",
+        fr: {
+          heading: "Rapport d’incident",
+          body: "21 juillet 1994, 00 h 04 - Un appel signale la disparition de Melissa Bliss, 23 ans, déclarée disparue par sa mère, Jodie Merrick. Melissa travaillait dans une station-service de la ville voisine et rentrait habituellement chez elle en courant à travers la forêt qui relie les deux localités, après avoir terminé son service vers 22 h. Les recherches officielles n’ont commencé que 48 heures plus tard, le 23/07/1994."
+        }
       },
       {
         heading: "Jodie Merrick (46) - Mother",
         body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
-        note: "The stepfather. Interesting…"
+        note: "The stepfather. Interesting…",
+        fr: {
+          heading: "Jodie Merrick (46 ans) - Mère",
+          body: "Infirmière. Décrit une relation conflictuelle entre Melissa et son beau-père, Garret Merrick, depuis un récent remariage.",
+          note: "Le beau-père. Intéressant…"
+        }
       },
       {
         heading: "Garret Merrick (52) - Stepfather",
         body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
-        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?",
+        fr: {
+          heading: "Garret Merrick (52 ans) - Beau-père",
+          body: "Entrepreneur en bâtiment. Confirme une relation distante avec Melissa, sans hostilité déclarée. Décrit la relation entre Melissa et Seth comme « toxique ».",
+          note: "Ah, donc il y avait un petit ami… mais pourquoi est-ce Garret qui dit à la police que Seth était toxique, et pas Jodie ?"
+        }
       },
       {
         heading: "Seth Fern (23) - Boyfriend",
         body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
-        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (Sigh...)",
+        fr: {
+          heading: "Seth Fern (23 ans) - Petit ami",
+          body: "Sans emploi. Connaît Melissa depuis l’enfance. Profil décrit comme colérique et possessif. Admet des disputes fréquentes. Mentionne un collègue (Leandro) qu’il soupçonne d’avoir des sentiments pour Melissa. Affirme que Melissa a toujours nié toute relation avec lui. Redirige les enquêteurs vers Daphne Holzer pour plus d’informations. Comportement pendant l’interrogatoire : étonnamment calme.",
+          note: "Étonnamment calme, apparemment jaloux et violent… Le gendre idéal, celui-là. (Soupire...)"
+        }
       },
       {
         heading: "Daphne Holzer (23) - Best Friend",
         body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her - alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
-        note: "She knew more than she told the police. I'd bet my press badge on it."
+        note: "She knew more than she told the police. I'd bet my press badge on it.",
+        fr: {
+          heading: "Daphne Holzer (23 ans) - Meilleure amie",
+          body: "Serveuse (le soir) et étudiante (la journée). Amie proche depuis l’enfance. Décrit Seth comme manipulateur et jaloux. Confirme que Melissa lui a parlé de Leandro Larozzi - avances présumées, attirance mutuelle non avouée. Selon Daphne, Melissa refusait toute relation avec Leandro à cause de la réaction probable de Seth.",
+          note: "Elle en savait plus qu’elle ne l’a dit à la police. Je mettrais ma carte de presse en jeu."
+        }
       },
       {
         heading: "Leandro Larozzi (25) - Coworker",
         body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
-        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+        note: "Five people interviewed. Three of them point straight at Seth Fern…",
+        fr: {
+          heading: "Leandro Larozzi (25 ans) - Collègue",
+          body: "Employé de la station-service et étudiant. Admet avoir des sentiments pour Melissa. Déclare qu’elle l’a repoussé à cause de sa relation avec Seth. Décrit Seth comme instable et envahissant (présence fréquente sur son lieu de travail). Déclare avoir essayé d’offrir un soutien moral à Melissa.",
+          note: "Cinq personnes interrogées. Trois d’entre elles désignent directement Seth Fern…"
+        }
       }
     ]
   };
@@ -59,62 +90,64 @@
 
   // INTRO 
   var INTRO = [
-    { img: IMG + "scene4-bar4-01.jpg", speaker: "PETE", text: "Well, if it isn't the little lady from last night!" },
-    { img: IMG + "scene4-bar4-02.jpg", speaker: "ASHLEY", text: "Hi, Pete. I couldn't find Seth, but I did meet his wife, Linda..." },
-    { img: IMG + "scene4-bar4-03.jpg", speaker: "PETE", text: "Ah... yeah... about that... he's right there." },
+    { img: IMG + "scene4-bar4-01.jpg", speaker: "PETE", text: "Well, if it isn't the little lady from last night!", fr: "Tiens, mais c’est la petite dame d’hier soir !" },
+    { img: IMG + "scene4-bar4-02.jpg", speaker: "ASHLEY", text: "Hi, Pete. I couldn't find Seth, but I did meet his wife, Linda...", fr: "Salut, Pete. Je n’ai pas trouvé Seth, mais j’ai rencontré sa femme, Linda..." },
+    { img: IMG + "scene4-bar4-03.jpg", speaker: "PETE", text: "Ah... yeah... about that... he's right there.", fr: "Ah... ouais... à ce sujet... il est juste là." },
     { img: IMG + "scene4-bar4-04.jpg", speaker: "", text: "" },
-    { img: IMG + "scene4-bar4-05.jpg", speaker: "ASHLEY", text: "That's clearly not Linda... That loser already looks drunk and it's only 11 a.m. Let's see if I can get something out of him...", tone: "whisper" },
+    { img: IMG + "scene4-bar4-05.jpg", speaker: "ASHLEY", text: "That's clearly not Linda... That loser already looks drunk and it's only 11 a.m. Let's see if I can get something out of him...", fr: "Ce n’est clairement pas Linda... Ce minable a déjà l’air ivre et il n’est que 11 h. Voyons si je peux lui soutirer quelque chose...", tone: "whisper" },
     { img: IMG + "scene4-bar4-06.jpg", speaker: "", text: "" },
-    { img: IMG + "scene4-bar4-07.jpg", speaker: "ASHLEY", text: "Hello, Mr... Fern?" },
+    { img: IMG + "scene4-bar4-07.jpg", speaker: "ASHLEY", text: "Hello, Mr... Fern?", fr: "Bonjour, monsieur... Fern ?" },
     
     {
   img: IMG + "scene4-bar4-08.jpg",
   speaker: "SETH",
-  text: "What do you want from me? Did Linda send you? What are you, a lawyer?",
+  text: "What do you want from me? Did Linda send you? What are you, a lawyer?", fr: "Qu’est-ce que vous me voulez ? C’est Linda qui vous envoie ? Vous êtes quoi, avocate ?",
   choices: [
-    { label: "Ask about Melissa", url: GameState.link("./", { flag: "c1" }) },
-    { label: "Lie about car trouble", url: GameState.link("./", { flag: "c2" }) }
+    { label: "Ask about Melissa", fr: "Poser des questions sur Melissa", url: GameState.link("./", { flag: "c1" }) },
+    { label: "Lie about car trouble", fr: "Prétexter une panne de voiture", url: GameState.link("./", { flag: "c2" }) }
   ]
 }
   ];
 
   // CHOIX 1
   var CHOICE1 = [
-    { img: IMG + "scene4-bar4-c1-01.jpg", speaker: "ASHLEY", text: "I have some questions about Melissa Bliss." },
-    { img: IMG + "scene4-bar4-c1-02.jpg", speaker: "SETH", text: "I've got nothing to say to you about her." },
-    { img: IMG + "scene4-bar4-c1-03.jpg", speaker: "SETH", text: "Now get lost." },
-    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Okay... clearly a sore spot. I lacked tact. I won't get anything out of him now. Nice one, Morris... Really nice one.", tone: "whisper" },
-    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Who in this damn town is finally going to talk to me about this case?", tone: "whisper" }
+    { img: IMG + "scene4-bar4-c1-01.jpg", speaker: "ASHLEY", text: "I have some questions about Melissa Bliss.", fr: "J’ai quelques questions au sujet de Melissa Bliss." },
+    { img: IMG + "scene4-bar4-c1-02.jpg", speaker: "SETH", text: "I've got nothing to say to you about her.", fr: "Je n’ai rien à vous dire sur elle." },
+    { img: IMG + "scene4-bar4-c1-03.jpg", speaker: "SETH", text: "Now get lost.", fr: "Maintenant, dégagez." },
+    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Okay... clearly a sore spot. I lacked tact. I won't get anything out of him now. Nice one, Morris... Really nice one.", fr: "OK... visiblement un sujet sensible. J’ai manqué de tact. Je n’obtiendrai plus rien de lui maintenant. Bien joué, Morris... Vraiment bien joué.", tone: "whisper" },
+    { img: IMG + "scene4-bar4-c1-04.jpg", speaker: "ASHLEY", text: "Who in this damn town is finally going to talk to me about this case?", fr: "Qui, dans cette fichue ville, va enfin accepter de me parler de cette affaire ?", tone: "whisper" }
   ];
 
   // CHOIX 2
   var CHOICE2 = [
-    { img: IMG + "scene4-bar4-c2-01.jpg", speaker: "ASHLEY", text: "I'm having trouble with my car, and Pete recommended your... expertise." },
-    { img: IMG + "scene4-bar4-c2-02.jpg", speaker: "SETH", text: "The garage is closed until Monday, but I can make an exception for a damsel in distress." },
-    { img: IMG + "scene4-bar4-c2-03.jpg", speaker: "ASHLEY", text: "Nice move with that fake car problem, Morris... Judging by the state of the Ferns' house, he won't turn his nose up at a few simoleons.", tone: "whisper" },
-    { img: IMG + "scene4-bar4-c2-02.jpg", speaker: "SETH", text: "Drop the car off at the garage within the hour." },
-    { img: IMG + "scene4-bar4-c2-04.jpg", speaker: "ASHLEY", text: "Thank you, Mr Fern." },
-    { img: IMG + "scene4-bar4-c2-04.jpg", speaker: "SETH", text: "Call me Seth." },
-    { img: IMG + "scene4-bar4-c2-05.jpg", speaker: "ASHLEY", text: "Thanks, see you in an hour... Seth." }
+    { img: IMG + "scene4-bar4-c2-01.jpg", speaker: "ASHLEY", text: "I'm having trouble with my car, and Pete recommended your... expertise.", fr: "J’ai un problème avec ma voiture, et Pete m’a recommandé votre... expertise." },
+    { img: IMG + "scene4-bar4-c2-02.jpg", speaker: "SETH", text: "The garage is closed until Monday, but I can make an exception for a damsel in distress.", fr: "Le garage est fermé jusqu’à lundi, mais je peux faire une exception pour une demoiselle en détresse." },
+    { img: IMG + "scene4-bar4-c2-03.jpg", speaker: "ASHLEY", text: "Nice move with that fake car problem, Morris... Judging by the state of the Ferns' house, he won't turn his nose up at a few simoleons.", fr: "Joli coup avec cette fausse panne, Morris... À en juger par l’état de la maison des Fern, il ne crachera pas sur quelques simflouz.", tone: "whisper" },
+    { img: IMG + "scene4-bar4-c2-02.jpg", speaker: "SETH", text: "Drop the car off at the garage within the hour.", fr: "Déposez la voiture au garage dans une heure." },
+    { img: IMG + "scene4-bar4-c2-04.jpg", speaker: "ASHLEY", text: "Thank you, Mr Fern.", fr: "Merci, monsieur Fern." },
+    { img: IMG + "scene4-bar4-c2-04.jpg", speaker: "SETH", text: "Call me Seth.", fr: "Appelez-moi Seth." },
+    { img: IMG + "scene4-bar4-c2-05.jpg", speaker: "ASHLEY", text: "Thanks, see you in an hour... Seth.", fr: "Merci, à dans une heure... Seth." }
   ];
 
   var LOCATIONS = [
-    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
-    { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: IMG + "map-icon.jpg", url: "../bar-4/", current: true },
-    { type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
-    { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", thumb: IMG + "map-icon.jpg", url: "../fern-4/", isNew: true }
+    { type: "location", name: "Seth Fern's House", blurb: "", fr: { name: "Maison de Seth Fern" }, thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "The Factory", blurb: "Local Bar & Diner", fr: { blurb: "Bar et restaurant du coin" }, thumb: IMG + "map-icon.jpg", url: "../bar-4/", current: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "", fr: { name: "Forêt Nationale de Copperdale" }, thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
+    { type: "location", name: "Fern Auto Repair", blurb: "Seth's garage", fr: { blurb: "Le garage de Seth" }, thumb: IMG + "map-icon.jpg", url: "../fern-4/", isNew: true }
   ];
 
   var LOCATIONS_C1 = [
-    { type: "location", name: "Seth Fern's House", blurb: "", thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
-    { type: "location", name: "The Factory", blurb: "Local Bar & Diner", thumb: IMG + "map-icon.jpg", url: "../bar-4/", current: true },
-    { type: "location", name: "Copperdale National Forest", blurb: "", thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
-    { type: "location", name: "Copperdale Police Station", blurb: "", thumb: IMG + "map-icon.jpg", url: "../police-station-5/", isNew: true }
+    { type: "location", name: "Seth Fern's House", blurb: "", fr: { name: "Maison de Seth Fern" }, thumb: IMG + "map-icon.jpg", locked: true, lockedLabel: "Visited" },
+    { type: "location", name: "The Factory", blurb: "Local Bar & Diner", fr: { blurb: "Bar et restaurant du coin" }, thumb: IMG + "map-icon.jpg", url: "../bar-4/", current: true },
+    { type: "location", name: "Copperdale National Forest", blurb: "", fr: { name: "Forêt Nationale de Copperdale" }, thumb: IMG + "map-icon.jpg", url: "../forest-4/" },
+    { type: "location", name: "Copperdale Police Station", blurb: "", fr: { name: "Commissariat de Copperdale" }, thumb: IMG + "map-icon.jpg", url: "../police-station-5/", isNew: true }
   ];
 
   var PHONE_IMG = IMG + "phone-frame.png";
 
   var SLIDES = CHOICE === 1 ? CHOICE1 : (CHOICE === 2 ? CHOICE2 : INTRO);
+
+  Lang.slides(SLIDES);
 
   initSlideshow(SLIDES, {
     nextUrl: "#",
@@ -124,7 +157,7 @@
 
       if (CHOICE === 1) {
         var items1 = GameState.items(
-          [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS_C1),
+          Lang.items([{ type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }].concat(LOCATIONS_C1)),
           { flag: "police" }
         );
         initPhoneOverlay(items1, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
@@ -132,7 +165,7 @@
       }
 
       var items = GameState.items(
-        [{ type: "report", label: "Case File #21071994", data: REPORT_DATA }].concat(LOCATIONS)
+        Lang.items([{ type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }].concat(LOCATIONS))
       );
       initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
     }
