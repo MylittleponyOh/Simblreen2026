@@ -110,12 +110,19 @@
   Lang.slides(SLIDES);
 
   var PHONE_IMG = "../../assets/images/phone-frame.png";
+  var DAWN_INDEX = SLIDES.length - 1;
 
   initSlideshow(SLIDES, {
     nextUrl: "../motel4/?f=knocked",
     onSlideChange: function (index) {
       var items = [{ type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }].concat(LOCATIONS);
       initPhoneOverlay(GameState.items(Lang.items(items), { flag: "fern" }), { hasNew: false, imgPath: PHONE_IMG });
+
+      if (index === DAWN_INDEX) {
+        var all = document.querySelectorAll("#slideshow-root .slide");
+        all[DAWN_INDEX].style.transition = "opacity 4s ease";
+        all[DAWN_INDEX - 1].style.transition = "opacity 0s linear 4s";
+      }
     }
   });
 </script>
