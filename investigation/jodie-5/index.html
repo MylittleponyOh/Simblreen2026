@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<script src="../../assets/js/i18n.js"></script>
 <script src="../../assets/js/state.js"></script>
 <script src="../../assets/js/slideshow.js"></script>
 <script src="../../assets/js/phone-overlay.js"></script>
@@ -20,35 +21,65 @@
   var REPORT_DATA = {
     title: "Case File #21071994/M-B",
     subtitle: "Melissa Bliss - Missing Person - Status: Closed (Unsolved)",
+    fr: { title: "Dossier n° 21071994/M-B", subtitle: "Melissa Bliss - Personne disparue - Statut : Classé (non élucidé)" },
     sections: [
       {
         heading: "Incident Report",
-        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994."
+        body: "July 21st, 1994, 00:04 - A call is received reporting the disappearance of Melissa Bliss, 23, reported missing by her mother Jodie Merrick. Melissa worked at a gas station in the neighboring town and usually ran home through the forest connecting the two areas, finishing her shift around 10 p.m. Official search efforts did not begin until 48 hours later, on 07/23/1994.",
+        fr: {
+          heading: "Rapport d’incident",
+          body: "21 juillet 1994, 00 h 04 - Un appel signale la disparition de Melissa Bliss, 23 ans, déclarée disparue par sa mère, Jodie Merrick. Melissa travaillait dans une station-service de la ville voisine et rentrait habituellement chez elle en courant à travers la forêt qui relie les deux localités, après avoir terminé son service vers 22 h. Les recherches officielles n’ont commencé que 48 heures plus tard, le 23/07/1994."
+        }
       },
       {
         heading: "Jodie Merrick (46) - Mother",
         body: "Nurse. Describes a conflicted relationship between Melissa and her stepfather, Garret Merrick, following a recent remarriage.",
-        note: "The stepfather. Interesting…"
+        note: "The stepfather. Interesting…",
+        fr: {
+          heading: "Jodie Merrick (46 ans) - Mère",
+          body: "Infirmière. Décrit une relation conflictuelle entre Melissa et son beau-père, Garret Merrick, depuis un récent remariage.",
+          note: "Le beau-père. Intéressant…"
+        }
       },
       {
         heading: "Garret Merrick (52) - Stepfather",
         body: "Contractor. Confirms a distant relationship with Melissa, no open hostility. Describes Melissa and Seth's relationship as 'toxic.'",
-        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?"
+        note: "Ah, so there was a boyfriend… but why is it Garret telling police Seth was toxic, and not Jodie?",
+        fr: {
+          heading: "Garret Merrick (52 ans) - Beau-père",
+          body: "Entrepreneur en bâtiment. Confirme une relation distante avec Melissa, sans hostilité déclarée. Décrit la relation entre Melissa et Seth comme « toxique ».",
+          note: "Ah, donc il y avait un petit ami… mais pourquoi est-ce Garret qui dit à la police que Seth était toxique, et pas Jodie ?"
+        }
       },
       {
         heading: "Seth Fern (23) - Boyfriend",
         body: "Unemployed. Has known Melissa since childhood. Profile described as short-tempered and possessive. Admits to frequent arguments. Mentions a coworker (Leandro) he suspects of having feelings for Melissa. States Melissa always denied any relationship with him. Redirects investigators to Daphne Holzer for more information. Behavior during questioning: unusually composed.",
-        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (She sighs.)"
+        note: "Unusually composed, apparently jealous and violent… Real son-in-law material, this one. (Sigh...)",
+        fr: {
+          heading: "Seth Fern (23 ans) - Petit ami",
+          body: "Sans emploi. Connaît Melissa depuis l’enfance. Profil décrit comme colérique et possessif. Admet des disputes fréquentes. Mentionne un collègue (Leandro) qu’il soupçonne d’avoir des sentiments pour Melissa. Affirme que Melissa a toujours nié toute relation avec lui. Redirige les enquêteurs vers Daphne Holzer pour plus d’informations. Comportement pendant l’interrogatoire : étonnamment calme.",
+          note: "Étonnamment calme, apparemment jaloux et violent… Le gendre idéal, celui-là. (Soupire...)"
+        }
       },
       {
         heading: "Daphne Holzer (23) - Best Friend",
         body: "Waitress (evenings) and student (daytime). Close friend since childhood. Describes Seth as manipulative and jealous. Confirms Melissa mentioned Leandro Larozzi to her - alleged advances, unacknowledged mutual interest. According to Daphne, Melissa refused any relationship with Leandro because of how Seth would likely react.",
-        note: "She knew more than she told the police. I'd bet my press badge on it."
+        note: "She knew more than she told the police. I'd bet my press badge on it.",
+        fr: {
+          heading: "Daphne Holzer (23 ans) - Meilleure amie",
+          body: "Serveuse (le soir) et étudiante (la journée). Amie proche depuis l’enfance. Décrit Seth comme manipulateur et jaloux. Confirme que Melissa lui a parlé de Leandro Larozzi - avances présumées, attirance mutuelle non avouée. Selon Daphne, Melissa refusait toute relation avec Leandro à cause de la réaction probable de Seth.",
+          note: "Elle en savait plus qu’elle ne l’a dit à la police. Je mettrais ma carte de presse en jeu."
+        }
       },
       {
         heading: "Leandro Larozzi (25) - Coworker",
         body: "Gas station employee and student. Admits having feelings for Melissa. States she turned him down because of her relationship with Seth. Describes Seth as unstable and intrusive (frequent presence at her workplace). States he tried to offer Melissa moral support.",
-        note: "Five people interviewed. Three of them point straight at Seth Fern…"
+        note: "Five people interviewed. Three of them point straight at Seth Fern…",
+        fr: {
+          heading: "Leandro Larozzi (25 ans) - Collègue",
+          body: "Employé de la station-service et étudiant. Admet avoir des sentiments pour Melissa. Déclare qu’elle l’a repoussé à cause de sa relation avec Seth. Décrit Seth comme instable et envahissant (présence fréquente sur son lieu de travail). Déclare avoir essayé d’offrir un soutien moral à Melissa.",
+          note: "Cinq personnes interrogées. Trois d’entre elles désignent directement Seth Fern…"
+        }
       }
     ]
   };
@@ -65,34 +96,37 @@
     title: "Melissa's Diary",
     style: "diary",
     subtitle: "1994",
+    fr: { title: "Journal de Melissa" },
     sections: [
-      { heading: "January 1st, 1994", body: "We celebrated New Year's Eve with Seth at some friends of his. We fought again during the party. Because one of his friends tried to hit on me... I missed Daph so much, I would've rather partied with her." },
-      { heading: "January 3rd, 1994", body: "Seth apologized for the party and gave me a necklace." },
-      { heading: "January 10th, 1994", body: "A position opened up at the gas station, I dropped off my résumé! Fingers crossed I get the job!" },
-      { heading: "February 9th, 1994", body: "It's been a month since I started working at the gas station. I met a super nice coworker who's here for his studies, but he comes from Tartosa. I would love to go to Tartosa one day! This job will let me save up to travel." },
-      { heading: "February 14th, 1994", body: "This year Seth suggested we go see a car race... I thought he'd understand that celebrating our 5 years together would be important to me, but apparently not. He completely forgot Valentine's Day... I decided not to give him what I had bought for him..." },
-      { heading: "March 25th, 1994", body: "Today is Daph's birthday! The weekend is going to be incredible!" },
-      { heading: "March 27th, 1994", body: "We partied until the end of the night! We even went to the lake for a swim with the last few brave ones." },
-      { heading: "April 1st, 1994", body: "Seth made a scene because he wasn't invited to Daph's party. He told me he'd been worried because he didn't know where I was. He even went to see Garret to ask where I was! Garret!!!" },
-      { heading: "April 15th, 1994", body: "Today at the gas station, Leandro and I laughed so much. He's so kind and funny. And really cute (crossed out). We talked about so many interesting things. And then Seth showed up unannounced. We went outside to talk and he made a scene out there. I can't take his jealous fits anymore..." },
-      { heading: "May 3rd, 1994", body: "I decided to run home through the forest after work. It gives me a nice half hour of running in nature and it clears my head so much! I get a little breathing room, and above all I can't stand Seth picking me up every evening to hang around at his place anymore. I hate where he lives." },
-      { heading: "May 24th, 1994", body: "I'm officially 23! Happy birthday to you, Melissa!" },
-      { heading: "June 15th, 1994", body: "Leandro gave me a gift! And then he told me he liked me... I was so shaken. He's so kind, we're interested in the same things. I'm completely lost... And it's true that I like him too... But Seth..." },
-      { heading: "June 26th, 1994", body: "He scared me again, I don't know what to do anymore. Garret saw us arguing at the gas station. He wanted to come help and calm things down and I told him to go to hell. I know he meant well. But I hate it when people get involved in my life!" },
-      { heading: "July 5th, 1994", body: "I think I'm falling in love with Leandro and it really scares me. Thank goodness Daph helps me carry this secret. I'm a bit ashamed, and at the same time, it makes me feel so alive." },
-      { heading: "July 21st, 1994", body: "Tonight I'm leaving Seth. Tonight I'M-LEAVING-SETH!" }
+      { heading: "January 1st, 1994", body: "We celebrated New Year's Eve with Seth at some friends of his. We fought again during the party. Because one of his friends tried to hit on me... I missed Daph so much, I would've rather partied with her.", fr: { heading: "1er janvier 1994", body: "On a fêté le Nouvel An avec Seth chez des amis à lui. On s’est encore disputés pendant la soirée. Parce qu’un de ses amis a essayé de me draguer... Daph m'a tellement manqué, j’aurais préféré faire la fête avec elle." } },
+      { heading: "January 3rd, 1994", body: "Seth apologized for the party and gave me a necklace.", fr: { heading: "3 janvier 1994", body: "Seth s’est excusé pour la soirée et m’a offert un collier." } },
+      { heading: "January 10th, 1994", body: "A position opened up at the gas station, I dropped off my résumé! Fingers crossed I get the job!", fr: { heading: "10 janvier 1994", body: "Un poste s’est libéré à la station-service, j’ai déposé mon CV ! Croisons les doigts pour que je décroche le job !" } },
+      { heading: "February 9th, 1994", body: "It's been a month since I started working at the gas station. I met a super nice coworker who's here for his studies, but he comes from Tartosa. I would love to go to Tartosa one day! This job will let me save up to travel.", fr: { heading: "9 février 1994", body: "Ça fait un mois que j’ai commencé à la station-service. J’ai rencontré un collègue super sympa qui est là pour ses études, mais il vient de Tartosa. J’adorerais aller à Tartosa un jour ! Ce travail me permettra d’économiser pour voyager." } },
+      { heading: "February 14th, 1994", body: "This year Seth suggested we go see a car race... I thought he'd understand that celebrating our 5 years together would be important to me, but apparently not. He completely forgot Valentine's Day... I decided not to give him what I had bought for him...", fr: { heading: "14 février 1994", body: "Cette année, Seth a proposé qu’on aille voir une course de voitures... Je pensais qu’il comprendrait que fêter nos 5 ans ensemble était important pour moi, mais apparemment non. Il a complètement oublié la Saint-Valentin... J’ai décidé de ne pas lui donner ce que je lui avais acheté..." } },
+      { heading: "March 25th, 1994", body: "Today is Daph's birthday! The weekend is going to be incredible!", fr: { heading: "25 mars 1994", body: "Aujourd’hui, c’est l’anniversaire de Daph ! Le week-end va être incroyable !" } },
+      { heading: "March 27th, 1994", body: "We partied until the end of the night! We even went to the lake for a swim with the last few brave ones.", fr: { heading: "27 mars 1994", body: "On a fait la fête jusqu’au bout de la nuit ! On est même allés se baigner au lac avec les derniers courageux." } },
+      { heading: "April 1st, 1994", body: "Seth made a scene because he wasn't invited to Daph's party. He told me he'd been worried because he didn't know where I was. He even went to see Garret to ask where I was! Garret!!!", fr: { heading: "1er avril 1994", body: "Seth a fait une scène parce qu’il n’était pas invité à la fête de Daph. Il m’a dit qu’il s’était inquiété parce qu’il ne savait pas où j’étais. Il est même allé voir Garret pour lui demander où j’étais ! Garret !!!" } },
+      { heading: "April 15th, 1994", body: "Today at the gas station, Leandro and I laughed so much. He's so kind and funny. And really cute. We talked about so many interesting things. And then Seth showed up unannounced. We went outside to talk and he made a scene out there. I can't take his jealous fits anymore...", fr: { heading: "15 avril 1994", body: "Aujourd’hui à la station-service, Leandro et moi avons tellement ri. Il est si gentil et drôle. Et vraiment mignon. On a parlé de tellement de choses intéressantes. Et puis Seth est arrivé sans prévenir. On est sortis pour parler et il a fait une scène dehors. Je ne supporte plus ses crises de jalousie..." } },
+      { heading: "May 3rd, 1994", body: "I decided to run home through the forest after work. It gives me a nice half hour of running in nature and it clears my head so much! I get a little breathing room, and above all I can't stand Seth picking me up every evening to hang around at his place anymore. I hate where he lives.", fr: { heading: "3 mai 1994", body: "J’ai décidé de rentrer en courant à travers la forêt après le travail. Ça me fait une bonne demi-heure de course dans la nature et ça me vide tellement la tête ! Je respire un peu, et surtout je ne supporte plus que Seth vienne me chercher tous les soirs pour traîner chez lui. Je déteste l’endroit où il habite." } },
+      { heading: "May 24th, 1994", body: "I'm officially 23! Happy birthday to you, Melissa!", fr: { heading: "24 mai 1994", body: "J’ai officiellement 23 ans ! Joyeux anniversaire, Melissa !" } },
+      { heading: "June 15th, 1994", body: "Leandro gave me a gift! And then he told me he liked me... I was so shaken. He's so kind, we're interested in the same things. I'm completely lost... And it's true that I like him too... But Seth...", fr: { heading: "15 juin 1994", body: "Leandro m’a fait un cadeau ! Et puis il m’a dit que je lui plaisais... J’ai été tellement bouleversée. Il est si gentil, on s’intéresse aux mêmes choses. Je suis complètement perdue... Et c’est vrai que lui aussi me plaît... Mais Seth..." } },
+      { heading: "June 26th, 1994", body: "He scared me again, I don't know what to do anymore. Garret saw us arguing at the gas station. He wanted to come help and calm things down and I told him to go to hell. I know he meant well. But I hate it when people get involved in my life!", fr: { heading: "26 juin 1994", body: "Il m’a encore fait peur, je ne sais plus quoi faire. Garret nous a vus nous disputer à la station-service. Il a voulu m'aider et calmer les choses et je l'ai envoyé se faire voir. Je sais qu’il avait de bonnes intentions. Mais je déteste que les gens se mêlent de ma vie !" } },
+      { heading: "July 5th, 1994", body: "I think I'm falling in love with Leandro and it really scares me. Thank goodness Daph helps me carry this secret. I'm a bit ashamed, and at the same time, it makes me feel so alive.", fr: { heading: "5 juillet 1994", body: "Je crois que je tombe amoureuse de Leandro et ça me fait vraiment peur. Heureusement que Daph m’aide à porter ce secret. J’ai un peu honte, et en même temps, ça me fait me sentir tellement vivante." } },
+      { heading: "July 21st, 1994", body: "Tonight I'm leaving Seth. Tonight I'M-LEAVING-SETH!", fr: { heading: "21 juillet 1994", body: "Ce soir, je quitte Seth. Ce soir JE.QUITTE.SETH !" } }
     ]
   };
 
+  Lang.report(DIARY_DATA);
+
   var INTRO = [
     { img: IMG + "merricks.jpg", speaker: "", text: "" },
-    { img: IMG + "merricks-01.jpg",    speaker: "ASHLEY", text: "Merricks' House...at least in 1994...", tone: "mumble" },
+    { img: IMG + "merricks-01.jpg",    speaker: "ASHLEY", text: "Merricks' House...at least in 1994...", fr: "La maison des Merrick... du moins en 1994...", tone: "mumble" },
     
     {
-      img: IMG + "merricks-02.jpg", speaker: "ASHLEY", text: "Someone is on the porch...", tone: "whisper",
+      img: IMG + "merricks-02.jpg", speaker: "ASHLEY", text: "Someone is on the porch...", fr: "Il y a quelqu’un sous le porche...", tone: "whisper",
       choices: [
-        { label: "Ask for Jodie", url: GameState.link("./", { flag: "rang" }) },
-        { label: "Mmmh, it looks like it's someone else's home...",       url: GameState.link("../forest-5/") }
+        { label: "Ask for Jodie", fr: "Demander à voir Jodie", url: GameState.link("./", { flag: "rang" }) },
+        { label: "Mmmh, it looks like it's someone else's home...", fr: "Mmmh, on dirait que c’est la maison de quelqu’un d’autre...", url: GameState.link("../forest-5/") }
       ]
     }
   ];
@@ -101,63 +135,65 @@
   var INTRO_JOG = [
     INTRO[0],
     INTRO[1],
-    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "I don't know why, my guts tell me to ask around...", tone: "whisper" },
-    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "Alright. Enough stalling.", tone: "whisper" }
+    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "I don't know why, my guts tell me to ask around...", fr: "Je ne sais pas pourquoi, mon instinct me dit de me renseigner...", tone: "whisper" },
+    { img: IMG + "merricks-03.jpg", speaker: "ASHLEY", text: "Alright. Enough stalling.", fr: "Bon. Assez tergiversé.", tone: "whisper" }
   ];
 
   var MAIN = [
-    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "Hello, can I help you?" },
-    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "I... Uh... Mrs Merrick?" },
-    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "In the flesh." },
-    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "Ashley. Ashley Morris-Wint. I'm a journalist at the San Myshuno Inspector." },
-    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "Oh, I suppose you're here to talk about my daughter?" },
+    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "Hello, can I help you?", fr: "Bonjour, puis-je vous aider ?" },
+    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "I... Uh... Mrs Merrick?", fr: "Je... Euh... Madame Merrick ?" },
+    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "In the flesh.", fr: "En personne." },
+    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "Ashley. Ashley Morris-Wint. I'm a journalist at the San Myshuno Inspector.", fr: "Ashley. Ashley Morris-Wint. Je suis journaliste au San Myshuno Inspector." },
+    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "Oh, I suppose you're here to talk about my daughter?", fr: "Oh, je suppose que vous venez me parler de ma fille ?" },
 
     { img: IMG + "merricks-06.jpg", speaker: "", text: "" },
 
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "So... How can I help you?" },
-    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "Well, to tell the truth... I'm surprised... I didn't expect..." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "That I'd go on living after going through the hardest thing a parent can go through? I'm the first to be surprised, believe me." },
-    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "How come?" },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "It was my duty as a parent. You know, I lost my first husband, the love of my life, when I was 45. Melissa's father. That was an ordeal." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Then Melissa disappeared. And I sank. But for her, I had to get back up. Everyone thinks she's dead and buried. But I can't help believing that if she's still alive, she wouldn't want to come back to a mother who's nothing but a shadow of herself..." },    
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "So I filled my house. I took in children, I gave love unconditionally. It's not easy every day. And there isn't a day that goes by that I don't think of her..." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "But it was my only way to hold on." },
-    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "You have no idea what could have happened to her?" },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Melissa was very secretive with me, but Garret, my second husband, told me that something between her and Seth, her boyfriend at the time, wasn't right." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "He had caught them one evening arguing in front of the gas station where she worked... He wanted to help, but she kindly told him to go fly a kite." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "You know how young people are, you must never let their parents get involved in their love lives..." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "So... How can I help you?", fr: "Alors... Comment puis-je vous aider ?" },
+    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "Well, to tell the truth... I'm surprised... I didn't expect...", fr: "Eh bien, à vrai dire... je suis surprise... Je ne m’attendais pas à..." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "That I'd go on living after going through the hardest thing a parent can go through? I'm the first to be surprised, believe me.", fr: "À ce que je continue à vivre après avoir traversé la pire épreuve qu’un parent puisse traverser ? J'en suis la première surprise, croyez-moi." },
+    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "How come?", fr: "Comment ça ?" },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "It was my duty as a parent. You know, I lost my first husband, the love of my life, when I was 45. Melissa's father. That was an ordeal.", fr: "C’était mon devoir en tant que parent. Vous savez, j’ai perdu mon premier mari, l’amour de ma vie, quand j’avais 45 ans. Le père de Melissa. Ça a été une épreuve." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Then Melissa disappeared. And I sank. But for her, I had to get back up. Everyone thinks she's dead and buried. But I can't help believing that if she's still alive, she wouldn't want to come back to a mother who's nothing but a shadow of herself...", fr: "Puis Melissa a disparu. Et j’ai sombré. Mais pour elle, je devais me relever. Tout le monde pense qu’elle est morte et enterrée. Mais je ne peux m’empêcher de croire que, si elle est toujours en vie, elle ne voudrait pas revenir auprès d’une mère qui n’est plus que l’ombre d’elle-même..." },    
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "So I filled my house. I took in children, I gave love unconditionally. It's not easy every day. And there isn't a day that goes by that I don't think of her...", fr: "Alors j’ai rempli ma maison. J’ai accueilli des enfants, j’ai donné de l’amour sans condition. Ce n’est pas facile tous les jours. Et il ne se passe pas un jour sans que je pense à elle..." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "But it was my only way to hold on.", fr: "Mais c’était mon seul moyen de tenir." },
+    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "You have no idea what could have happened to her?", fr: "Vous n’avez aucune idée de ce qui a pu lui arriver ?" },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Melissa was very secretive with me, but Garret, my second husband, told me that something between her and Seth, her boyfriend at the time, wasn't right.", fr: "Melissa était très secrète avec moi, mais Garret, mon second mari, m’a dit que quelque chose n’allait pas entre elle et Seth, son petit ami de l’époque." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "He had caught them one evening arguing in front of the gas station where she worked... He wanted to help, but she kindly told him to go fly a kite.", fr: "Il les avait surpris un soir en pleine dispute devant la station-service où elle travaillait... Il voulait aider, mais elle lui a gentiment dit d’aller voir ailleurs si elle y était." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "You know how young people are, you must never let their parents get involved in their love lives...", fr: "Vous savez comment sont les jeunes, il ne faut surtout pas que leurs parents se mêlent de leur vie amoureuse..." },
 
-    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "I heard Garret and Melissa didn't get along..." },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Oh... He just wanted to protect her like his own daughter. I'm so glad I had him by my side after Melissa disappeared. " },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "I know the neighbors gossiped, some said he was guilty. Even after his death... All Garret ever wanted was a family and for Melissa to be happy..." },
-    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "What other people thought of him... He didn't care." },
-    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "Do you have anything of Melissa's that the police weren't interested in back then?" },
-    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Let me show you her room..." },
+    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "I heard Garret and Melissa didn't get along...", fr: "J’ai entendu dire que Garret et Melissa ne s’entendaient pas..." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Oh... He just wanted to protect her like his own daughter. I'm so glad I had him by my side after Melissa disappeared. ", fr: "Oh... Il voulait seulement la protéger comme sa propre fille. Je suis si heureuse de l’avoir eu à mes côtés après la disparition de Melissa." },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "I know the neighbors gossiped, some said he was guilty. Even after his death... All Garret ever wanted was a family and for Melissa to be happy...", fr: "Je sais que les voisins parlaient, certains disaient qu’il était coupable. Même après sa mort... Tout ce que Garret a toujours voulu, c’était une famille et que Melissa soit heureuse..." },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "What other people thought of him... He didn't care.", fr: "Ce que les autres pensaient de lui... Ça lui était égal." },
+    { img: IMG + "merricks-07.jpg", speaker: "ASHLEY", text: "Do you have anything of Melissa's that the police weren't interested in back then?", fr: "Avez-vous des affaires de Melissa qui n’intéressaient pas la police à l’époque ?" },
+    { img: IMG + "merricks-06.jpg", speaker: "JODIE",  text: "Let me show you her room...", fr: "Laissez-moi vous montrer sa chambre..." },
 
-    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "They never set foot in here, they didn't even go through her things in 1994... I went to the police station with a box full of her belongings and they sent me home..." },
-    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "At the time I just told myself they had everything they needed to run the investigation, but in the end... They didn't care. They very quickly closed the case..." },
-    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "There. Here we are. It's been left exactly as she left it." },
-    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "I can't go in... Can I leave you?" },
-    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "... Of course." },
+    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "They never set foot in here, they didn't even go through her things in 1994... I went to the police station with a box full of her belongings and they sent me home...", fr: "Ils n’ont jamais mis les pieds ici, ils n’ont même pas fouillé ses affaires en 1994... Je suis allée au commissariat avec une boîte pleine de ses affaires et ils m’ont renvoyée chez moi..." },
+    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "At the time I just told myself they had everything they needed to run the investigation, but in the end... They didn't care. They very quickly closed the case...", fr: "À l’époque, je me suis simplement dit qu’ils avaient tout ce qu’il leur fallait pour mener l’enquête, mais au final... Ça leur était égal. Ils ont très vite classé l’affaire..." },
+    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "There. Here we are. It's been left exactly as she left it.", fr: "Voilà. Nous y sommes. Elle est restée exactement comme elle l’a laissée." },
+    { img: IMG + "merricks-08.jpg", speaker: "JODIE",  text: "I can't go in... Can I leave you?", fr: "Je ne peux pas entrer... Puis-je vous laisser ?" },
+    { img: IMG + "merricks-08.jpg", speaker: "ASHLEY", text: "... Of course.", fr: "... Bien sûr." },
 
     // Click & point
-    { img: IMG + "melissa-bedroom.jpg", speaker: "ASHLEY", text: "There has to be something in here..." },
+    { img: IMG + "melissa-bedroom.jpg", speaker: "ASHLEY", text: "There has to be something in here...", fr: "Il doit bien y avoir quelque chose ici..." },
     { img: IMG + "melissa-bedroom.jpg", speaker: "", text: "", search: true },
     { img: IMG + "melissa-bedroom-floorboard.jpg", speaker: "", text: "", diary: true },
-    { img: IMG + "merricks-06.jpg", speaker: "ASHLEY", text: "I found her diary. Do you mind if I keep it?" },
-    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Oh, that's right, my Melissa loved to write. I think she needed it. It was her little therapy. Take it. Take anything that can help you." },
-    { img: IMG + "merricks-06.jpg", speaker: "ASHLEY", text: "Thank you. Ah... Uh, Jodie... Are you still in touch with Daphne Holzer?" },
-    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "Daphne? Of course! She comes to see me about once a week. She doesn't live far. I can write down her address for you! Give me a moment." },
-    { img: IMG + "merricks-04.jpg", speaker: "ASHLEY", text: "Thank you." },
-    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "No, I'm the one who should thank you..." },
-    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "You remind me of her. Her tenacity, that way of never letting go... Thank you for doing this for her. Everyone gave up. But not you." },
-    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "There's something about this town that... calls to me. I can't put my finger on it. But like Melissa, I'm not letting go... Have a good day, Jodie." },
+    { img: IMG + "merricks-06.jpg", speaker: "ASHLEY", text: "I found her diary. Do you mind if I keep it?", fr: "J’ai trouvé son journal. Cela vous dérange si je le garde ?" },
+    { img: IMG + "merricks-07.jpg", speaker: "JODIE",  text: "Oh, that's right, my Melissa loved to write. I think she needed it. It was her little therapy. Take it. Take anything that can help you.", fr: "Oh, c’est vrai, ma Melissa adorait écrire. Je crois qu’elle en avait besoin. C’était sa petite thérapie. Prenez-le. Prenez tout ce qui peut vous aider." },
+    { img: IMG + "merricks-06.jpg", speaker: "ASHLEY", text: "Thank you. Ah... Uh, Jodie... Are you still in touch with Daphne Holzer?", fr: "Merci. Ah... Euh, Jodie... Êtes-vous toujours en contact avec Daphne Holzer ?" },
+    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "Daphne? Of course! She comes to see me about once a week. She doesn't live far. I can write down her address for you! Give me a moment.", fr: "Daphne ? Bien sûr ! Elle vient me voir environ une fois par semaine. Elle n’habite pas loin. Je peux vous noter son adresse ! Laissez-moi un instant." },
+    { img: IMG + "merricks-04.jpg", speaker: "ASHLEY", text: "Thank you.", fr: "Merci." },
+    { img: IMG + "merricks-05.jpg", speaker: "JODIE",  text: "No, I'm the one who should thank you...", fr: "Non, c’est moi qui devrais vous remercier..." },
+    { img: IMG + "merricks-04.jpg", speaker: "JODIE",  text: "You remind me of her. Her tenacity, that way of never letting go... Thank you for doing this for her. Everyone gave up. But not you.", fr: "Vous me la rappelez. Sa ténacité, cette façon de ne jamais lâcher prise... Merci de faire cela pour elle. Tout le monde a abandonné. Mais pas vous." },
+    { img: IMG + "merricks-05.jpg", speaker: "ASHLEY", text: "There's something about this town that... calls to me. I can't put my finger on it. But like Melissa, I'm not letting go... Have a good day, Jodie.", fr: "Il y a quelque chose dans cette ville qui... m’appelle. Je n’arrive pas à mettre le doigt dessus. Mais comme Melissa, je ne lâche rien... Bonne journée, Jodie." },
 
     // Dernière slide : Adresse de Daph débloquée (téléphone avec dossier + map)
     { img: IMG + "merricks-01.jpg", speaker: "", text: "" }
   ];
 
   var SLIDES = RANG ? MAIN : (JOG ? INTRO_JOG.concat(MAIN) : INTRO);
+
+  Lang.slides(SLIDES);
 
   var diaryIndex = -1, searchIndex = -1;
   SLIDES.forEach(function (sl, i) {
@@ -169,8 +205,8 @@
 
   var ICON = IMG + "map-icon.jpg";
   var LOCATIONS = [
-    { type: "location", name: "Merricks' House", blurb: "", thumb: ICON, locked: true, current: true },
-    { type: "location", name: "Daphne's House", blurb: "Address from Jodie", thumb: ICON, url: "../daphne-6/", isNew: true }
+    { type: "location", name: "Merricks' House", blurb: "", fr: { name: "Maison des Merrick" }, thumb: ICON, locked: true, current: true },
+    { type: "location", name: "Daphne's House", blurb: "Address from Jodie", fr: { name: "Maison de Daphne", blurb: "Adresse donnée par Jodie" }, thumb: ICON, url: "../daphne-6/", isNew: true }
   ];
 
   var PHONE_IMG = IMG + "phone-frame.png";
@@ -178,10 +214,10 @@
   // CLICK & POINT
   var HOTSPOTS = [
   { img: IMG + "floorboard.png",  real: true },
-  { img: IMG + "jewlerybox.png",   real: false, line: "Hair ties and nail polish. No diary." },
-  { img: IMG + "pinboard.png", real: false, line: "Photos and ticket stubs. Nothing hidden behind." },
-  { img: IMG + "vhs.png", real: false, line: "Old VHS tapes. Nothing hidden inside." },
-  { img: IMG + "booksandvinyls.png", real: false, line: "Just old books and records." }
+  { img: IMG + "jewlerybox.png",   real: false, line: "Hair ties and nail polish...", lineFr: "Des élastiques à cheveux et du vernis à ongles..." },
+  { img: IMG + "pinboard.png", real: false, line: "Photos and ticket stubs. Nothing hidden behind.", lineFr: "Des photos et des talons de billets. Rien de caché derrière." },
+  { img: IMG + "vhs.png", real: false, line: "Old VHS tapes. Nothing hidden inside.", lineFr: "De vieilles cassettes VHS. Rien de caché dedans." },
+  { img: IMG + "booksandvinyls.png", real: false, line: "Just old books and records.", lineFr: "Seulement de vieux livres et des vinyls." }
 ];
   var HOT_PAD = 8;
 
@@ -273,7 +309,7 @@
       if (!hit) return;
 
       if (!hit.real) {
-        hint.textContent = hit.line || "Nothing here.";
+        hint.textContent = (Lang.get() === "fr" && hit.lineFr) ? hit.lineFr : (hit.line || "Nothing here.");
         hint.classList.add("show");
         clearTimeout(hintTimer);
         hintTimer = setTimeout(function () { hint.classList.remove("show"); }, 2200);
@@ -301,9 +337,9 @@
 
       if (index === last && SLIDES !== INTRO) {
         var items = GameState.items(
-          [
-            { type: "report", label: "Case File #21071994", data: REPORT_DATA }
-          ].concat(LOCATIONS),
+          Lang.items([
+            { type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }
+          ].concat(LOCATIONS)),
           { flag: "diary" }
         );
         initPhoneOverlay(items, { hasNew: true, newCount: 1, imgPath: PHONE_IMG });
