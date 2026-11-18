@@ -86,8 +86,6 @@
   var LOCATIONS = [
     { type: "location", name: "Seth Fern's House", blurb: "Address from Pete", fr: { name: "Maison de Seth Fern", blurb: "Adresse donnée par Pete" }, thumb: "../../assets/images/map-icon.jpg", url: "../door-4/", current: true },
     { type: "location", name: "The Factory", blurb: "Local Bar & Diner", fr: { blurb: "Bar et restaurant du coin" }, thumb: "../../assets/images/map-icon.jpg", url: "../bar-4/" },
-    { type: "location", name: "Copperdale National Forest", blurb: "", fr: { name: "Forêt Nationale de Copperdale" }, thumb: "../../assets/images/map-icon.jpg", url: "../forest-3/" },
-    { type: "location", name: "Copperdale Police Station", blurb: "", fr: { name: "Commissariat de Copperdale" }, thumb: "../../assets/images/map-icon.jpg", url: "../police-station-3/" },
     { type: "location", name: "Fern Auto Repair", blurb: "Closed on weekends", fr: { blurb: "Fermé le week-end" }, thumb: "../../assets/images/map-icon.jpg", locked: true }
   ];
 
@@ -101,7 +99,9 @@
     { img: "../../assets/images/scene4-door4-02.jpg", speaker: "LINDA", text: "Mmmh... Well, he's not here. He's probably at the bar getting drunk... or with one of his...", fr: "Mmmh... Eh bien, il n’est pas là. Il est probablement au bar en train de se saouler... ou avec l’une de ses..." },
     { img: "../../assets/images/scene4-door4-03.jpg", speaker: "ASHLEY", text: "...Conquests. I see. Thank you Mrs Fer...", fr: "...Conquêtes. Je vois. Merci Madame Fer..." },
     { img: "../../assets/images/scene4-door4-02.jpg", speaker: "LINDA", text: "Linda.", fr: "Linda." },
-    { img: "../../assets/images/scene4-door4-03.jpg", speaker: "ASHLEY", text: "Thank you, Linda.", fr: "Merci, Linda." }
+    { img: "../../assets/images/scene4-door4-03.jpg", speaker: "ASHLEY", text: "Thank you, Linda.", fr: "Merci, Linda." },
+    { img: "../../assets/images/scene4-door4-00.jpg", speaker: "", text: "" }
+    
   ];
 
   Lang.slides(SLIDES);
@@ -109,8 +109,9 @@
   var PHONE_IMG = "../../assets/images/phone-frame.png";
 
   initSlideshow(SLIDES, {
-    nextUrl: "../bar-4/",
+    nextUrl: "#",
     onSlideChange: function (index) {
+      if (index < SLIDES.length - 1) return;
       var items = [{ type: "report", label: "Case File #21071994", fr: { label: "Dossier n° 21071994" }, data: REPORT_DATA }].concat(LOCATIONS);
       initPhoneOverlay(Lang.items(items), { hasNew: false, imgPath: PHONE_IMG });
     }
